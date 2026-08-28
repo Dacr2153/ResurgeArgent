@@ -17,6 +17,7 @@ class NecesidadIn(BaseModel):
     cantidad_requerida: float = Field(ge=0)
     prioridad: int = Field(default=1, ge=1)
     ubicacion: UbicacionIn
+    unidad: str = ""
 
 
 class RecursoIn(BaseModel):
@@ -25,6 +26,7 @@ class RecursoIn(BaseModel):
     tipo: str
     cantidad_disponible: float = Field(ge=0)
     ubicacion: UbicacionIn
+    unidad: str = ""
 
 
 class EmpresaIn(BaseModel):
@@ -55,6 +57,7 @@ class MatchingRequest(BaseModel):
                         "cantidad_requerida": 100.0,
                         "prioridad": 3,
                         "ubicacion": {"lat": 4.711, "lon": -74.072},
+                        "unidad": "litros",
                     }
                 ],
                 "recursos": [
@@ -64,6 +67,7 @@ class MatchingRequest(BaseModel):
                         "tipo": "agua",
                         "cantidad_disponible": 150.0,
                         "ubicacion": {"lat": 4.6, "lon": -74.08},
+                        "unidad": "litros",
                     }
                 ],
                 "empresas": [
