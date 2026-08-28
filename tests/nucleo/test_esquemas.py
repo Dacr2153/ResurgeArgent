@@ -14,6 +14,7 @@ from nucleo.esquemas import (
     IncidenteVerificado,
     ReporteCrudo,
     RespuestaGeo,
+    RutaAlternativa,
     Severidad,
     TipoFuente,
     Urgencia,
@@ -172,3 +173,25 @@ def test_reporte_serializa_certeza_cap():
         certeza=Certeza.OBSERVED,
     )
     assert reporte.a_dict()["certeza"] == "Observed"
+
+
+def test_respuesta_geo_sin_alternativas_por_defecto():
+    respuesta = RespuestaGeo(consulta_id="c-1", accesible=True)
+    assert respuesta.alternativas == ()
+    assert respuesta.a_dict()["alternativas"] == []
+
+
+def test_respuesta_geo_serializa_alternativas():
+    alterna = RutaAlternativa(
+        distancia_km=7.6543,
+        duracion_min=14.2,
+        geometria={"type": "LineString", "coordinates": [[-74.08, 4.60], [-74.03, 4.66]]},
+        vias_evitadas=("T3",),
+    )
+    respuesta = RespuestaGeo(
+        consulta_id="c-1", accesible=True, distancia_km=5.0, alternativas=(alterna,)
+    )
+    d = respuesta.a_dict()
+    assert len(d["alternativas"]) == 1
+    assert d["alternativas"][0]["distancia_km"] == 7.654
+    assert d["alternativas"][0]["vias_evitadas"] == ["T3"]

@@ -16,15 +16,19 @@ from nucleo.geo import Punto
 
 
 def _grafo() -> GrafoVial:
+    """N1, N2, N3 en escuadra (no colineales): ver docstring homónimo en
+    test_resolver_ruta.py. Con puntos colineales, bloquear la diagonal T3 no
+    cambiaría la distancia de forma perceptible aunque el bloqueo sí se aplique.
+    """
     nodos = {
         "N1": NodoVial(id="N1", ubicacion=Punto(lat=4.7000, lon=-74.0800)),
-        "N2": NodoVial(id="N2", ubicacion=Punto(lat=4.7050, lon=-74.0750)),
-        "N3": NodoVial(id="N3", ubicacion=Punto(lat=4.7100, lon=-74.0700)),
+        "N2": NodoVial(id="N2", ubicacion=Punto(lat=4.7050, lon=-74.0800)),  # al norte de N1
+        "N3": NodoVial(id="N3", ubicacion=Punto(lat=4.7050, lon=-74.0700)),  # al este de N2
     }
     tramos = (
         TramoVial(id="T1", origen_id="N1", destino_id="N2"),
         TramoVial(id="T2", origen_id="N2", destino_id="N3"),
-        TramoVial(id="T3", origen_id="N1", destino_id="N3"),
+        TramoVial(id="T3", origen_id="N1", destino_id="N3"),  # diagonal, más corta
     )
     return GrafoVial(nodos=nodos, tramos=tramos)
 
@@ -53,7 +57,7 @@ def test_health(client):
 def test_rutas_happy_path(client):
     payload = {
         "origen": {"lat": 4.7000, "lon": -74.0800},
-        "destino": {"lat": 4.7100, "lon": -74.0700},
+        "destino": {"lat": 4.7050, "lon": -74.0700},
         "modo": "auto",
     }
     r = client.post("/rutas", json=payload)
@@ -67,7 +71,7 @@ def test_rutas_happy_path(client):
 def test_rutas_con_reporte_de_bloqueo_evita_la_via(client):
     payload = {
         "origen": {"lat": 4.7000, "lon": -74.0800},
-        "destino": {"lat": 4.7100, "lon": -74.0700},
+        "destino": {"lat": 4.7050, "lon": -74.0700},
         "reportes_bloqueo": ["la via:T3 esta bloqueada por un derrumbe"],
     }
     r = client.post("/rutas", json=payload)
@@ -76,10 +80,45 @@ def test_rutas_con_reporte_de_bloqueo_evita_la_via(client):
     assert "T3" in body["vias_evitadas"]
 
 
+def test_rutas_evitar_zonas_bloquea_la_via_y_alarga_la_ruta(client):
+    directa = client.post(
+        "/rutas",
+        json={
+            "origen": {"lat": 4.7000, "lon": -74.0800},
+            "destino": {"lat": 4.7050, "lon": -74.0700},
+        },
+    ).json()
+    desviada = client.post(
+        "/rutas",
+        json={
+            "origen": {"lat": 4.7000, "lon": -74.0800},
+            "destino": {"lat": 4.7050, "lon": -74.0700},
+            "evitar_zonas": ["T3"],
+        },
+    ).json()
+
+    assert desviada["vias_evitadas"] == ["T3"]
+    assert desviada["distancia_km"] > directa["distancia_km"]
+
+
+def test_rutas_evitar_zonas_y_reportes_bloqueo_se_acumulan(client):
+    r = client.post(
+        "/rutas",
+        json={
+            "origen": {"lat": 4.7000, "lon": -74.0800},
+            "destino": {"lat": 4.7050, "lon": -74.0700},
+            "evitar_zonas": ["T3"],
+            "reportes_bloqueo": ["la via:T2 quedo tapada por el derrumbe"],
+        },
+    )
+    assert r.status_code == 200
+    assert set(r.json()["vias_evitadas"]) == {"T3", "T2"}
+
+
 def test_rutas_punto_fuera_del_grafo_devuelve_422(client):
     payload = {
         "origen": {"lat": -33.45, "lon": -70.66},
-        "destino": {"lat": 4.7100, "lon": -74.0700},
+        "destino": {"lat": 4.7050, "lon": -74.0700},
     }
     r = client.post("/rutas", json=payload)
     assert r.status_code == 422

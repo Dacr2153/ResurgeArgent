@@ -16,6 +16,7 @@ from nucleo.esquemas import (
     ModoTransporte,
     ReporteCrudo,
     RespuestaGeo,
+    RutaAlternativa,
     Severidad,
     TipoFuente,
     Urgencia,
@@ -36,7 +37,7 @@ __all__ = [
     "Agente", "AuditoriaPort", "Canal", "Categoria", "Certeza", "ConsultaGeo",
     "DecisionHumana", "EventoAuditoria", "Fuente", "GeoespacialPort",
     "GeometriaInvalidaError", "IncidenteVerificado", "IngestaPort", "Mensaje",
-    "ModoTransporte", "Performativa", "Punto", "ReporteCrudo", "RespuestaGeo",
+    "ModoTransporte", "Performativa", "Punto", "ReporteCrudo", "RespuestaGeo", "RutaAlternativa",
     "Severidad", "TipoEvento", "TipoFuente", "Urgencia", "VerificacionPort",
     "ahora", "bbox", "centroide", "haversine", "nuevo_id", "validar_geojson",
 ]

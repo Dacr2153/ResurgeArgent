@@ -261,6 +261,29 @@ class ConsultaGeo:
 
 
 @dataclass(frozen=True, slots=True)
+class RutaAlternativa:
+    """Opción de ruta distinta a la principal.
+
+    El Orquestador necesita un plan B: si el vehículo asignado no puede tomar la
+    ruta principal, tener la alternativa ya calculada evita una ida y vuelta más
+    al agente geoespacial en plena emergencia.
+    """
+
+    distancia_km: float
+    duracion_min: float
+    geometria: dict[str, Any] = field(default_factory=dict)
+    vias_evitadas: tuple[str, ...] = ()
+
+    def a_dict(self) -> dict[str, Any]:
+        return {
+            "distancia_km": round(self.distancia_km, 3),
+            "duracion_min": round(self.duracion_min, 2),
+            "geometria": self.geometria,
+            "vias_evitadas": list(self.vias_evitadas),
+        }
+
+
+@dataclass(frozen=True, slots=True)
 class RespuestaGeo:
     """Respuesta del Agente Geoespacial. La geometría va en GeoJSON estricto."""
 
@@ -271,6 +294,7 @@ class RespuestaGeo:
     geometria: dict[str, Any] = field(default_factory=dict)
     vias_evitadas: tuple[str, ...] = ()
     motivo: str = ""
+    alternativas: tuple[RutaAlternativa, ...] = ()
 
     def a_dict(self) -> dict[str, Any]:
         return {
@@ -281,6 +305,7 @@ class RespuestaGeo:
             "geometria": self.geometria,
             "vias_evitadas": list(self.vias_evitadas),
             "motivo": self.motivo,
+            "alternativas": [a.a_dict() for a in self.alternativas],
         }
 
 

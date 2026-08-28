@@ -38,25 +38,15 @@ def crear_app(use_cases: tuple[ResolverRuta, AnalizarZonas]) -> FastAPI:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
 
         try:
-            respuesta, resultado = await resolver_ruta.ejecutar_detallado(
+            respuesta = await resolver_ruta.ejecutar(
                 consulta, reportes_bloqueo=payload.reportes_bloqueo
             )
         except NodoDesconocidoError as exc:
             raise HTTPException(status_code=422, detail=str(exc)) from exc
 
-        cuerpo = respuesta.a_dict()
-        # Extensión sobre el contrato estricto de RespuestaGeo: el Orquestador
-        # consume solo la ruta principal vía GeoespacialPort, pero un consumidor
-        # REST se beneficia de ver el plan B.
-        cuerpo["alternativas"] = [
-            {
-                "distancia_km": round(alternativa.distancia_km, 3),
-                "duracion_min": round(alternativa.duracion_min, 2),
-                "geometria": alternativa.geometria,
-            }
-            for alternativa in resultado.alternativas
-        ]
-        return cuerpo
+        # respuesta.alternativas ya viaja en el contrato (nucleo.esquemas.RespuestaGeo):
+        # no hace falta una vía aparte para exponer el plan B.
+        return respuesta.a_dict()
 
     @app.post("/zonas")
     async def zonas(payload: ZonasRequest) -> dict:

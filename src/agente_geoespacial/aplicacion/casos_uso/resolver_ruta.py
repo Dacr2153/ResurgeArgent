@@ -8,14 +8,22 @@ La regla que no se rompe:
 El LLM extrae qué tramos están bloqueados a partir de lenguaje natural ("la vía
 está tapada por el derrumbe"). Nunca calcula distancias, nunca elige la ruta:
 eso es enteramente responsabilidad del ``MotorRutas``, determinista.
+
+Hay dos canales por los que puede llegar un bloqueo, y se combinan, no se elige
+uno u otro:
+
+- ``consulta.evitar_zonas``: bloqueos que otro agente ya conoce y pasa
+  directamente (el caso del flujo real: Verificación detecta un derrumbe, el
+  Orquestador pide una ruta que lo evite).
+- ``reportes_bloqueo`` interpretados por el LLM: bloqueos que alguien contó en
+  texto libre y que nadie más había estructurado todavía.
 """
 
 from __future__ import annotations
 
 from agente_geoespacial.aplicacion.puertos.salida import LLMInterpretePort, PublicadorPort
-from agente_geoespacial.dominio.entidades import ResultadoRuta
 from agente_geoespacial.dominio.motor_rutas import MotorRutas
-from nucleo.esquemas import ConsultaGeo, RespuestaGeo
+from nucleo.esquemas import ConsultaGeo, RespuestaGeo, RutaAlternativa
 from nucleo.mensajes import Agente, EventoAuditoria, TipoEvento
 from nucleo.puertos import AuditoriaPort
 
@@ -39,26 +47,17 @@ class ResolverRuta:
         reportes_bloqueo: list[str] | None = None,
         correlacion_id: str | None = None,
     ) -> RespuestaGeo:
-        """Cumple ``ResolverRutaUseCase`` / la mitad de ``nucleo.puertos.GeoespacialPort``."""
-        respuesta, _ = await self.ejecutar_detallado(consulta, reportes_bloqueo, correlacion_id)
-        return respuesta
+        """Cumple ``ResolverRutaUseCase`` y ``nucleo.puertos.GeoespacialPort.resolver_ruta``.
 
-    async def ejecutar_detallado(
-        self,
-        consulta: ConsultaGeo,
-        reportes_bloqueo: list[str] | None = None,
-        correlacion_id: str | None = None,
-    ) -> tuple[RespuestaGeo, ResultadoRuta]:
-        """Variante que además expone las rutas alternativas (fuera del contrato de frontera).
-
-        ``RespuestaGeo`` no tiene campo para alternativas, así que el adaptador
-        REST usa esta versión para ofrecerlas; el puerto compartido con el
-        Orquestador usa ``ejecutar``, que solo devuelve la ruta principal.
+        Devuelve la ruta principal con ``alternativas`` ya incluidas: no hace
+        falta un método aparte para que el Orquestador vea el plan B, porque
+        ahora ``RespuestaGeo`` tiene dónde ponerlo.
         """
         correlacion_id = correlacion_id or consulta.id
         reportes = reportes_bloqueo or []
 
-        vias_bloqueadas = await self._llm.interpretar(reportes)
+        vias_reportadas_por_llm = await self._llm.interpretar(reportes)
+        vias_bloqueadas = self._combinar_bloqueos(consulta.evitar_zonas, vias_reportadas_por_llm)
 
         resultado = self._motor.calcular_ruta(consulta, vias_bloqueadas)
 
@@ -70,6 +69,17 @@ class ResolverRuta:
             geometria=resultado.geometria,
             vias_evitadas=resultado.vias_evitadas,
             motivo=resultado.motivo,
+            alternativas=tuple(
+                RutaAlternativa(
+                    distancia_km=alternativa.distancia_km,
+                    duracion_min=alternativa.duracion_min,
+                    geometria=alternativa.geometria,
+                    # La alternativa se calculó sobre el mismo grafo degradado
+                    # que la principal: evita exactamente las mismas vías.
+                    vias_evitadas=resultado.vias_evitadas,
+                )
+                for alternativa in resultado.alternativas
+            ),
         )
 
         await self._auditoria.registrar(
@@ -82,7 +92,7 @@ class ResolverRuta:
                     "accesible": respuesta.accesible,
                     "distancia_km": respuesta.distancia_km,
                     "duracion_min": respuesta.duracion_min,
-                    "num_alternativas": len(resultado.alternativas),
+                    "num_alternativas": len(respuesta.alternativas),
                 },
             )
         )
@@ -93,10 +103,34 @@ class ResolverRuta:
                     tipo=TipoEvento.VIA_BLOQUEADA,
                     agente=Agente.GEOESPACIAL,
                     correlacion_id=correlacion_id,
-                    detalle={"vias_bloqueadas": list(vias_bloqueadas), "reportes": reportes},
+                    detalle={
+                        "vias_bloqueadas": list(vias_bloqueadas),
+                        "vias_evitadas_en_consulta": list(consulta.evitar_zonas),
+                        "vias_extraidas_por_llm": list(vias_reportadas_por_llm),
+                        "reportes": reportes,
+                    },
                 )
             )
 
         await self._publicador.publicar(respuesta.a_dict())
 
-        return respuesta, resultado
+        return respuesta
+
+    @staticmethod
+    def _combinar_bloqueos(
+        evitar_zonas: tuple[str, ...], vias_del_llm: list[str]
+    ) -> list[str]:
+        """Une ambas fuentes de bloqueo sin duplicados, conservando el orden de aparición.
+
+        Un id que no corresponde a ningún tramo del grafo no revienta nada: el
+        motor simplemente no encuentra arista que remover para él y sigue de
+        largo. Aun así queda en ``vias_evitadas`` de la respuesta, como
+        constancia de que se pidió evitarlo.
+        """
+        vistos: set[str] = set()
+        combinadas: list[str] = []
+        for id_tramo in (*evitar_zonas, *vias_del_llm):
+            if id_tramo not in vistos:
+                vistos.add(id_tramo)
+                combinadas.append(id_tramo)
+        return combinadas

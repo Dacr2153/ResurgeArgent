@@ -15,15 +15,22 @@ from nucleo.mensajes import TipoEvento
 
 
 def _grafo() -> GrafoVial:
+    """N1, N2, N3 en escuadra (no colineales): N1-N2-N3 es un desvío real.
+
+    Con puntos colineales, N1-N2-N3 mide prácticamente lo mismo que la diagonal
+    N1-N3 (la desigualdad triangular se vuelve casi una igualdad) y bloquear T3
+    no cambiaría la distancia de forma perceptible, aunque el bloqueo sí se
+    hubiera aplicado. La escuadra evita ese falso negativo.
+    """
     nodos = {
         "N1": NodoVial(id="N1", ubicacion=Punto(lat=4.7000, lon=-74.0800)),
-        "N2": NodoVial(id="N2", ubicacion=Punto(lat=4.7050, lon=-74.0750)),
-        "N3": NodoVial(id="N3", ubicacion=Punto(lat=4.7100, lon=-74.0700)),
+        "N2": NodoVial(id="N2", ubicacion=Punto(lat=4.7050, lon=-74.0800)),  # al norte de N1
+        "N3": NodoVial(id="N3", ubicacion=Punto(lat=4.7050, lon=-74.0700)),  # al este de N2
     }
     tramos = (
         TramoVial(id="T1", origen_id="N1", destino_id="N2"),
         TramoVial(id="T2", origen_id="N2", destino_id="N3"),
-        TramoVial(id="T3", origen_id="N1", destino_id="N3"),
+        TramoVial(id="T3", origen_id="N1", destino_id="N3"),  # diagonal, más corta
     )
     return GrafoVial(nodos=nodos, tramos=tramos)
 
@@ -94,14 +101,99 @@ async def test_via_bloqueada_detectada_por_el_llm_emite_evento_de_auditoria():
 
 
 @pytest.mark.asyncio
-async def test_ejecutar_detallado_expone_alternativas():
+async def test_respuesta_geo_expone_alternativas_por_el_contrato():
     caso, grafo, _, _, _ = construir_caso_uso()
     consulta = ConsultaGeo(origen=grafo.nodos["N1"].ubicacion, destino=grafo.nodos["N3"].ubicacion)
 
-    respuesta, resultado = await caso.ejecutar_detallado(consulta)
+    respuesta = await caso.ejecutar(consulta)
 
     assert respuesta.accesible
-    assert len(resultado.alternativas) >= 1
+    assert len(respuesta.alternativas) >= 1
+    alternativa = respuesta.alternativas[0]
+    assert alternativa.distancia_km >= respuesta.distancia_km
+    assert alternativa.vias_evitadas == respuesta.vias_evitadas
+
+
+@pytest.mark.asyncio
+async def test_sin_alternativa_respuesta_alternativas_es_tupla_vacia():
+    """N1-N2-N3 en línea única con T2 bloqueado: sin desvío posible a N3."""
+    grafo = _grafo()
+    motor = MotorRutas(GrafoVial(nodos=grafo.nodos, tramos=grafo.tramos[:2]))  # T1, T2 solamente
+    caso = ResolverRuta(
+        motor=motor, llm=LLMQueDecide([]), publicador=FakePublicador(), auditoria=AuditoriaMemoria()
+    )
+    consulta = ConsultaGeo(origen=grafo.nodos["N1"].ubicacion, destino=grafo.nodos["N3"].ubicacion)
+
+    respuesta = await caso.ejecutar(consulta)
+
+    assert respuesta.accesible
+    assert respuesta.alternativas == ()
+
+
+@pytest.mark.asyncio
+async def test_evitar_zonas_de_la_consulta_fuerza_un_desvio_mas_largo():
+    grafo = _grafo()
+    motor = MotorRutas(grafo)
+    caso = ResolverRuta(
+        motor=motor, llm=LLMQueDecide([]), publicador=FakePublicador(), auditoria=AuditoriaMemoria()
+    )
+    consulta_directa = ConsultaGeo(
+        origen=grafo.nodos["N1"].ubicacion, destino=grafo.nodos["N3"].ubicacion
+    )
+    consulta_evitando = ConsultaGeo(
+        origen=grafo.nodos["N1"].ubicacion,
+        destino=grafo.nodos["N3"].ubicacion,
+        evitar_zonas=("T3",),  # T3 es la arista directa N1->N3
+    )
+
+    directa = await caso.ejecutar(consulta_directa)
+    desviada = await caso.ejecutar(consulta_evitando)
+
+    # Números reales del grafo de prueba (ver docstring de _grafo): T3 es la
+    # diagonal N1->N3, más corta que el desvío en escuadra N1->N2->N3.
+    assert directa.distancia_km == pytest.approx(1.240, abs=0.01)
+    assert desviada.distancia_km == pytest.approx(1.664, abs=0.01)
+    assert desviada.vias_evitadas == ("T3",)
+    assert desviada.distancia_km > directa.distancia_km
+
+
+@pytest.mark.asyncio
+async def test_evitar_zonas_y_bloqueos_del_llm_se_acumulan():
+    grafo = _grafo()
+    motor = MotorRutas(grafo)
+    llm = LLMQueDecide(["T2"])
+    caso = ResolverRuta(
+        motor=motor, llm=llm, publicador=FakePublicador(), auditoria=AuditoriaMemoria()
+    )
+    consulta = ConsultaGeo(
+        origen=grafo.nodos["N1"].ubicacion,
+        destino=grafo.nodos["N3"].ubicacion,
+        evitar_zonas=("T3",),
+    )
+
+    respuesta = await caso.ejecutar(consulta, reportes_bloqueo=["algo"])
+
+    # Ambas fuentes deben quedar reflejadas, no solo una.
+    assert set(respuesta.vias_evitadas) == {"T3", "T2"}
+
+
+@pytest.mark.asyncio
+async def test_evitar_zonas_con_id_inexistente_no_revienta_y_queda_constancia():
+    grafo = _grafo()
+    motor = MotorRutas(grafo)
+    caso = ResolverRuta(
+        motor=motor, llm=LLMQueDecide([]), publicador=FakePublicador(), auditoria=AuditoriaMemoria()
+    )
+    consulta = ConsultaGeo(
+        origen=grafo.nodos["N1"].ubicacion,
+        destino=grafo.nodos["N3"].ubicacion,
+        evitar_zonas=("TRAMO-QUE-NO-EXISTE",),
+    )
+
+    respuesta = await caso.ejecutar(consulta)
+
+    assert respuesta.accesible
+    assert "TRAMO-QUE-NO-EXISTE" in respuesta.vias_evitadas
 
 
 @pytest.mark.asyncio
