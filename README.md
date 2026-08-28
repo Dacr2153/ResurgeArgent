@@ -99,17 +99,22 @@ Controla disponibilidad y distribución de alimentos, agua, medicamentos, herram
 
 9. Agente de Voluntarios
 Registra capacidades, ubicación y disponibilidad de voluntarios y determina dónde pueden ser más útiles. - 
-### 10. Agente de Matching/Asignación
+
+Sistemas de estados unidos relacionados con verificar efectivamente los daños.
+
+## Alejandro
+10. Agente de Matching/Asignación
 Relaciona necesidades ↔ recursos ↔ empresas ↔ vehículos, buscando la asignación más eficiente.
 
-        11. Agente Logístico
-        Planifica el movimiento de recursos, personas y suministros desde su origen hasta el destino.- protocolos necesarios para presentar la ayuda. 
+11. Agente Logístico
+Planifica el movimiento de recursos, personas y suministros desde su origen hasta el destino.- protocolos necesarios para presentar la ayuda. 
 
-        12. Agente de Afectados
-        Gestiona solicitudes de ayuda, registra empresas afectadas y hace seguimiento de sus necesidades. (Opcional)
+12. Agente de Afectados
+Gestiona solicitudes de ayuda, registra empresas afectadas y hace seguimiento de sus necesidades. (Opcional)
 
-        13. Agente de Puntos de Ayuda
-        Administra refugios, centros de distribución, centros de acopio y demás puntos de atención, incluyendo su capacidad y nivel de saturación.
+## Saregon
+13. Agente de Puntos de Ayuda
+Administra refugios, centros de distribución, centros de acopio y demás puntos de atención, incluyendo su capacidad y nivel de saturación.
 
         14. Agente de Comunicación y Alertas
         Envía instrucciones, alertas, recomendaciones y actualizaciones a ciudadanos, voluntarios, organizaciones y coordinadores.
