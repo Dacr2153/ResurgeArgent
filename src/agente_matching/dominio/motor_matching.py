@@ -106,13 +106,10 @@ class MotorMatching:
 
         resumen = self._resumen(
             necesidades,
-            recursos,
             empresas,
-            reservas,
             fijas_entidad,
             asignaciones,
             no_cubierto,
-            flota_total,
         )
 
         return ResultadoMatching(
@@ -302,20 +299,14 @@ class MotorMatching:
     def _resumen(
         self,
         necesidades,
-        recursos,
         empresas,
-        reservas,
         fijas,
         asignaciones,
         no_cubierto,
-        flota_total,
     ):
         demanda_total = sum(n.cantidad_requerida for n in necesidades)
 
-        def _demanda_sin_cubrir() -> float:
-            return sum(nc.cantidad for nc in no_cubierto)
-
-        sin_cubrir = _demanda_sin_cubrir()
+        sin_cubrir = sum(nc.cantidad for nc in no_cubierto)
         cubierta = demanda_total - sin_cubrir
 
         costo_total = 0.0
@@ -324,21 +315,23 @@ class MotorMatching:
 
         por_empresa: dict[str, dict] = {}
         for e in empresas:
-            flota_disponible = e.flota(self._capacidad_uniforme) - reservas["empresa"][e.id]
             por_empresa[e.id] = {
+                "flota_total": e.flota(self._capacidad_uniforme),
                 "asignado": 0.0,
-                "flota_usada": 0.0,
-                "flota_disponible": flota_disponible,
             }
 
         def _acumular(lista_asis):
             for a in lista_asis:
                 if a.empresa_id in por_empresa:
                     por_empresa[a.empresa_id]["asignado"] += a.cantidad
-                    por_empresa[a.empresa_id]["flota_usada"] += a.cantidad
 
         _acumular(fijas)
         _acumular(asignaciones)
+
+        for e in empresas:
+            por_empresa[e.id]["flota_disponible"] = (
+                por_empresa[e.id]["flota_total"] - por_empresa[e.id]["asignado"]
+            )
 
         return ResumenMatching(
             demanda_total=round(demanda_total, 6),
