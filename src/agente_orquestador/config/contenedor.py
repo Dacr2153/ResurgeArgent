@@ -43,6 +43,7 @@ from agente_orquestador.config.settings import Settings
 from agente_orquestador.dominio.motor_triage import MotorTriage
 from nucleo.auditoria import AuditoriaJSONL, AuditoriaMemoria, AuditoriaSQLite
 from nucleo.geo import Punto
+from nucleo.llm import ClienteGemini, ClienteVertex, ConRespaldo
 from nucleo.puertos import AuditoriaPort, GeoespacialPort, IngestaPort, VerificacionPort
 
 registro = logging.getLogger("agente_orquestador.contenedor")
@@ -70,9 +71,31 @@ class Contenedor:
         return []
 
 
-def construir_resumidor(settings: Settings):
+def _construir_resumidor_llm(settings: Settings):
     """Devuelve el resumidor configurado; sin API key, siempre el nulo."""
     prompt = PROMPT_PATH.read_text(encoding="utf-8")
+
+    if settings.llm_proveedor == "vertex" and settings.vertex_proyecto:
+        return ResumidorLLM(
+            cliente=ClienteVertex(
+                proyecto=settings.vertex_proyecto,
+                cuenta_servicio=settings.vertex_cuenta_servicio,
+                model=settings.vertex_model,
+                region=settings.vertex_region,
+                max_tokens=settings.vertex_max_tokens,
+            ),
+            rol_prompt=prompt,
+        )
+
+    if settings.llm_proveedor == "gemini" and settings.gemini_api_key:
+        return ResumidorLLM(
+            cliente=ClienteGemini(
+                api_key=settings.gemini_api_key,
+                model=settings.gemini_model,
+                max_tokens=settings.gemini_max_tokens,
+            ),
+            rol_prompt=prompt,
+        )
 
     if settings.llm_proveedor == "deepseek" and settings.deepseek_api_key:
         return ResumidorLLM(
@@ -95,7 +118,20 @@ def construir_resumidor(settings: Settings):
             rol_prompt=prompt,
         )
 
-    return ResumidorNulo()
+    return None
+
+
+def construir_resumidor(settings: Settings):
+    """Adaptador de LLM con respaldo de reglas.
+
+    Que el modelo se caiga no puede detener la respuesta a una emergencia: el
+    LLM nunca decide, asi que su ausencia degrada la calidad de la extraccion,
+    no la operacion.
+    """
+    principal = _construir_resumidor_llm(settings)
+    if principal is None:
+        return ResumidorNulo()
+    return ConRespaldo(principal, ResumidorNulo())
 
 
 class AdaptadorGeoespacial:

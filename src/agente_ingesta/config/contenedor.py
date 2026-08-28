@@ -13,13 +13,36 @@ from agente_ingesta.aplicacion.casos_uso.ingerir_reportes import IngerirReportes
 from agente_ingesta.config.settings import Settings
 from agente_ingesta.dominio.motor_ingesta import MotorIngesta
 from nucleo.auditoria import AuditoriaMemoria
+from nucleo.llm import ClienteGemini, ClienteVertex, ConRespaldo
 from nucleo.puertos import AuditoriaPort
 
 PROMPT_PATH = Path(__file__).parent.parent / "adaptadores" / "llm" / "prompts" / "rol_agente_2.md"
 
 
-def construir_extractor(settings: Settings):
+def _construir_extractor_llm(settings: Settings):
     prompt = PROMPT_PATH.read_text(encoding="utf-8")
+
+    if settings.llm_proveedor == "vertex" and settings.vertex_proyecto:
+        return ExtractorLLM(
+            cliente=ClienteVertex(
+                proyecto=settings.vertex_proyecto,
+                cuenta_servicio=settings.vertex_cuenta_servicio,
+                model=settings.vertex_model,
+                region=settings.vertex_region,
+                max_tokens=settings.vertex_max_tokens,
+            ),
+            rol_prompt=prompt,
+        )
+
+    if settings.llm_proveedor == "gemini" and settings.gemini_api_key:
+        return ExtractorLLM(
+            cliente=ClienteGemini(
+                api_key=settings.gemini_api_key,
+                model=settings.gemini_model,
+                max_tokens=settings.gemini_max_tokens,
+            ),
+            rol_prompt=prompt,
+        )
 
     if settings.llm_proveedor == "deepseek" and settings.deepseek_api_key:
         return ExtractorLLM(
@@ -42,7 +65,20 @@ def construir_extractor(settings: Settings):
             rol_prompt=prompt,
         )
 
-    return ExtractorNulo()
+    return None
+
+
+def construir_extractor(settings: Settings):
+    """Adaptador de LLM con respaldo de reglas.
+
+    Que el modelo se caiga no puede detener la respuesta a una emergencia: el
+    LLM nunca decide, asi que su ausencia degrada la calidad de la extraccion,
+    no la operacion.
+    """
+    principal = _construir_extractor_llm(settings)
+    if principal is None:
+        return ExtractorNulo()
+    return ConRespaldo(principal, ExtractorNulo())
 
 
 def construir_contenedor(

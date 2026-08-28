@@ -1,0 +1,693 @@
+{
+ "momento": "2026-08-28T19:51:45.202511+00:00",
+ "duracion_segundos": 37.23,
+ "escenario": "Ensayo de coste con tres reportes.",
+ "reportes_entrada": [
+  {
+   "texto": "Se cayo el puente sobre la quebrada, no se puede pasar",
+   "fuente": {
+    "id": "cel-3114",
+    "tipo": "ciudadano",
+    "reputacion": 0.45
+   },
+   "canal": "sms",
+   "ubicacion": {
+    "type": "Point",
+    "coordinates": [
+     -74.0803,
+     4.6112
+    ]
+   },
+   "categoria": "Geo",
+   "urgencia": "Immediate",
+   "severidad": "Severe",
+   "certeza": "Observed",
+   "personas_afectadas": 8
+  },
+  {
+   "texto": "Colapso la estructura sobre el rio, hay carros atrapados",
+   "fuente": {
+    "id": "cel-3220",
+    "tipo": "ciudadano",
+    "reputacion": 0.45
+   },
+   "canal": "whatsapp",
+   "ubicacion": {
+    "type": "Point",
+    "coordinates": [
+     -74.0811,
+     4.6106
+    ]
+   },
+   "categoria": "Geo",
+   "urgencia": "Immediate",
+   "severidad": "Severe",
+   "certeza": "Observed",
+   "personas_afectadas": 12
+  },
+  {
+   "texto": "Derrumbe tapo la via, la montana se vino encima",
+   "fuente": {
+    "id": "cel-3387",
+    "tipo": "ciudadano",
+    "reputacion": 0.45
+   },
+   "canal": "sms",
+   "ubicacion": {
+    "type": "Point",
+    "coordinates": [
+     -74.0819,
+     4.6098
+    ]
+   },
+   "categoria": "Geo",
+   "urgencia": "Immediate",
+   "severidad": "Severe",
+   "certeza": "Observed"
+  }
+ ],
+ "resultado": {
+  "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+  "estado_operacion": "pendiente_aprobacion",
+  "degradada": false,
+  "saga": {
+   "exitosa": true,
+   "parcial": false,
+   "degradada": false,
+   "pasos": [
+    {
+     "nombre": "ingesta",
+     "agente": "agente-2-ingesta",
+     "estado": "completado",
+     "obligatorio": true,
+     "error": ""
+    },
+    {
+     "nombre": "verificacion",
+     "agente": "agente-3-verificacion",
+     "estado": "completado",
+     "obligatorio": true,
+     "error": ""
+    },
+    {
+     "nombre": "geoespacial",
+     "agente": "agente-5-geoespacial",
+     "estado": "completado",
+     "obligatorio": false,
+     "error": ""
+    }
+   ],
+   "fallidos": [],
+   "compensados": []
+  },
+  "reportes_ingeridos": 3,
+  "reportes_descartados": {
+   "total": 0,
+   "por_motivo": {},
+   "detalle_disponible": true
+  },
+  "incidentes": [
+   {
+    "incidente_id": "06b67bee-f275-4ec7-9c4a-e972369a1c0b",
+    "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+    "estado": "pendiente_aprobacion",
+    "visitas": {
+     "recibido": 1,
+     "verificado": 1,
+     "localizado": 1,
+     "priorizado": 1,
+     "pendiente_aprobacion": 1
+    },
+    "historial": [
+     {
+      "origen": "recibido",
+      "solicitado": "verificado",
+      "estado": "verificado",
+      "aplicada": true,
+      "motivo": "corroborado por 3 reporte(s), confianza 0.53",
+      "momento": "2026-08-28T19:51:38.113802+00:00",
+      "decision_id": null
+     },
+     {
+      "origen": "verificado",
+      "solicitado": "localizado",
+      "estado": "localizado",
+      "aplicada": true,
+      "motivo": "ubicación propia del incidente; ruta no solicitada en este lote",
+      "momento": "2026-08-28T19:51:38.113871+00:00",
+      "decision_id": null
+     },
+     {
+      "origen": "localizado",
+      "solicitado": "priorizado",
+      "estado": "priorizado",
+      "aplicada": true,
+      "motivo": "posición 1 del lote, puntuación 0.5844",
+      "momento": "2026-08-28T19:51:38.114034+00:00",
+      "decision_id": null
+     },
+     {
+      "origen": "priorizado",
+      "solicitado": "pendiente_aprobacion",
+      "estado": "pendiente_aprobacion",
+      "aplicada": true,
+      "motivo": "a la espera de la firma del coordinador humano",
+      "momento": "2026-08-28T19:51:38.114067+00:00",
+      "decision_id": null
+     }
+    ],
+    "decision": null,
+    "triage": {
+     "incidente_id": "06b67bee-f275-4ec7-9c4a-e972369a1c0b",
+     "posicion": 1,
+     "puntuacion": 0.584443,
+     "componentes": {
+      "severidad": 0.3375,
+      "urgencia": 0.35,
+      "personas": 0.074252,
+      "base": 0.761752,
+      "multiplicador_confianza": 0.767235
+     }
+    },
+    "datos": {
+     "ruta": null,
+     "geo_degradado": false
+    },
+    "requiere_firma": true
+   }
+  ],
+  "zonas_afectadas": {
+   "type": "FeatureCollection",
+   "features": [
+    {
+     "type": "Feature",
+     "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+       [
+        [
+         -74.09,
+         4.61
+        ],
+        [
+         -74.08,
+         4.61
+        ],
+        [
+         -74.08,
+         4.62
+        ],
+        [
+         -74.09,
+         4.62
+        ],
+        [
+         -74.09,
+         4.61
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "celda_id": "461:-7409",
+      "conteo_incidentes": 1,
+      "severidad_agregada": "Severe",
+      "incidentes_ids": [
+       "06b67bee-f275-4ec7-9c4a-e972369a1c0b"
+      ]
+     }
+    }
+   ]
+  },
+  "rutas": [],
+  "resumen_situacion": "Operación 16b04665-01b6-4ce3-a260-b0fb5fd35ba5: 1 incidente(s) verificado(s), 3 reporte(s) ingerido(s).\n1 incidente(s) esperan firma del coordinador.\n  1. incidente 06b67bee-f275-4ec7-9c4a-e972369a1c0b en estado pendiente_aprobacion (puntuación 0.584443)."
+ },
+ "firma": {
+  "incidente_id": "06b67bee-f275-4ec7-9c4a-e972369a1c0b",
+  "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+  "estado": "asignado",
+  "visitas": {
+   "recibido": 1,
+   "verificado": 1,
+   "localizado": 1,
+   "priorizado": 1,
+   "pendiente_aprobacion": 1,
+   "asignado": 1
+  },
+  "historial": [
+   {
+    "origen": "recibido",
+    "solicitado": "verificado",
+    "estado": "verificado",
+    "aplicada": true,
+    "motivo": "corroborado por 3 reporte(s), confianza 0.53",
+    "momento": "2026-08-28T19:51:38.113802+00:00",
+    "decision_id": null
+   },
+   {
+    "origen": "verificado",
+    "solicitado": "localizado",
+    "estado": "localizado",
+    "aplicada": true,
+    "motivo": "ubicación propia del incidente; ruta no solicitada en este lote",
+    "momento": "2026-08-28T19:51:38.113871+00:00",
+    "decision_id": null
+   },
+   {
+    "origen": "localizado",
+    "solicitado": "priorizado",
+    "estado": "priorizado",
+    "aplicada": true,
+    "motivo": "posición 1 del lote, puntuación 0.5844",
+    "momento": "2026-08-28T19:51:38.114034+00:00",
+    "decision_id": null
+   },
+   {
+    "origen": "priorizado",
+    "solicitado": "pendiente_aprobacion",
+    "estado": "pendiente_aprobacion",
+    "aplicada": true,
+    "motivo": "a la espera de la firma del coordinador humano",
+    "momento": "2026-08-28T19:51:38.114067+00:00",
+    "decision_id": null
+   },
+   {
+    "origen": "pendiente_aprobacion",
+    "solicitado": "asignado",
+    "estado": "asignado",
+    "aplicada": true,
+    "motivo": "Recursos disponibles, se autoriza el despliegue",
+    "momento": "2026-08-28T19:51:45.202069+00:00",
+    "decision_id": "866443d5-bc30-47de-b731-7dff8e8ccbf6"
+   }
+  ],
+  "decision": {
+   "id": "866443d5-bc30-47de-b731-7dff8e8ccbf6",
+   "incidente_id": "06b67bee-f275-4ec7-9c4a-e972369a1c0b",
+   "aprobada": true,
+   "coordinador_id": "coord-ungrd-07",
+   "justificacion": "Recursos disponibles, se autoriza el despliegue",
+   "momento": "2026-08-28T19:51:45.201942+00:00",
+   "firmante": "coordinador-humano"
+  },
+  "triage": {
+   "incidente_id": "06b67bee-f275-4ec7-9c4a-e972369a1c0b",
+   "posicion": 1,
+   "puntuacion": 0.584443,
+   "componentes": {
+    "severidad": 0.3375,
+    "urgencia": 0.35,
+    "personas": 0.074252,
+    "base": 0.761752,
+    "multiplicador_confianza": 0.767235
+   }
+  },
+  "datos": {
+   "ruta": null,
+   "geo_degradado": false
+  }
+ },
+ "eventos_auditoria": [
+  {
+   "id": "56a23760-a7d4-4cbe-a9c5-ab3321d4641c",
+   "tipo": "tarea_delegada",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:07.976136+00:00",
+   "detalle": {
+    "paso": "ingesta",
+    "agente": "agente-2-ingesta",
+    "timeout_s": 180.0
+   }
+  },
+  {
+   "id": "78074389-2e7b-43e6-860a-f2b7641e1819",
+   "tipo": "tarea_delegada",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:07.976212+00:00",
+   "detalle": {
+    "id": "e0c97c2f-6510-43cd-b534-875b2ce1043c",
+    "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+    "responde_a": null,
+    "emisor": "agente-1-orquestador",
+    "receptor": "agente-2-ingesta",
+    "performativa": "request",
+    "momento": "2026-08-28T19:51:07.976189+00:00",
+    "version": "1.0",
+    "contenido": {}
+   }
+  },
+  {
+   "id": "f1264da1-bb1f-41e0-b0e7-1c088f8ebded",
+   "tipo": "reporte_recibido",
+   "agente": "agente-2-ingesta",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:31.050826+00:00",
+   "detalle": {
+    "reporte_id": "8739df4d-0cae-4f90-b14d-1bb10bc4a73a",
+    "canal": "sms"
+   }
+  },
+  {
+   "id": "2ac71449-0dba-4dc7-bf32-926895cdbe9f",
+   "tipo": "reporte_recibido",
+   "agente": "agente-2-ingesta",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:31.050845+00:00",
+   "detalle": {
+    "reporte_id": "8e851cff-b629-4507-8019-c5578dfba49f",
+    "canal": "whatsapp"
+   }
+  },
+  {
+   "id": "546d56a5-08ee-4bb2-b55b-39a9359a4269",
+   "tipo": "reporte_recibido",
+   "agente": "agente-2-ingesta",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:31.050860+00:00",
+   "detalle": {
+    "reporte_id": "302b2337-130f-4501-ad54-d8c26a26c5af",
+    "canal": "sms"
+   }
+  },
+  {
+   "id": "f72f5816-0137-4cda-b632-0b8c3b8847a4",
+   "tipo": "tarea_delegada",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:31.051056+00:00",
+   "detalle": {
+    "paso": "verificacion",
+    "agente": "agente-3-verificacion",
+    "timeout_s": 240.0
+   }
+  },
+  {
+   "id": "ac64af03-4e28-4943-988a-b7686b4396e5",
+   "tipo": "tarea_delegada",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:31.051151+00:00",
+   "detalle": {
+    "id": "a6ef60e9-c104-4c54-ba52-fbbb1e29c83c",
+    "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+    "responde_a": null,
+    "emisor": "agente-1-orquestador",
+    "receptor": "agente-3-verificacion",
+    "performativa": "request",
+    "momento": "2026-08-28T19:51:31.051126+00:00",
+    "version": "1.0",
+    "contenido": {}
+   }
+  },
+  {
+   "id": "106e4964-4bc9-49ef-868f-52d7240dc85b",
+   "tipo": "reporte_recibido",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:31.051168+00:00",
+   "detalle": {
+    "reporte_id": "8739df4d-0cae-4f90-b14d-1bb10bc4a73a",
+    "fuente_id": "cel-3114"
+   }
+  },
+  {
+   "id": "04509476-30b6-4458-abbb-8ec15d8fd211",
+   "tipo": "reporte_recibido",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:31.051179+00:00",
+   "detalle": {
+    "reporte_id": "8e851cff-b629-4507-8019-c5578dfba49f",
+    "fuente_id": "cel-3220"
+   }
+  },
+  {
+   "id": "f2a0a586-8db0-4285-807a-27425cf5d5bf",
+   "tipo": "reporte_recibido",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:31.051189+00:00",
+   "detalle": {
+    "reporte_id": "302b2337-130f-4501-ad54-d8c26a26c5af",
+    "fuente_id": "cel-3387"
+   }
+  },
+  {
+   "id": "6c203fc3-0e96-44ce-aa56-afca0522238f",
+   "tipo": "confianza_calculada",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:38.113087+00:00",
+   "detalle": {
+    "incidente_id": "06b67bee-f275-4ec7-9c4a-e972369a1c0b",
+    "confianza": 0.53447,
+    "corroboraciones": 3
+   }
+  },
+  {
+   "id": "79ab6d78-6a3b-460f-803c-4864c54163dd",
+   "tipo": "incidente_fusionado",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:38.113111+00:00",
+   "detalle": {
+    "incidente_id": "06b67bee-f275-4ec7-9c4a-e972369a1c0b",
+    "reportes_origen": [
+     "302b2337-130f-4501-ad54-d8c26a26c5af",
+     "8739df4d-0cae-4f90-b14d-1bb10bc4a73a",
+     "8e851cff-b629-4507-8019-c5578dfba49f"
+    ]
+   }
+  },
+  {
+   "id": "ca81138e-8a54-46d8-957c-67e9ee766785",
+   "tipo": "incidente_verificado",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:38.113174+00:00",
+   "detalle": {
+    "verified_incident_id": "06b67bee-f275-4ec7-9c4a-e972369a1c0b",
+    "category": "Geo",
+    "severity": "Severe",
+    "urgency": "Immediate",
+    "location": {
+     "type": "Point",
+     "coordinates": [
+      -74.0811,
+      4.610533333333334
+     ]
+    },
+    "confidence_score": 0.5345,
+    "source_reports": [
+     "302b2337-130f-4501-ad54-d8c26a26c5af",
+     "8739df4d-0cae-4f90-b14d-1bb10bc4a73a",
+     "8e851cff-b629-4507-8019-c5578dfba49f"
+    ],
+    "resumen": "Derrumbe tapo la via, la montana se vino encima",
+    "personas_afectadas": 12,
+    "necesidades": [],
+    "verificado_en": "2026-08-28T19:51:38.112506+00:00",
+    "vence_en": "2026-08-29T01:51:38.112506+00:00",
+    "metadatos": {
+     "num_fuentes_distintas": 3,
+     "certeza": "Observed"
+    }
+   }
+  },
+  {
+   "id": "fb53338f-0bfa-45ea-a008-4429266fe4e2",
+   "tipo": "tarea_delegada",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:38.113475+00:00",
+   "detalle": {
+    "paso": "geoespacial",
+    "agente": "agente-5-geoespacial",
+    "timeout_s": 90.0
+   }
+  },
+  {
+   "id": "86034e7b-c2e4-4220-a8c5-6feff4bf6a29",
+   "tipo": "tarea_delegada",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:38.113556+00:00",
+   "detalle": {
+    "id": "decd04f1-5d1d-4cb0-9134-61ad9dbd9c28",
+    "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+    "responde_a": null,
+    "emisor": "agente-1-orquestador",
+    "receptor": "agente-5-geoespacial",
+    "performativa": "cfp",
+    "momento": "2026-08-28T19:51:38.113532+00:00",
+    "version": "1.0",
+    "contenido": {}
+   }
+  },
+  {
+   "id": "2b88abeb-b6d8-4596-8f1e-a345f56f7b16",
+   "tipo": "transicion_estado",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:38.113849+00:00",
+   "detalle": {
+    "incidente_id": "06b67bee-f275-4ec7-9c4a-e972369a1c0b",
+    "origen": "recibido",
+    "solicitado": "verificado",
+    "estado": "verificado",
+    "aplicada": true,
+    "motivo": "corroborado por 3 reporte(s), confianza 0.53",
+    "momento": "2026-08-28T19:51:38.113802+00:00",
+    "decision_id": null
+   }
+  },
+  {
+   "id": "1b12d3c8-0171-42a2-ac9a-8d8671ed1b63",
+   "tipo": "transicion_estado",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:38.113928+00:00",
+   "detalle": {
+    "incidente_id": "06b67bee-f275-4ec7-9c4a-e972369a1c0b",
+    "origen": "verificado",
+    "solicitado": "localizado",
+    "estado": "localizado",
+    "aplicada": true,
+    "motivo": "ubicación propia del incidente; ruta no solicitada en este lote",
+    "momento": "2026-08-28T19:51:38.113871+00:00",
+    "decision_id": null
+   }
+  },
+  {
+   "id": "dcebe6d5-bcbc-40da-8df2-388d178e2291",
+   "tipo": "transicion_estado",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:38.114060+00:00",
+   "detalle": {
+    "incidente_id": "06b67bee-f275-4ec7-9c4a-e972369a1c0b",
+    "origen": "localizado",
+    "solicitado": "priorizado",
+    "estado": "priorizado",
+    "aplicada": true,
+    "motivo": "posición 1 del lote, puntuación 0.5844",
+    "momento": "2026-08-28T19:51:38.114034+00:00",
+    "decision_id": null
+   }
+  },
+  {
+   "id": "45a7e06a-13fd-4331-a2a7-a4352a5834ff",
+   "tipo": "transicion_estado",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:38.114094+00:00",
+   "detalle": {
+    "incidente_id": "06b67bee-f275-4ec7-9c4a-e972369a1c0b",
+    "origen": "priorizado",
+    "solicitado": "pendiente_aprobacion",
+    "estado": "pendiente_aprobacion",
+    "aplicada": true,
+    "motivo": "a la espera de la firma del coordinador humano",
+    "momento": "2026-08-28T19:51:38.114067+00:00",
+    "decision_id": null
+   }
+  },
+  {
+   "id": "346de7dd-f765-4197-818d-8f4b75fafcf5",
+   "tipo": "decision_humana_registrada",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:45.202032+00:00",
+   "detalle": {
+    "id": "866443d5-bc30-47de-b731-7dff8e8ccbf6",
+    "incidente_id": "06b67bee-f275-4ec7-9c4a-e972369a1c0b",
+    "aprobada": true,
+    "coordinador_id": "coord-ungrd-07",
+    "justificacion": "Recursos disponibles, se autoriza el despliegue",
+    "momento": "2026-08-28T19:51:45.201942+00:00",
+    "firmante": "coordinador-humano"
+   }
+  },
+  {
+   "id": "9e508215-ef2c-4fce-8926-5fe5a8b44dfb",
+   "tipo": "transicion_estado",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "16b04665-01b6-4ce3-a260-b0fb5fd35ba5",
+   "momento": "2026-08-28T19:51:45.202131+00:00",
+   "detalle": {
+    "incidente_id": "06b67bee-f275-4ec7-9c4a-e972369a1c0b",
+    "origen": "pendiente_aprobacion",
+    "solicitado": "asignado",
+    "estado": "asignado",
+    "aplicada": true,
+    "motivo": "Recursos disponibles, se autoriza el despliegue",
+    "momento": "2026-08-28T19:51:45.202069+00:00",
+    "decision_id": "866443d5-bc30-47de-b731-7dff8e8ccbf6"
+   }
+  }
+ ],
+ "llamadas_llm": [
+  {
+   "agente": "agente-2-ingesta",
+   "modelo": "gemini:gemini-3.6-flash",
+   "system": "# Rol del Agente 2 — Ingesta de Información\n\nEres el extractor del Agente de Ingesta. Tu trabajo es leer texto libre en\nespañol (SMS, WhatsApp, transcripción de llamada, reporte web) y extraer\ncampos estructurados. **No decides** si el reporte es cierto, si se acepta o\nsi se descarta: eso lo hace un motor determinista después de ti. Tu única\ntarea es estructurar.\n\n## Campos a extraer\n\n- `categoria`: uno de `Geo, Met, Safety, Security, Rescue, Fire, Health, Env,\n  Transport, Infra, CBRNE, Other` (taxonomía CAP 1.2). Usa `Other` si no es\n  claro.\n- `urgencia`: uno de `Immediate, Expected, Future, Past, Unknown`.\n- `severidad`: uno de `Extreme, Severe, Moderate, Minor, Unknown`.\n- `certeza`: uno de `Observed, Likely, Possible, Unlikely, Unknown`. Un\n  reportero que dice \"lo estoy viendo\" es `Observed`; un rumor de tercero es\n  `Possible` o `Unlikely`.\n- `ubicacion`: si el texto menciona un lugar con coordenadas o una referencia\n  clara, devuelve `{\"lat\": <float>, \"lon\": <float>}`. Si no hay ubicación\n  identificable, omite el campo — no inventes coordenadas.\n- `personas_afectadas`: número entero si el texto lo menciona, si no, omite\n  el campo.\n- `necesidades`: lista corta de necesidades mencionadas (agua, comida,\n  medicinas, refugio, rescate, atención médica, etc.).\n\n## Reglas\n\n1. No inventes datos que el texto no sustenta. Omitir un campo es preferible\n   a adivinar.\n2. No juzgues veracidad, duplicados ni relevancia: eso es del Agente 3.\n3. Responde **únicamente** con JSON válido, sin texto adicional, con solo los\n   campos que pudiste extraer con confianza.\n",
+   "user": "Extrae los campos estructurados de este reporte.\nContexto: {\"fuente\": {\"id\": \"cel-3114\", \"tipo\": \"ciudadano\", \"reputacion\": 0.45}, \"canal\": \"sms\"}\nTexto: Se cayo el puente sobre la quebrada, no se puede pasar",
+   "respuesta": "",
+   "error": "ErrorLLM: Gemini respondió HTTP 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usa",
+   "segundos": 7.616,
+   "tokens": 0,
+   "momento": "2026-08-28T19:51:15.592543+00:00"
+  },
+  {
+   "agente": "agente-2-ingesta",
+   "modelo": "gemini:gemini-3.6-flash",
+   "system": "# Rol del Agente 2 — Ingesta de Información\n\nEres el extractor del Agente de Ingesta. Tu trabajo es leer texto libre en\nespañol (SMS, WhatsApp, transcripción de llamada, reporte web) y extraer\ncampos estructurados. **No decides** si el reporte es cierto, si se acepta o\nsi se descarta: eso lo hace un motor determinista después de ti. Tu única\ntarea es estructurar.\n\n## Campos a extraer\n\n- `categoria`: uno de `Geo, Met, Safety, Security, Rescue, Fire, Health, Env,\n  Transport, Infra, CBRNE, Other` (taxonomía CAP 1.2). Usa `Other` si no es\n  claro.\n- `urgencia`: uno de `Immediate, Expected, Future, Past, Unknown`.\n- `severidad`: uno de `Extreme, Severe, Moderate, Minor, Unknown`.\n- `certeza`: uno de `Observed, Likely, Possible, Unlikely, Unknown`. Un\n  reportero que dice \"lo estoy viendo\" es `Observed`; un rumor de tercero es\n  `Possible` o `Unlikely`.\n- `ubicacion`: si el texto menciona un lugar con coordenadas o una referencia\n  clara, devuelve `{\"lat\": <float>, \"lon\": <float>}`. Si no hay ubicación\n  identificable, omite el campo — no inventes coordenadas.\n- `personas_afectadas`: número entero si el texto lo menciona, si no, omite\n  el campo.\n- `necesidades`: lista corta de necesidades mencionadas (agua, comida,\n  medicinas, refugio, rescate, atención médica, etc.).\n\n## Reglas\n\n1. No inventes datos que el texto no sustenta. Omitir un campo es preferible\n   a adivinar.\n2. No juzgues veracidad, duplicados ni relevancia: eso es del Agente 3.\n3. Responde **únicamente** con JSON válido, sin texto adicional, con solo los\n   campos que pudiste extraer con confianza.\n",
+   "user": "Extrae los campos estructurados de este reporte.\nContexto: {\"fuente\": {\"id\": \"cel-3220\", \"tipo\": \"ciudadano\", \"reputacion\": 0.45}, \"canal\": \"whatsapp\"}\nTexto: Colapso la estructura sobre el rio, hay carros atrapados",
+   "respuesta": "",
+   "error": "ErrorLLM: Gemini respondió HTTP 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usa",
+   "segundos": 7.389,
+   "tokens": 0,
+   "momento": "2026-08-28T19:51:22.982065+00:00"
+  },
+  {
+   "agente": "agente-2-ingesta",
+   "modelo": "gemini:gemini-3.6-flash",
+   "system": "# Rol del Agente 2 — Ingesta de Información\n\nEres el extractor del Agente de Ingesta. Tu trabajo es leer texto libre en\nespañol (SMS, WhatsApp, transcripción de llamada, reporte web) y extraer\ncampos estructurados. **No decides** si el reporte es cierto, si se acepta o\nsi se descarta: eso lo hace un motor determinista después de ti. Tu única\ntarea es estructurar.\n\n## Campos a extraer\n\n- `categoria`: uno de `Geo, Met, Safety, Security, Rescue, Fire, Health, Env,\n  Transport, Infra, CBRNE, Other` (taxonomía CAP 1.2). Usa `Other` si no es\n  claro.\n- `urgencia`: uno de `Immediate, Expected, Future, Past, Unknown`.\n- `severidad`: uno de `Extreme, Severe, Moderate, Minor, Unknown`.\n- `certeza`: uno de `Observed, Likely, Possible, Unlikely, Unknown`. Un\n  reportero que dice \"lo estoy viendo\" es `Observed`; un rumor de tercero es\n  `Possible` o `Unlikely`.\n- `ubicacion`: si el texto menciona un lugar con coordenadas o una referencia\n  clara, devuelve `{\"lat\": <float>, \"lon\": <float>}`. Si no hay ubicación\n  identificable, omite el campo — no inventes coordenadas.\n- `personas_afectadas`: número entero si el texto lo menciona, si no, omite\n  el campo.\n- `necesidades`: lista corta de necesidades mencionadas (agua, comida,\n  medicinas, refugio, rescate, atención médica, etc.).\n\n## Reglas\n\n1. No inventes datos que el texto no sustenta. Omitir un campo es preferible\n   a adivinar.\n2. No juzgues veracidad, duplicados ni relevancia: eso es del Agente 3.\n3. Responde **únicamente** con JSON válido, sin texto adicional, con solo los\n   campos que pudiste extraer con confianza.\n",
+   "user": "Extrae los campos estructurados de este reporte.\nContexto: {\"fuente\": {\"id\": \"cel-3387\", \"tipo\": \"ciudadano\", \"reputacion\": 0.45}, \"canal\": \"sms\"}\nTexto: Derrumbe tapo la via, la montana se vino encima",
+   "respuesta": "",
+   "error": "ErrorLLM: Gemini respondió HTTP 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usa",
+   "segundos": 8.068,
+   "tokens": 0,
+   "momento": "2026-08-28T19:51:31.050125+00:00"
+  },
+  {
+   "agente": "agente-3-verificacion",
+   "modelo": "gemini:gemini-3.6-flash",
+   "system": "# Rol del Agente 3 — Verificación (comparación de similitud textual)\n\nEres el módulo de similitud textual del Agente de Verificación. Tu única tarea\nes opinar si dos descripciones en español, escritas por fuentes distintas,\nhablan del **mismo hecho físico** ocurrido en el mismo lugar aproximado y en\nel mismo momento — nunca decides si dos reportes se fusionan en un incidente.\nEsa decisión la toma un motor determinista aparte, combinando tu opinión con\nseñales de ubicación, categoría y tiempo que tú no ves.\n\n## Tarea: comparar pares\n\nRecibes una lista de pares `{\"id_a\", \"id_b\", \"texto_a\", \"texto_b\"}`. Para cada\npar, evalúa si ambos textos describen el mismo evento, aunque usen palabras\ndistintas — por ejemplo, \"se cayó el puente sobre el río\" y \"colapsó la\nestructura sobre el río\" describen el mismo hecho con vocabulario distinto, y\ndeben recibir una similitud alta.\n\nTen en cuenta:\n\n- Paráfrasis, sinónimos y abreviaturas coloquiales cuentan como el mismo\n  hecho si describen la misma acción sobre el mismo tipo de objeto/lugar.\n- Dos textos que mencionan la misma categoría general (p. ej. dos incendios)\n  pero describen objetos o consecuencias distintas NO son el mismo hecho.\n- No inventes contexto que no esté en el texto: si la comparación es\n  ambigua, da un score intermedio en vez de forzar 0 o 1.\n\nResponde **únicamente** con una lista JSON de objetos:\n`{\"id_a\": \"...\", \"id_b\": \"...\", \"similitud\": <número entre 0 y 1>}`,\nuno por cada par recibido, sin texto adicional.\n",
+   "user": "Evalúa si cada par de descripciones habla del mismo hecho. Responde únicamente con una lista JSON de objetos {\"id_a\", \"id_b\", \"similitud\"}, con similitud en [0,1].\nPares:\n[{\"id_a\": \"8739df4d-0cae-4f90-b14d-1bb10bc4a73a\", \"id_b\": \"8e851cff-b629-4507-8019-c5578dfba49f\", \"texto_a\": \"Se cayo el puente sobre la quebrada, no se puede pasar\", \"texto_b\": \"Colapso la estructura sobre el rio, hay carros atrapados\"}, {\"id_a\": \"8739df4d-0cae-4f90-b14d-1bb10bc4a73a\", \"id_b\": \"302b2337-130f-4501-ad54-d8c26a26c5af\", \"texto_a\": \"Se cayo el puente sobre la quebrada, no se puede pasar\", \"texto_b\": \"Derrumbe tapo la via, la montana se vino encima\"}, {\"id_a\": \"8e851cff-b629-4507-8019-c5578dfba49f\", \"id_b\": \"302b2337-130f-4501-ad54-d8c26a26c5af\", \"texto_a\": \"Colapso la estructura sobre el rio, hay carros atrapados\", \"texto_b\": \"Derrumbe tapo la via, la montana se vino encima\"}]",
+   "respuesta": "",
+   "error": "ErrorLLM: Gemini respondió HTTP 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usa",
+   "segundos": 7.061,
+   "tokens": 0,
+   "momento": "2026-08-28T19:51:38.112273+00:00"
+  },
+  {
+   "agente": "agente-1-orquestador",
+   "modelo": "gemini:gemini-3.6-flash",
+   "system": "# Rol del Agente 1 — Orquestador (redactor del parte de situación)\n\nEres el redactor del parte de situación del Orquestador de ResurgeAgent, un\nsistema de coordinación de respuesta ante desastres.\n\n## Lo único que haces\n\nRecibes un estado **ya resuelto** por el motor determinista del agente y lo\nconviertes en prosa clara para un coordinador humano que está bajo presión y\ntiene segundos para leerlo.\n\n## Lo que no haces, bajo ninguna circunstancia\n\n- **No decides prioridades.** El orden de los incidentes ya viene calculado en\n  `triage.posicion`. Respétalo literalmente. No sugieras reordenarlo.\n- **No cambias estados.** El campo `estado` de cada incidente es un hecho.\n- **No autorizas ni recomiendas autorizar asignaciones.** La firma es del\n  coordinador humano; tu texto no la sustituye ni la anticipa.\n- **No inventas incidentes, cifras, ubicaciones ni recursos.** Si un dato no está\n  en la entrada, no existe. Si falta, dilo: \"sin dato\".\n- **No emites opiniones sobre la veracidad de un reporte.** Eso lo determinó el\n  Agente de Verificación y viene en la confianza.\n\nSi el estado que recibes parece incoherente, descríbelo tal cual y señala la\nincoherencia. No la corrijas por tu cuenta.\n\n## Formato de salida\n\nTexto plano, español, sin markdown y sin emojis. Máximo 200 palabras.\n\n1. Una frase de encabezado: cuántos incidentes, cuántos esperan firma, y si la\n   información está degradada (algún agente no respondió).\n2. La lista de incidentes en el orden que ya trae, uno por línea, con su\n   identificador, su estado y por qué está en esa posición (usa los componentes\n   del triage: severidad, urgencia, personas afectadas, confianza).\n3. Una última línea con lo que el coordinador tiene que decidir ahora.\n\nCuando la operación esté degradada, dilo explícitamente y nombra qué falta. Un\ncoordinador que no sabe que le falta información toma peores decisiones que uno\nque lo sabe.\n",
+   "user": "Redacta el parte de situación para el coordinador humano a partir de este estado ya resuelto:\n{\"correlacion_id\": \"16b04665-01b6-4ce3-a260-b0fb5fd35ba5\", \"estado_operacion\": \"pendiente_aprobacion\", \"degradada\": false, \"reportes_ingeridos\": 3, \"incidentes\": [{\"incidente_id\": \"06b67bee-f275-4ec7-9c4a-e972369a1c0b\", \"correlacion_id\": \"16b04665-01b6-4ce3-a260-b0fb5fd35ba5\", \"estado\": \"pendiente_aprobacion\", \"visitas\": {\"recibido\": 1, \"verificado\": 1, \"localizado\": 1, \"priorizado\": 1, \"pendiente_aprobacion\": 1}, \"historial\": [{\"origen\": \"recibido\", \"solicitado\": \"verificado\", \"estado\": \"verificado\", \"aplicada\": true, \"motivo\": \"corroborado por 3 reporte(s), confianza 0.53\", \"momento\": \"2026-08-28T19:51:38.113802+00:00\", \"decision_id\": null}, {\"origen\": \"verificado\", \"solicitado\": \"localizado\", \"estado\": \"localizado\", \"aplicada\": true, \"motivo\": \"ubicación propia del incidente; ruta no solicitada en este lote\", \"momento\": \"2026-08-28T19:51:38.113871+00:00\", \"decision_id\": null}, {\"origen\": \"localizado\", \"solicitado\": \"priorizado\", \"estado\": \"priorizado\", \"aplicada\": true, \"motivo\": \"posición 1 del lote, puntuación 0.5844\", \"momento\": \"2026-08-28T19:51:38.114034+00:00\", \"decision_id\": null}, {\"origen\": \"priorizado\", \"solicitado\": \"pendiente_aprobacion\", \"estado\": \"pendiente_aprobacion\", \"aplicada\": true, \"motivo\": \"a la espera de la firma del coordinador humano\", \"momento\": \"2026-08-28T19:51:38.114067+00:00\", \"decision_id\": null}], \"decision\": null, \"triage\": {\"incidente_id\": \"06b67bee-f275-4ec7-9c4a-e972369a1c0b\", \"posicion\": 1, \"puntuacion\": 0.584443, \"componentes\": {\"severidad\": 0.3375, \"urgencia\": 0.35, \"personas\": 0.074252, \"base\": 0.761752, \"multiplicador_confianza\": 0.767235}}, \"datos\": {\"ruta\": null, \"geo_degradado\": false}, \"requiere_firma\": true}], \"zonas_afectadas\": {\"type\": \"FeatureCollection\", \"features\": [{\"type\": \"Feature\", \"geometry\": {\"type\": \"Polygon\", \"coordinates\": [[[-74.09, 4.61], [-74.08, 4.61], [-74.08, 4.62], [-74.09, 4.62], [-74.09, 4.61]]]}, \"properties\": {\"celda_id\": \"461:-7409\", \"conteo_incidentes\": 1, \"severidad_agregada\": \"Severe\", \"incidentes_ids\": [\"06b67bee-f275-4ec7-9c4a-e972369a1c0b\"]}}]}}",
+   "respuesta": "",
+   "error": "ErrorLLM: Gemini respondió HTTP 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usa",
+   "segundos": 7.07,
+   "tokens": 0,
+   "momento": "2026-08-28T19:51:45.184866+00:00"
+  }
+ ],
+ "consumo": {
+  "llamadas": 5,
+  "tokens_totales": 0,
+  "modelo": "gemini:gemini-3.6-flash"
+ }
+}

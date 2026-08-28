@@ -43,6 +43,7 @@ AGENTES: list[tuple[str, str]] = [
     ("/geoespacial", "agente_geoespacial"),
     ("/matching", "agente_matching"),
     ("/orquestador", "agente_orquestador"),
+    ("/plataforma", "plataforma"),
 ]
 
 

@@ -13,7 +13,17 @@ class Settings(BaseSettings):
     umbral_fusion: float = 0.65
     vida_media_horas: float = 12.0
 
-    llm_proveedor: str = "nulo"  # nulo | anthropic | deepseek
+    llm_proveedor: str = "nulo"  # nulo | vertex | gemini | anthropic | deepseek
+
+    vertex_proyecto: str = ""
+    vertex_cuenta_servicio: str = ""
+    vertex_model: str = "gemini-2.5-pro"
+    vertex_region: str = "us-central1"
+    vertex_max_tokens: int = 2000
+
+    gemini_api_key: str = ""
+    gemini_model: str = "gemini-3.6-flash"
+    gemini_max_tokens: int = 2000
 
     anthropic_api_key: str = ""
     anthropic_model: str = "claude-sonnet-4-5"
