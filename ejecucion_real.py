@@ -30,7 +30,7 @@ from agente_orquestador.config.contenedor import construir_contenedor as constru
 from agente_verificacion.config.contenedor import construir_contenedor as construir_verificacion
 from nucleo.auditoria import AuditoriaMemoria
 from nucleo.esquemas import ConsultaGeo, IncidenteVerificado, RespuestaGeo
-from nucleo.llm import ClienteGemini
+from nucleo.llm import ClienteGemini, ClienteVertex
 from nucleo.puertos import AuditoriaPort
 
 RAIZ = Path(__file__).resolve().parent
@@ -53,7 +53,7 @@ class ClienteGrabador:
 
     registro: list[dict[str, Any]] = []
 
-    def __init__(self, agente: str, interno: ClienteGemini) -> None:
+    def __init__(self, agente: str, interno: Any) -> None:
         self._agente = agente
         self._interno = interno
 
@@ -102,7 +102,7 @@ def envolver(agente: str, raiz: Any, profundidad: int = 4) -> Any:
     if profundidad <= 0 or isinstance(raiz, ClienteGrabador) or not hasattr(raiz, "__dict__"):
         return raiz
     for nombre, valor in list(vars(raiz).items()):
-        if isinstance(valor, ClienteGemini):
+        if isinstance(valor, (ClienteGemini, ClienteVertex)):
             setattr(raiz, nombre, ClienteGrabador(agente, valor))
         elif hasattr(valor, "__dict__") and not isinstance(valor, type):
             envolver(agente, valor, profundidad - 1)
