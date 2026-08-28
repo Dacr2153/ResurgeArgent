@@ -7,9 +7,15 @@ from pathlib import Path
 from agente_geoespacial.adaptadores.llm.clientes import ClienteAnthropic, ClienteDeepSeek
 from agente_geoespacial.adaptadores.llm.interprete_llm import InterpreteLLM
 from agente_geoespacial.adaptadores.llm.interprete_nulo import InterpreteNulo
+from agente_geoespacial.adaptadores.salida.geocodificador_nominatim import (
+    GeocodificadorNominatim,
+    LimitadorRitmo,
+)
 from agente_geoespacial.adaptadores.salida.publicador_log import PublicadorLog
+from agente_geoespacial.adaptadores.salida.ruteo_osrm import RuteadorOSRM
 from agente_geoespacial.aplicacion.casos_uso.analizar_zonas import AnalizarZonas
 from agente_geoespacial.aplicacion.casos_uso.resolver_ruta import ResolverRuta
+from agente_geoespacial.aplicacion.puertos.salida import GeocodificadorPort, RuteadorPort
 from agente_geoespacial.config.settings import Settings
 from agente_geoespacial.dominio.entidades import GrafoVial, NodoVial, TramoVial
 from agente_geoespacial.dominio.motor_rutas import MotorRutas
@@ -70,11 +76,38 @@ def construir_llm(settings: Settings):
     return InterpreteNulo()
 
 
+def construir_ruteador(settings: Settings) -> RuteadorPort | None:
+    """``None`` cuando ``settings.ruteador == "grafo"`` (por defecto): así
+    ``ResolverRuta`` ni intenta red y el comportamiento es el de siempre — es lo
+    que mantiene las 243 pruebas existentes verdes sin red ni cambios.
+    """
+    if settings.ruteador == "osrm":
+        return RuteadorOSRM(url_base=settings.osrm_url_base, timeout_seg=settings.osrm_timeout_seg)
+    return None
+
+
+def construir_geocodificador(settings: Settings) -> GeocodificadorPort:
+    return GeocodificadorNominatim(
+        url_base=settings.nominatim_url_base,
+        timeout_seg=settings.nominatim_timeout_seg,
+        user_agent=settings.nominatim_user_agent,
+        limitador=LimitadorRitmo(min_intervalo_seg=settings.nominatim_min_intervalo_seg),
+    )
+
+
 def construir_contenedor(
     settings: Settings | None = None,
     grafo: GrafoVial | None = None,
     auditoria: AuditoriaPort | None = None,
 ) -> tuple[ResolverRuta, AnalizarZonas]:
+    """Sigue devolviendo un par (no un trío): ``agente_orquestador`` hace
+    ``AdaptadorGeoespacial(*construido)`` esperando exactamente estos dos casos
+    de uso, y no está en el alcance de este cambio tocar esa integración. El
+    geocodificador (nuevo) se construye aparte con ``construir_geocodificador``
+    y se pasa a ``crear_app`` como segundo argumento cuando se necesite —
+    ``main.py`` sigue montando este agente sin cambios, solo que sin
+    geocodificación activa (``/geocodificar`` responde 503 en ese caso).
+    """
     settings = settings or Settings()
     grafo = grafo or grafo_demo()
     compartida = auditoria or AuditoriaMemoria()
@@ -93,6 +126,7 @@ def construir_contenedor(
         llm=construir_llm(settings),
         publicador=PublicadorLog(),
         auditoria=compartida,
+        ruteador=construir_ruteador(settings),
     )
     analizar_zonas = AnalizarZonas(motor=motor_zonas)
 

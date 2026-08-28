@@ -47,3 +47,7 @@ class IncidenteIn(BaseModel):
 
 class ZonasRequest(BaseModel):
     incidentes: list[IncidenteIn]
+
+
+class DireccionIn(BaseModel):
+    direccion: str = Field(min_length=1)
