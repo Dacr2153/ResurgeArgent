@@ -31,13 +31,17 @@ from agente_orquestador.adaptadores.salida.publicador_log import PublicadorLog
 from agente_orquestador.adaptadores.salida.repositorio_memoria import (
     RepositorioOperacionesMemoria,
 )
+from agente_orquestador.adaptadores.salida.repositorio_sqlite import (
+    RepositorioOperacionesSQLite,
+)
 from agente_orquestador.aplicacion.casos_uso.procesar_emergencia import ProcesarEmergencia
 from agente_orquestador.aplicacion.casos_uso.registrar_decision_humana import (
     RegistrarDecisionHumana,
 )
+from agente_orquestador.aplicacion.puertos.salida import RepositorioOperacionesPort
 from agente_orquestador.config.settings import Settings
 from agente_orquestador.dominio.motor_triage import MotorTriage
-from nucleo.auditoria import AuditoriaJSONL, AuditoriaMemoria
+from nucleo.auditoria import AuditoriaJSONL, AuditoriaMemoria, AuditoriaSQLite
 from nucleo.geo import Punto
 from nucleo.puertos import AuditoriaPort, GeoespacialPort, IngestaPort, VerificacionPort
 
@@ -52,12 +56,14 @@ class Contenedor:
 
     procesar: ProcesarEmergencia
     registrar_decision: RegistrarDecisionHumana
-    repositorio: RepositorioOperacionesMemoria
+    repositorio: RepositorioOperacionesPort
     auditoria: AuditoriaPort
 
     def eventos_de(self, correlacion_id: str) -> list[dict[str, Any]]:
         """Eventos de auditoría de una operación, si el adaptador sabe releerlos."""
         if isinstance(self.auditoria, AuditoriaMemoria):
+            return [e.a_dict() for e in self.auditoria.por_correlacion(correlacion_id)]
+        if isinstance(self.auditoria, AuditoriaSQLite):
             return [e.a_dict() for e in self.auditoria.por_correlacion(correlacion_id)]
         if isinstance(self.auditoria, AuditoriaJSONL):
             return [e for e in self.auditoria.leer() if e.get("correlacion_id") == correlacion_id]
@@ -140,7 +146,22 @@ def _descubrir(paquete: str, ausente: Any, auditoria: AuditoriaPort | None = Non
 def construir_auditoria(settings: Settings) -> AuditoriaPort:
     if settings.ruta_auditoria:
         return AuditoriaJSONL(settings.ruta_auditoria)
+    if settings.ruta_sqlite:
+        return AuditoriaSQLite(settings.ruta_sqlite)
     return AuditoriaMemoria()
+
+
+def construir_repositorio(settings: Settings) -> RepositorioOperacionesPort:
+    """Elige dónde viven las operaciones.
+
+    En memoria por defecto: es lo que mantiene las pruebas sin archivos y el
+    arranque sin configuración. Con `ruta_sqlite` la misma base guarda las
+    operaciones y la traza, para que la plataforma pueda leer el estado real de
+    un reporte desde otro proceso.
+    """
+    if settings.ruta_sqlite:
+        return RepositorioOperacionesSQLite(settings.ruta_sqlite)
+    return RepositorioOperacionesMemoria()
 
 
 def construir_contenedor(
@@ -149,10 +170,11 @@ def construir_contenedor(
     ingesta: IngestaPort | None = None,
     verificacion: VerificacionPort | None = None,
     geoespacial: GeoespacialPort | None = None,
+    repositorio: RepositorioOperacionesPort | None = None,
 ) -> Contenedor:
     settings = settings or Settings()
 
-    repositorio = RepositorioOperacionesMemoria()
+    repositorio = repositorio or construir_repositorio(settings)
     publicador = PublicadorLog()
     auditoria = auditoria or construir_auditoria(settings)
 

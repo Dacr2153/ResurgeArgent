@@ -37,6 +37,13 @@ class Settings(BaseSettings):
     # Auditoría. Vacío = solo en memoria; con ruta se escribe JSONL append-only.
     ruta_auditoria: str = ""
 
+    # Persistencia. Vacío = todo en memoria, que es el modo por defecto y el que
+    # usan las pruebas. Con una ruta de archivo, operaciones y auditoría pasan a
+    # SQLite y sobreviven al reinicio del proceso. `ruta_auditoria` tiene
+    # prioridad sobre esta para la traza: quien pide JSONL explícitamente lo
+    # quiere para poder seguirlo con `tail -f`.
+    ruta_sqlite: str = ""
+
     # LLM. Solo redacta el parte de situación; por defecto no hay red.
     llm_proveedor: str = "nulo"  # nulo | anthropic | deepseek
 
