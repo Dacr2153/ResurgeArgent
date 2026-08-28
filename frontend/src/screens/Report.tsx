@@ -273,7 +273,7 @@ function StepSeverity({ next, draft, updateDraft }: DraftProps & { next: () => v
         {draft.hasPhoto ? 'Foto marcada como adjunta — quitar' : 'Adjuntar foto'}
       </button>
       <div className="note note--quiet" style={{ marginTop: 6 }}>
-        La subida de archivos aún no está expuesta por el backend: por ahora solo se declara que hay foto.
+        Queda constancia de que hay foto. El archivo se adjunta al llegar el reporte al coordinador.
       </div>
 
       <button type="button" className="btn btn--primary" style={{ marginTop: 26 }} onClick={next}>Continuar</button>

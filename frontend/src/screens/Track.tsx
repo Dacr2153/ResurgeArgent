@@ -49,15 +49,6 @@ export default function Track() {
           </li>
         ))}
       </ol>
-
-      <div style={{ marginTop: 6, paddingTop: 20, borderTop: '1px solid var(--color-divider)' }}>
-        <p className="lede" style={{ fontSize: 15, marginBottom: 12 }}>
-          Chat con el coordinador asignado. Se borra 30 días después de “Resuelto”.
-        </p>
-        <button type="button" className="btn btn--secondary" style={{ minHeight: 48, fontSize: 16 }} disabled>
-          Chat · {report.unreadMessages} mensaje(s) · canal aún no expuesto por el backend
-        </button>
-      </div>
     </Screen>
   );
 }
