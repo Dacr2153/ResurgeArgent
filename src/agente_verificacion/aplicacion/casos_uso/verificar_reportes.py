@@ -36,8 +36,12 @@ class VerificarReportes:
         self._repositorio = repositorio
         self._auditoria = auditoria
 
-    async def verificar(self, reportes: list[ReporteCrudo]) -> list[IncidenteVerificado]:
-        correlacion_id = nuevo_id()
+    async def verificar(
+        self,
+        reportes: list[ReporteCrudo],
+        correlacion_id: str | None = None,
+    ) -> list[IncidenteVerificado]:
+        correlacion_id = correlacion_id or nuevo_id()
 
         if not reportes:
             return []

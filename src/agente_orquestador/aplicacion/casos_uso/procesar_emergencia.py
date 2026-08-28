@@ -19,6 +19,7 @@ coordinador. Ya no queda ninguna decisión por tomar cuando se le llama.
 
 from __future__ import annotations
 
+from collections import Counter
 from typing import Any
 
 from agente_orquestador.aplicacion.puertos.salida import (
@@ -127,7 +128,7 @@ class ProcesarEmergencia:
 
         async def ingerir() -> list[ReporteCrudo]:
             await self._mensaje(correlacion_id, Agente.INGESTA, Performativa.REQUEST, {})
-            reportes = await self._ingesta.ingerir(carga)
+            reportes = await self._ingesta.ingerir({**carga, "correlacion_id": correlacion_id})
             contexto["reportes"] = list(reportes)
             return list(reportes)
 
@@ -140,7 +141,9 @@ class ProcesarEmergencia:
 
         async def verificar() -> list[IncidenteVerificado]:
             await self._mensaje(correlacion_id, Agente.VERIFICACION, Performativa.REQUEST, {})
-            incidentes = await self._verificacion.verificar(contexto["reportes"])
+            incidentes = await self._verificacion.verificar(
+                contexto["reportes"], correlacion_id=correlacion_id
+            )
             contexto["incidentes"] = list(incidentes)
             return list(incidentes)
 
@@ -149,7 +152,7 @@ class ProcesarEmergencia:
 
         async def resolver_geo() -> dict:
             await self._mensaje(correlacion_id, Agente.GEOESPACIAL, Performativa.CFP, {})
-            geo = await self._contexto_geo(contexto["incidentes"], origen)
+            geo = await self._contexto_geo(contexto["incidentes"], origen, correlacion_id)
             contexto["geo"] = geo
             return geo
 
@@ -186,17 +189,22 @@ class ProcesarEmergencia:
         return await Saga(correlacion_id, pasos, self._auditoria).ejecutar()
 
     async def _contexto_geo(
-        self, incidentes: list[IncidenteVerificado], origen: Punto | None
+        self,
+        incidentes: list[IncidenteVerificado],
+        origen: Punto | None,
+        correlacion_id: str,
     ) -> dict[str, Any]:
         """Pide zonas afectadas y las rutas de los incidentes más relevantes."""
-        zonas = await self._geoespacial.zonas_afectadas(incidentes)
+        zonas = await self._geoespacial.zonas_afectadas(incidentes, correlacion_id=correlacion_id)
         rutas: list[dict[str, Any]] = []
         if origen is not None:
             for incidente in incidentes[: self._rutas_por_lote]:
                 consulta = ConsultaGeo(
                     origen=origen, destino=incidente.ubicacion, modo=ModoTransporte.AUTO
                 )
-                respuesta = await self._geoespacial.resolver_ruta(consulta)
+                respuesta = await self._geoespacial.resolver_ruta(
+                    consulta, correlacion_id=correlacion_id
+                )
                 rutas.append({"incidente_id": incidente.id, **respuesta.a_dict()})
         return {"zonas_afectadas": zonas, "rutas": rutas}
 
@@ -289,6 +297,7 @@ class ProcesarEmergencia:
             "degradada": resultado_saga.parcial,
             "saga": resultado_saga.a_dict(),
             "reportes_ingeridos": len(contexto["reportes"]),
+            "reportes_descartados": self._descartes(correlacion_id),
             "incidentes": [
                 {
                     **operacion.a_dict(),
@@ -298,6 +307,33 @@ class ProcesarEmergencia:
             ],
             "zonas_afectadas": contexto["geo"].get("zonas_afectadas", {}),
             "rutas": contexto["geo"].get("rutas", []),
+        }
+
+    def _descartes(self, correlacion_id: str) -> dict[str, Any]:
+        """Descartes de la ingesta, por motivo, leídos de la traza compartida.
+
+        Que un lote quede en cero reportes no significa lo mismo si no llegó nada
+        que si se descartó todo: en una emergencia esa diferencia decide si se
+        busca la avería en la red o en el formato de quien envía. El dato ya
+        estaba en los eventos de auditoría; aquí solo se hace visible.
+
+        Si el adaptador de auditoría no sabe releerse (por ejemplo uno que solo
+        escribe a un sistema externo), se devuelve vacío en vez de fallar: la
+        observabilidad no puede tumbar la operación.
+        """
+        leer = getattr(self._auditoria, "por_correlacion", None)
+        if leer is None:
+            return {"total": 0, "por_motivo": {}, "detalle_disponible": False}
+
+        motivos: Counter[str] = Counter()
+        for evento in leer(correlacion_id):
+            if evento.tipo is not TipoEvento.REPORTE_DESCARTADO:
+                continue
+            motivos[str(evento.detalle.get("motivo", "desconocido"))] += 1
+        return {
+            "total": sum(motivos.values()),
+            "por_motivo": dict(motivos),
+            "detalle_disponible": True,
         }
 
     @staticmethod

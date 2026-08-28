@@ -114,6 +114,7 @@ def construir_auditoria(settings: Settings) -> AuditoriaPort:
 
 def construir_contenedor(
     settings: Settings | None = None,
+    auditoria: AuditoriaPort | None = None,
     ingesta: IngestaPort | None = None,
     verificacion: VerificacionPort | None = None,
     geoespacial: GeoespacialPort | None = None,
@@ -122,7 +123,7 @@ def construir_contenedor(
 
     repositorio = RepositorioOperacionesMemoria()
     publicador = PublicadorLog()
-    auditoria = construir_auditoria(settings)
+    auditoria = auditoria or construir_auditoria(settings)
 
     origen = None
     if settings.origen_lat is not None and settings.origen_lon is not None:

@@ -151,7 +151,7 @@ class MotorIngesta:
 
         try:
             ubicacion = self._parsear_ubicacion(item.get("ubicacion"))
-        except (GeometriaInvalidaError, TypeError, ValueError) as exc:
+        except (GeometriaInvalidaError, KeyError, TypeError, ValueError) as exc:
             return Descarte(-1, MotivoDescarte.UBICACION_INVALIDA, str(exc))
 
         try:
@@ -225,11 +225,24 @@ class MotorIngesta:
 
     @staticmethod
     def _parsear_ubicacion(bruto: Any) -> Punto | None:
+        """Acepta las dos formas que llegan de verdad a la frontera del sistema.
+
+        La canónica es GeoJSON RFC 7946 —la que emite ``ReporteCrudo.a_dict()`` y
+        la que habla el resto de agentes—, así que el sistema tiene que poder
+        releer lo que él mismo produce. La forma corta ``{lat, lon}`` se admite
+        porque es la que escribe una persona a mano y la que mandan varios
+        formularios y pasarelas SMS, y rechazarla solo obligaría a cada emisor a
+        traducir antes de hablar.
+        """
         if bruto is None:
             return None
         if not isinstance(bruto, dict):
-            raise TypeError("ubicacion debe ser un objeto {lat, lon}")
-        return Punto(lat=float(bruto["lat"]), lon=float(bruto["lon"]))
+            raise TypeError("ubicacion debe ser una geometría GeoJSON o un objeto {lat, lon}")
+        if "type" in bruto or "coordinates" in bruto:
+            return Punto.desde_geojson(bruto)
+        if "lat" in bruto and "lon" in bruto:
+            return Punto(lat=float(bruto["lat"]), lon=float(bruto["lon"]))
+        raise ValueError(f"ubicacion sin coordenadas reconocibles: {sorted(bruto)}")
 
     @staticmethod
     def _parsear_fecha(bruto: Any) -> datetime | None:

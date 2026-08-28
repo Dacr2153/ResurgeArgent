@@ -96,13 +96,17 @@ class VerificacionFake:
         self.incidentes = incidentes if incidentes is not None else [hacer_incidente()]
         self.recibidos: list[ReporteCrudo] = []
 
-    async def verificar(self, reportes: list[ReporteCrudo]) -> list[IncidenteVerificado]:
+    async def verificar(
+        self, reportes: list[ReporteCrudo], correlacion_id: str | None = None
+    ) -> list[IncidenteVerificado]:
         self.recibidos = list(reportes)
         return list(self.incidentes)
 
 
 class VerificacionQueFalla:
-    async def verificar(self, reportes: list[ReporteCrudo]) -> list[IncidenteVerificado]:
+    async def verificar(
+        self, reportes: list[ReporteCrudo], correlacion_id: str | None = None
+    ) -> list[IncidenteVerificado]:
         raise RuntimeError("el agente de verificación cayó")
 
 
@@ -111,7 +115,9 @@ class GeoespacialFake:
     def __init__(self) -> None:
         self.rutas_pedidas = 0
 
-    async def resolver_ruta(self, consulta: ConsultaGeo) -> RespuestaGeo:
+    async def resolver_ruta(
+        self, consulta: ConsultaGeo, correlacion_id: str | None = None
+    ) -> RespuestaGeo:
         self.rutas_pedidas += 1
         return RespuestaGeo(
             consulta_id=consulta.id,
@@ -121,7 +127,9 @@ class GeoespacialFake:
             geometria={"type": "LineString", "coordinates": [[-74.07, 4.71], [-74.06, 4.72]]},
         )
 
-    async def zonas_afectadas(self, incidentes: list[IncidenteVerificado]) -> dict:
+    async def zonas_afectadas(
+        self, incidentes: list[IncidenteVerificado], correlacion_id: str | None = None
+    ) -> dict:
         return {"zonas": [i.id for i in incidentes]}
 
 
@@ -131,10 +139,14 @@ class GeoespacialMudo:
     def __init__(self, demora_s: float = 5.0) -> None:
         self.demora_s = demora_s
 
-    async def resolver_ruta(self, consulta: ConsultaGeo) -> RespuestaGeo:
+    async def resolver_ruta(
+        self, consulta: ConsultaGeo, correlacion_id: str | None = None
+    ) -> RespuestaGeo:
         await asyncio.sleep(self.demora_s)
         raise AssertionError("no debería llegar aquí")
 
-    async def zonas_afectadas(self, incidentes: list[IncidenteVerificado]) -> dict:
+    async def zonas_afectadas(
+        self, incidentes: list[IncidenteVerificado], correlacion_id: str | None = None
+    ) -> dict:
         await asyncio.sleep(self.demora_s)
         raise AssertionError("no debería llegar aquí")

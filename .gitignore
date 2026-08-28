@@ -7,3 +7,10 @@ __pycache__/
 *.egg-info/
 build/
 dist/
+.DS_Store
+
+# hyperframes: binario del navegador (~200 MB) y artefactos de render
+chrome-headless-shell/
+videos/*/renders/
+videos/*/capture/
+.hyperframes/

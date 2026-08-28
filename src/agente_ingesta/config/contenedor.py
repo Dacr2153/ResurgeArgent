@@ -13,6 +13,7 @@ from agente_ingesta.aplicacion.casos_uso.ingerir_reportes import IngerirReportes
 from agente_ingesta.config.settings import Settings
 from agente_ingesta.dominio.motor_ingesta import MotorIngesta
 from nucleo.auditoria import AuditoriaMemoria
+from nucleo.puertos import AuditoriaPort
 
 PROMPT_PATH = Path(__file__).parent.parent / "adaptadores" / "llm" / "prompts" / "rol_agente_2.md"
 
@@ -44,13 +45,16 @@ def construir_extractor(settings: Settings):
     return ExtractorNulo()
 
 
-def construir_contenedor(settings: Settings | None = None) -> IngerirReportes:
+def construir_contenedor(
+    settings: Settings | None = None,
+    auditoria: AuditoriaPort | None = None,
+) -> IngerirReportes:
     settings = settings or Settings()
     motor = MotorIngesta(config_ventana=settings.config_ventana)
     return IngerirReportes(
         motor=motor,
         extractor=construir_extractor(settings),
-        auditoria=AuditoriaMemoria(),
+        auditoria=auditoria or AuditoriaMemoria(),
         publicador=PublicadorLog(),
         repositorio=RepositorioMemoria(),
     )

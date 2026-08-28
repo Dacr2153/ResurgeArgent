@@ -14,6 +14,7 @@ from agente_verificacion.aplicacion.casos_uso.verificar_reportes import Verifica
 from agente_verificacion.config.settings import Settings
 from agente_verificacion.dominio.motor_verificacion import MotorVerificacion
 from nucleo.auditoria import AuditoriaMemoria
+from nucleo.puertos import AuditoriaPort
 
 PROMPT_PATH = Path(__file__).parent.parent / "adaptadores" / "llm" / "prompts" / "rol_agente_3.md"
 
@@ -45,7 +46,10 @@ def construir_similitud(settings: Settings):
     return SimilitudNula()
 
 
-def construir_contenedor(settings: Settings | None = None) -> VerificarReportes:
+def construir_contenedor(
+    settings: Settings | None = None,
+    auditoria: AuditoriaPort | None = None,
+) -> VerificarReportes:
     settings = settings or Settings()
     motor = MotorVerificacion(
         radio_cluster_km=settings.radio_cluster_km,
@@ -58,5 +62,5 @@ def construir_contenedor(settings: Settings | None = None) -> VerificarReportes:
         similitud=construir_similitud(settings),
         publicador=PublicadorLog(),
         repositorio=RepositorioMemoria(),
-        auditoria=AuditoriaMemoria(),
+        auditoria=auditoria or AuditoriaMemoria(),
     )

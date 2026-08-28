@@ -17,6 +17,7 @@ from agente_geoespacial.dominio.motor_zonas import MotorZonas
 from agente_geoespacial.dominio.value_objects import PerfilVelocidad
 from nucleo.auditoria import AuditoriaMemoria
 from nucleo.geo import Punto
+from nucleo.puertos import AuditoriaPort
 
 PROMPT_PATH = Path(__file__).parent.parent / "adaptadores" / "llm" / "prompts" / "rol_agente_5.md"
 
@@ -70,10 +71,13 @@ def construir_llm(settings: Settings):
 
 
 def construir_contenedor(
-    settings: Settings | None = None, grafo: GrafoVial | None = None
+    settings: Settings | None = None,
+    grafo: GrafoVial | None = None,
+    auditoria: AuditoriaPort | None = None,
 ) -> tuple[ResolverRuta, AnalizarZonas]:
     settings = settings or Settings()
     grafo = grafo or grafo_demo()
+    compartida = auditoria or AuditoriaMemoria()
 
     perfil = PerfilVelocidad(valores_kmh=settings.perfil_velocidad)
     motor_rutas = MotorRutas(
@@ -88,7 +92,7 @@ def construir_contenedor(
         motor=motor_rutas,
         llm=construir_llm(settings),
         publicador=PublicadorLog(),
-        auditoria=AuditoriaMemoria(),
+        auditoria=compartida,
     )
     analizar_zonas = AnalizarZonas(motor=motor_zonas)
 
