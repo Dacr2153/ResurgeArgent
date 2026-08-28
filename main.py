@@ -11,10 +11,30 @@ from __future__ import annotations
 
 import importlib
 import logging
+import os
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 registro = logging.getLogger(__name__)
+
+# Orígenes del frontend en desarrollo. Vite arranca en 5173 y salta a 5174 si el
+# puerto está ocupado, así que ambos tienen que estar. En despliegue se declara
+# el dominio real por RESURGE_ORIGENES, separado por comas.
+ORIGENES_DEV = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:5174",
+    "http://127.0.0.1:5174",
+]
+
+
+def origenes_permitidos() -> list[str]:
+    declarados = os.environ.get("RESURGE_ORIGENES", "").strip()
+    if not declarados:
+        return ORIGENES_DEV
+    return [origen.strip() for origen in declarados.split(",") if origen.strip()]
+
 
 # (prefijo de ruta, paquete). El orden es el del flujo del sistema.
 AGENTES: list[tuple[str, str]] = [
@@ -47,6 +67,16 @@ def crear_app() -> FastAPI:
         title="ResurgeAgent — Sistema de Coordinación de Respuesta",
         description="Agentes de ingesta, verificación, geoespacial, matching y orquestación.",
         version="0.2.0",
+    )
+
+    # Sin esto el navegador bloquea toda peticion del frontend antes de que
+    # salga: no es configuracion opcional, es lo que hace usable la API.
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origenes_permitidos(),
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
     )
 
     montados: list[str] = []

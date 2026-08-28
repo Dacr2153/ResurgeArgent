@@ -92,18 +92,49 @@ def construir_resumidor(settings: Settings):
     return ResumidorNulo()
 
 
-def _descubrir(paquete: str, ausente: Any) -> Any:
-    """Construye el contenedor del agente delegado, o devuelve el sustituto."""
+class AdaptadorGeoespacial:
+    """Une los dos casos de uso del Agente 5 en un solo interlocutor del puerto.
+
+    El agente geoespacial expone rutas y zonas por separado, pero
+    `GeoespacialPort` los pide juntos: el Orquestador quiere un interlocutor, no
+    dos. Sin esta costura, el agente descubierto llega como una tupla y toda
+    consulta geoespacial falla con AttributeError.
+    """
+
+    def __init__(self, rutas: Any, zonas: Any) -> None:
+        self._rutas = rutas
+        self._zonas = zonas
+
+    async def resolver_ruta(self, consulta: Any, correlacion_id: str | None = None) -> Any:
+        return await self._rutas.ejecutar(consulta, correlacion_id=correlacion_id)
+
+    async def zonas_afectadas(self, incidentes: Any, correlacion_id: str | None = None) -> Any:
+        return await self._zonas.ejecutar(incidentes)
+
+
+def _descubrir(paquete: str, ausente: Any, auditoria: AuditoriaPort | None = None) -> Any:
+    """Construye el contenedor del agente delegado, o devuelve el sustituto.
+
+    La auditoría se le pasa a propósito: si cada agente descubierto acuña la
+    suya, la traza queda partida en cuatro hilos y reconstruir una operación
+    concreta se vuelve imposible, que es justo lo que el correlacion_id existe
+    para permitir.
+    """
     try:
         modulo = importlib.import_module(f"{paquete}.config.contenedor")
     except ModuleNotFoundError:
         registro.info("agente no disponible todavía: %s", paquete)
         return ausente
     try:
-        return modulo.construir_contenedor()
+        construido = modulo.construir_contenedor(auditoria=auditoria)
     except Exception:  # noqa: BLE001 - un agente roto no impide arrancar al Orquestador
         registro.exception("fallo al construir el agente %s", paquete)
         return ausente
+
+    # El agente geoespacial devuelve dos casos de uso; el resto, uno solo.
+    if isinstance(construido, tuple):
+        return AdaptadorGeoespacial(*construido)
+    return construido
 
 
 def construir_auditoria(settings: Settings) -> AuditoriaPort:
@@ -130,9 +161,11 @@ def construir_contenedor(
         origen = Punto(lat=settings.origen_lat, lon=settings.origen_lon)
 
     procesar = ProcesarEmergencia(
-        ingesta=ingesta or _descubrir("agente_ingesta", IngestaAusente()),
-        verificacion=verificacion or _descubrir("agente_verificacion", VerificacionAusente()),
-        geoespacial=geoespacial or _descubrir("agente_geoespacial", GeoespacialAusente()),
+        ingesta=ingesta or _descubrir("agente_ingesta", IngestaAusente(), auditoria),
+        verificacion=verificacion
+        or _descubrir("agente_verificacion", VerificacionAusente(), auditoria),
+        geoespacial=geoespacial
+        or _descubrir("agente_geoespacial", GeoespacialAusente(), auditoria),
         motor=MotorTriage(settings.pesos_triage),
         resumidor=construir_resumidor(settings),
         repositorio=repositorio,
