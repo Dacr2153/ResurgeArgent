@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Screen } from '../components/Screen';
 import { api } from '../api/client';
-import { RESOURCES } from '../mocks/data';
+import { RESOURCES } from '../lib/catalogos';
+import { mensajeDeError } from '../api/http';
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -11,11 +12,21 @@ export default function Signup() {
   const [phone, setPhone] = useState('');
   const [resource, setResource] = useState(RESOURCES[0]);
   const [sending, setSending] = useState(false);
+  const [fallo, setFallo] = useState('');
+
+  const completo = fullName.trim() && document.trim() && phone.trim();
 
   async function submit() {
     setSending(true);
-    await api.registerVolunteer({ fullName, document, phone, resource });
-    navigate('/voluntario/misiones');
+    setFallo('');
+    try {
+      await api.registerVolunteer({ fullName, document, phone, resource });
+      navigate('/voluntario/misiones');
+    } catch (e) {
+      setFallo(mensajeDeError(e));
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -50,9 +61,16 @@ export default function Signup() {
         ))}
       </div>
 
-      <button type="button" className="btn btn--primary" style={{ marginTop: 26 }} onClick={submit} disabled={sending}>
+      <button
+        type="button"
+        className="btn btn--primary"
+        style={{ marginTop: 26 }}
+        onClick={submit}
+        disabled={sending || !completo}
+      >
         {sending ? 'Enviando…' : 'Enviar y verificar'}
       </button>
+      {fallo && <div className="callout callout--alert" style={{ marginTop: 14 }} role="alert">{fallo}</div>}
     </Screen>
   );
 }

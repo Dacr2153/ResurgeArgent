@@ -4,15 +4,34 @@ import { Screen, ScreenHeader } from '../components/Screen';
 import { MapView } from '../components/MapView';
 import { api } from '../api/client';
 import { useAsync } from '../api/useAsync';
+import { Cargando, ErrorPanel, Vacio } from '../components/Estado';
+import { ApiError } from '../api/http';
 
 export default function Mission() {
   const navigate = useNavigate();
   const { id = 'INC-2481' } = useParams();
-  const { data: mission, loading } = useAsync(() => api.getMission(id), [id]);
-  const [checked, setChecked] = useState<Record<string, boolean>>({ agua: true });
+  const { data: mission, loading, error, reload } = useAsync(() => api.getMission(id), [id]);
+  const [checked, setChecked] = useState<Record<string, boolean>>({});
   const [supportOpen, setSupportOpen] = useState(false);
 
-  if (loading || !mission) return <Screen back="/voluntario/misiones"><div className="note">Cargando misión…</div></Screen>;
+  if (loading) return <Screen back="/voluntario/misiones"><Cargando texto="Cargando misión…" /></Screen>;
+  if (error instanceof ApiError && error.notFound) {
+    return (
+      <Screen back="/voluntario/misiones">
+        <Vacio
+          titulo={`Todavía no hay misión abierta para ${id}.`}
+          ayuda="La misión se abre cuando el coordinador firma el incidente y se despacha un recurso."
+        />
+      </Screen>
+    );
+  }
+  if (error || !mission) {
+    return (
+      <Screen back="/voluntario/misiones">
+        <ErrorPanel error={error ?? new Error(`No hay misión abierta para ${id}.`)} onRetry={reload} />
+      </Screen>
+    );
+  }
 
   return (
     <Screen back="/voluntario/misiones">
@@ -29,6 +48,9 @@ export default function Mission() {
       <p className="lede" style={{ fontSize: 15 }}>{mission.address}</p>
 
       <div className="kicker" style={{ margin: '24px 0 10px' }}>Checklist de recursos</div>
+      {mission.checklist.length === 0 && (
+        <div className="note">La misión no trae checklist declarado.</div>
+      )}
       <div className="stack" style={{ gap: 2 }}>
         {mission.checklist.map((item) => {
           const on = !!checked[item.key];
@@ -73,7 +95,8 @@ export default function Mission() {
 
       {supportOpen && (
         <div className="callout callout--alert" style={{ marginTop: 14 }} role="status">
-          Canal directo abierto con el coordinador de zona · llamada en curso 00:07. Toca para escalar a bomberos (105).
+          El canal directo con el coordinador todavía no está expuesto por el backend. Mientras tanto,
+          escala por radio o al número de emergencias de tu jurisdicción.
         </div>
       )}
     </Screen>

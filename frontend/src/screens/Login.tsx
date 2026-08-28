@@ -11,25 +11,29 @@ const ROLES: { id: CoordinatorScope; label: string }[] = [
 
 export default function Login() {
   const navigate = useNavigate();
-  const { scope, setScope } = useAppState();
-  const [email, setEmail] = useState('');
+  const { scope, setScope, coordinatorId, setCoordinatorId } = useAppState();
   const [password, setPassword] = useState('');
+
+  // El identificador no es un adorno del formulario: viaja como `coordinador_id`
+  // en cada POST /orquestador/decisiones. Sin el, el dominio rechaza la firma.
+  const puedeEntrar = coordinatorId.trim().length > 0;
 
   return (
     <Screen back="/">
       <div className="kicker">Acceso institucional</div>
       <h1 className="title" style={{ margin: '10px 0 8px' }}>Coordinación</h1>
       <p className="lede" style={{ fontSize: 15, marginBottom: 22 }}>
-        Token de corta duración con refresh silencioso. El alcance lo define tu rol.
+        El identificador que escribas queda adherido a cada decisión que firmes.
+        No es autenticación: es el responsable de la orden.
       </p>
 
       <input
         className="input"
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="usuario@defensacivil.gob.pe"
-        aria-label="Correo institucional"
+        type="text"
+        value={coordinatorId}
+        onChange={(e) => setCoordinatorId(e.target.value)}
+        placeholder="coordinador@defensacivil.gob.co"
+        aria-label="Identificador del coordinador"
         style={{ marginBottom: 10 }}
       />
       <input
@@ -50,9 +54,20 @@ export default function Login() {
         ))}
       </div>
 
-      <button type="button" className="btn btn--primary" style={{ marginTop: 26 }} onClick={() => navigate('/dashboard')}>
+      <button
+        type="button"
+        className="btn btn--primary"
+        style={{ marginTop: 26 }}
+        disabled={!puedeEntrar}
+        onClick={() => navigate('/dashboard')}
+      >
         Entrar
       </button>
+      {!puedeEntrar && (
+        <div className="note" style={{ marginTop: 8 }}>
+          Escribe tu identificador: sin él no se puede firmar ninguna asignación.
+        </div>
+      )}
     </Screen>
   );
 }

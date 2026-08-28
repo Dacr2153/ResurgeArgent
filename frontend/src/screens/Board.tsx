@@ -4,6 +4,7 @@ import { Screen, ScreenHeader } from '../components/Screen';
 import { PriorityMark } from '../components/PriorityMark';
 import { api } from '../api/client';
 import { useAsync } from '../api/useAsync';
+import { Cargando, ErrorPanel, Vacio } from '../components/Estado';
 import { bandOf, formatAge, formatDistance } from '../lib/band';
 
 const FILTERS: { label: string; radiusKm: number | null }[] = [
@@ -15,7 +16,9 @@ const FILTERS: { label: string; radiusKm: number | null }[] = [
 export default function Board() {
   const navigate = useNavigate();
   const [filter, setFilter] = useState(FILTERS[0]);
-  const { data: missions, loading } = useAsync(() => api.listMissions(filter.radiusKm), [filter.radiusKm]);
+  const { data: missions, loading, error, reload } = useAsync(
+    () => api.listMissions(filter.radiusKm), [filter.radiusKm],
+  );
 
   return (
     <Screen back="/">
@@ -24,7 +27,7 @@ export default function Board() {
         action={
           <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: 'var(--color-accent-700)' }}>
             <span aria-hidden="true" style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--color-accent)' }} />
-            WS activo
+            {missions?.length ?? 0} abiertas
           </span>
         }
       />
@@ -39,10 +42,14 @@ export default function Board() {
         ))}
       </div>
 
-      {loading && <div className="note">Buscando misiones…</div>}
+      {loading && <Cargando texto="Buscando misiones…" />}
+      {error && <ErrorPanel error={error} onRetry={reload} />}
 
-      {!loading && missions?.length === 0 && (
-        <div className="note">No hay misiones abiertas en este radio.</div>
+      {!loading && !error && missions?.length === 0 && (
+        <Vacio
+          titulo="No hay misiones abiertas en este radio."
+          ayuda="Una misión la abre el coordinador tras firmar un incidente; hasta entonces el muro está vacío de verdad."
+        />
       )}
 
       <div className="stack">

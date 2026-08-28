@@ -1,31 +1,58 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Screen, ScreenHeader } from '../components/Screen';
 import { PriorityMark } from '../components/PriorityMark';
 import { MapView } from '../components/MapView';
 import { useAppState } from '../state/AppState';
 import { api } from '../api/client';
-import { CATEGORIES, SEVERITIES } from '../mocks/data';
+import { CATEGORIES, SEVERITIES } from '../lib/catalogos';
+import { mensajeDeError } from '../api/http';
 import type { IncidentCategory, SeverityId, SubmittedReport } from '../api/types';
 
 const MAX_DESC = 140;
 
 export default function Report() {
   const navigate = useNavigate();
-  const { offline, gpsDenied, draft, updateDraft, resetDraft } = useAppState();
+  const { offline, gpsDenied, setGpsDenied, draft, updateDraft, resetDraft, refreshQueueSize } = useAppState();
   const [step, setStep] = useState(0);
   const [otpLate, setOtpLate] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<SubmittedReport | null>(null);
+  const [fallo, setFallo] = useState('');
+
+  // Ubicacion real del navegador. Es la unica forma honesta de saber donde esta
+  // quien reporta: una coordenada fija seria un dato inventado viajando al motor
+  // de verificacion, que la usaria para agrupar incidentes que no son el mismo.
+  useEffect(() => {
+    if (!navigator.geolocation) { setGpsDenied(true); return; }
+    let vivo = true;
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        if (!vivo) return;
+        updateDraft({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        setGpsDenied(false);
+      },
+      () => { if (vivo) setGpsDenied(true); },
+      { enableHighAccuracy: true, timeout: 8000 },
+    );
+    return () => { vivo = false; };
+  }, [setGpsDenied, updateDraft]);
 
   const next = () => setStep((s) => Math.min(2, s + 1));
   const back = () => (step === 0 ? navigate('/') : setStep((s) => s - 1));
 
   async function submit(verified: boolean) {
     setSubmitting(true);
-    const res = await api.submitReport(draft, { offline, verified });
-    setSubmitting(false);
-    setResult(res);
+    setFallo('');
+    try {
+      const res = await api.submitReport(draft, { offline, verified });
+      setResult(res);
+      if (res.status === 'en_cola_local') refreshQueueSize();
+    } catch (e) {
+      setFallo(mensajeDeError(e));
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   // ---- Confirmacion (fuera del stepper: ya no hay pasos que retroceder) ----
@@ -88,6 +115,7 @@ export default function Report() {
       </div>
 
       {step === 0 && <StepWhat next={next} gpsDenied={gpsDenied} draft={draft} updateDraft={updateDraft} />}
+      {fallo && <div className="callout callout--alert" style={{ marginTop: 16 }} role="alert">{fallo}</div>}
       {step === 1 && <StepSeverity next={next} draft={draft} updateDraft={updateDraft} />}
       {step === 2 && (
         <StepVerify
@@ -112,7 +140,10 @@ type DraftProps = {
 };
 
 function StepWhat({ next, gpsDenied, draft, updateDraft }: DraftProps & { next: () => void; gpsDenied: boolean }) {
-  const canContinue = draft.category !== null && (!gpsDenied || draft.address.trim().length > 0);
+  // Sin GPS la direccion es obligatoria: un reporte sin ninguna referencia de
+  // sitio no se puede despachar, y el backend lo agruparia en el punto (0,0).
+  const canContinue = draft.category !== null
+    && (!gpsDenied ? draft.lat !== null : draft.address.trim().length > 0);
 
   return (
     <div>
@@ -157,8 +188,26 @@ function StepWhat({ next, gpsDenied, draft, updateDraft }: DraftProps & { next: 
         </div>
       ) : (
         <div>
-          <MapView mode="pick" height={168} center={[-12.0489, -77.0378]} zoom={16} />
-          <div className="note" style={{ marginTop: 7 }}>Ubicación detectada · Jr. Camaná 654 · precisión 12 m</div>
+          {draft.lat !== null && draft.lng !== null ? (
+            <>
+              <MapView mode="pick" height={168} center={[draft.lat, draft.lng]} zoom={16} />
+              <div className="note" style={{ marginTop: 7 }}>
+                Ubicación del dispositivo · {draft.lat.toFixed(5)}, {draft.lng.toFixed(5)}
+              </div>
+            </>
+          ) : (
+            <div className="note">Leyendo la ubicación del dispositivo…</div>
+          )}
+          <label className="field" style={{ marginTop: 12 }}>
+            Referencia o dirección (opcional, ayuda a la brigada)
+            <input
+              className="input"
+              value={draft.address}
+              onChange={(e) => updateDraft({ address: e.target.value })}
+              placeholder="Frente al parque, portón azul"
+              aria-label="Referencia de la ubicación"
+            />
+          </label>
         </div>
       )}
 
@@ -221,10 +270,10 @@ function StepSeverity({ next, draft, updateDraft }: DraftProps & { next: () => v
           color: draft.hasPhoto ? 'var(--color-accent-800)' : 'var(--color-neutral-800)',
         }}
       >
-        {draft.hasPhoto ? 'Foto adjunta · IMG_0421.jpg (1.2 MB) — quitar' : 'Adjuntar foto'}
+        {draft.hasPhoto ? 'Foto marcada como adjunta — quitar' : 'Adjuntar foto'}
       </button>
       <div className="note note--quiet" style={{ marginTop: 6 }}>
-        Se quitan metadatos EXIF antes de subir · máx. 2 MB
+        La subida de archivos aún no está expuesta por el backend: por ahora solo se declara que hay foto.
       </div>
 
       <button type="button" className="btn btn--primary" style={{ marginTop: 26 }} onClick={next}>Continuar</button>

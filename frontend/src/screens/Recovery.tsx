@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { Screen } from '../components/Screen';
 import { api } from '../api/client';
 import { useAsync } from '../api/useAsync';
+import { Cargando, ErrorPanel } from '../components/Estado';
+import { mensajeDeError } from '../api/http';
 import type { RecoveryPlanStep } from '../api/types';
 
 /** El cuestionario se contesta en momentos malos: el progreso sobrevive al cierre. */
@@ -24,14 +26,15 @@ function saveProgress(p: Progress) {
 
 export default function Recovery() {
   const { id = 'INC-2481' } = useParams();
-  const { data: questions } = useAsync(() => api.getRecoveryQuestions(), []);
+  const { data: questions, loading, error, reload } = useAsync(() => api.getRecoveryQuestions(), []);
+  const [fallo, setFallo] = useState('');
   const [progress, setProgress] = useState<Progress>(loadProgress);
   const [plan, setPlan] = useState<RecoveryPlanStep[] | null>(null);
   const [building, setBuilding] = useState(false);
 
   useEffect(() => { saveProgress(progress); }, [progress]);
 
-  const total = questions?.length ?? 3;
+  const total = questions?.length ?? 0;
   const done = plan !== null;
 
   async function answer(questionId: string, option: string) {
@@ -40,8 +43,17 @@ export default function Recovery() {
     setProgress({ step, answers });
     if (step >= total) {
       setBuilding(true);
-      setPlan(await api.getRecoveryPlan(answers));
-      setBuilding(false);
+      setFallo('');
+      try {
+        setPlan(await api.getRecoveryPlan(answers));
+      } catch (e) {
+        // Se retrocede un paso: dejar el contador al final sin plan dejaria la
+        // pantalla en un estado del que no se puede salir.
+        setProgress({ step: step - 1, answers });
+        setFallo(mensajeDeError(e));
+      } finally {
+        setBuilding(false);
+      }
     }
   }
 
@@ -60,7 +72,10 @@ export default function Recovery() {
         {done ? `${total} de ${total} respondidas` : `Pregunta ${Math.min(progress.step + 1, total)} de ${total} · progreso guardado`}
       </div>
 
-      {building && <div className="note">Armando tu hoja de ruta…</div>}
+      {loading && <Cargando texto="Cargando el cuestionario…" />}
+      {error && <ErrorPanel error={error} onRetry={reload} />}
+      {fallo && <div className="callout callout--alert" role="alert" style={{ marginBottom: 14 }}>{fallo}</div>}
+      {building && <Cargando texto="Armando tu hoja de ruta…" />}
 
       {!done && !building && current && (
         <div>
@@ -95,9 +110,6 @@ export default function Recovery() {
               </div>
             ))}
           </div>
-          <button type="button" className="btn btn--primary" style={{ marginTop: 24, fontSize: 17 }}>
-            Descargar PDF · {id}
-          </button>
           <button type="button" className="btn btn--ghost" style={{ marginTop: 6, fontSize: 14 }} onClick={restart}>
             Rehacer cuestionario
           </button>
