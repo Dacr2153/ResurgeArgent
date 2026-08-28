@@ -38,18 +38,22 @@ def test_salud_monta_los_cinco_agentes(cliente):
     assert "agente_geoespacial" in cuerpo["agentes"]
 
 
-def test_el_frontend_puede_hablar_con_la_api(cliente):
-    """Sin CORS el navegador ni siquiera llega a enviar la petición."""
+@pytest.mark.parametrize("puerto", [5173, 5174, 5176, 4321])
+def test_el_frontend_puede_hablar_con_la_api(cliente, puerto):
+    """Sin CORS el navegador ni siquiera llega a enviar la petición.
+
+    Se prueban varios puertos porque Vite salta al siguiente libre cuando el
+    suyo está ocupado: con otro proyecto levantado en la misma máquina acabó
+    sirviendo en 5176, y una lista fija de puertos lo dejaba fuera.
+    """
+    origen = f"http://localhost:{puerto}"
     respuesta = cliente.options(
         "/orquestador/emergencias",
-        headers={
-            "Origin": "http://localhost:5174",
-            "Access-Control-Request-Method": "POST",
-        },
+        headers={"Origin": origen, "Access-Control-Request-Method": "POST"},
     )
 
     assert respuesta.status_code == 200
-    assert respuesta.headers["access-control-allow-origin"] == "http://localhost:5174"
+    assert respuesta.headers["access-control-allow-origin"] == origen
 
 
 def test_un_origen_desconocido_no_pasa(cliente):

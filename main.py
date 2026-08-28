@@ -18,21 +18,20 @@ from fastapi.middleware.cors import CORSMiddleware
 
 registro = logging.getLogger(__name__)
 
-# Orígenes del frontend en desarrollo. Vite arranca en 5173 y salta a 5174 si el
-# puerto está ocupado, así que ambos tienen que estar. En despliegue se declara
-# el dominio real por RESURGE_ORIGENES, separado por comas.
-ORIGENES_DEV = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "http://localhost:5174",
-    "http://127.0.0.1:5174",
-]
+# En desarrollo, cualquier puerto de localhost. Vite arranca en 5173 y va
+# saltando de puerto cuando encuentra uno ocupado —5174, 5175, 5176...—, asi que
+# fijar una lista de puertos falla en cuanto hay otro proyecto levantado en la
+# misma maquina. Se aprendio con el frontend sirviendo en 5176 y el navegador
+# bloqueando cada peticion.
+#
+# En despliegue se declara el dominio real con RESURGE_ORIGENES, separado por
+# comas, y entonces esta regla de desarrollo no se aplica.
+ORIGEN_LOCAL = r"https?://(localhost|127\.0\.0\.1)(:\d+)?"
 
 
 def origenes_permitidos() -> list[str]:
+    """Origenes explicitos declarados para despliegue. Vacio en desarrollo."""
     declarados = os.environ.get("RESURGE_ORIGENES", "").strip()
-    if not declarados:
-        return ORIGENES_DEV
     return [origen.strip() for origen in declarados.split(",") if origen.strip()]
 
 
@@ -72,9 +71,13 @@ def crear_app() -> FastAPI:
 
     # Sin esto el navegador bloquea toda peticion del frontend antes de que
     # salga: no es configuracion opcional, es lo que hace usable la API.
+    explicitos = origenes_permitidos()
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=origenes_permitidos(),
+        allow_origins=explicitos,
+        # Sin origenes declarados estamos en desarrollo: se admite cualquier
+        # puerto local. Con ellos declarados, solo esos.
+        allow_origin_regex=None if explicitos else ORIGEN_LOCAL,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
