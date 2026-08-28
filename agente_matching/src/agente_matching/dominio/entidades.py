@@ -15,6 +15,7 @@ class Necesidad:
     cantidad_requerida: float
     prioridad: Prioridad
     ubicacion: Ubicacion
+    unidad: str = ""
 
     def __post_init__(self) -> None:
         if self.cantidad_requerida < 0:
@@ -30,6 +31,7 @@ class Recurso:
     tipo: str
     cantidad_disponible: float
     ubicacion: Ubicacion
+    unidad: str = ""
 
     def __post_init__(self) -> None:
         if self.cantidad_disponible < 0:

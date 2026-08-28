@@ -46,6 +46,7 @@ ENTRADA = {
             "cantidad_requerida": 100.0,
             "prioridad": 3,
             "ubicacion": {"lat": 4.7110, "lon": -74.0721},
+            "unidad": "litros",
         }
     ],
     "recursos": [
@@ -55,6 +56,7 @@ ENTRADA = {
             "tipo": "agua",
             "cantidad_disponible": 150.0,
             "ubicacion": {"lat": 4.6000, "lon": -74.0800},
+            "unidad": "litros",
         }
     ],
     "empresas": [
@@ -106,3 +108,22 @@ async def test_publica_el_resultado_final_justificado():
     publicado = publicador.publicados[-1]
     assert publicado is resultado
     assert publicado["justificaciones"] == ["ok"]
+
+
+@pytest.mark.asyncio
+async def test_salida_enriquecida_para_agente_8():
+    caso, _, _, _ = construir_caso_uso()
+    resultado = await caso.ejecutar(ENTRADA)
+
+    asignaciones = resultado["asignaciones"]
+    assert len(asignaciones) >= 1
+
+    fija = asignaciones[0]
+    assert fija["id"] == "A001"
+    assert fija["tipo"] == "agua"
+    assert fija["unidad"] == "litros"
+    assert fija["prioridad"] == 3
+    assert fija["origen"] == {"id": "Z-B", "latitud": 4.6000, "longitud": -74.0800}
+    assert fija["destino"] == {"id": "Z-A", "latitud": 4.7110, "longitud": -74.0721}
+    assert fija["empresa_id"] == "E1"
+    assert fija["cantidad"] == pytest.approx(10.0)
