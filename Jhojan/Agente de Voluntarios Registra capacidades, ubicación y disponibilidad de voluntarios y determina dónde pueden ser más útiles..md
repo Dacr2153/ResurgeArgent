@@ -1,3 +1,5 @@
+# Agente de Voluntarios Registra capacidades, ubicación y disponibilidad de voluntarios y determina dónde pueden ser más útiles.
+
 El Agente de Voluntarios tiene como rol principal la ingesta de datos de voluntarios, el registro de sus capacidades, ubicación y disponibilidad, y la determinación dinámica de su asignación óptima a tareas específicas de búsqueda y rescate (**S1-S5**) y primeros auxilios (**T1-T3**). Esto se realiza en coordinación con las unidades de rescate oficiales y el Centro de Manejo de Desastres (**DMC**), optimizando el uso de recursos humanos bajo condiciones de incertidumbre y previniendo la aglomeración desorganizada en las zonas de desastre.
 
 A continuación, se detalla la propuesta técnica, metodológica y operativa para la implementación del **Agente de Voluntarios**, estructurada bajo tus requerimientos y completamente respaldada por la evidencia científica y operativa de tus fuentes
