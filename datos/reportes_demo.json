@@ -1,0 +1,297 @@
+{
+  "descripcion": "Derrumbe en la via a La Calera durante lluvias, mas un incendio no relacionado a 8 km. Los reportes del derrumbe llegan de doce personas distintas, cada una describiendolo a su manera y por canales distintos.",
+  "reportes": [
+    {
+      "texto": "Se cayo el puente sobre la quebrada, no se puede pasar",
+      "fuente": {
+        "id": "cel-3114",
+        "tipo": "ciudadano",
+        "reputacion": 0.45
+      },
+      "canal": "sms",
+      "ubicacion": {
+        "type": "Point",
+        "coordinates": [
+          -74.0803,
+          4.6112
+        ]
+      },
+      "categoria": "Geo",
+      "urgencia": "Immediate",
+      "severidad": "Severe",
+      "certeza": "Observed",
+      "personas_afectadas": 8
+    },
+    {
+      "texto": "Colapso la estructura sobre el rio, hay carros atrapados",
+      "fuente": {
+        "id": "cel-3220",
+        "tipo": "ciudadano",
+        "reputacion": 0.45
+      },
+      "canal": "whatsapp",
+      "ubicacion": {
+        "type": "Point",
+        "coordinates": [
+          -74.0811,
+          4.6106
+        ]
+      },
+      "categoria": "Geo",
+      "urgencia": "Immediate",
+      "severidad": "Severe",
+      "certeza": "Observed",
+      "personas_afectadas": 12
+    },
+    {
+      "texto": "Derrumbe tapo la via, la montana se vino encima",
+      "fuente": {
+        "id": "cel-3387",
+        "tipo": "ciudadano",
+        "reputacion": 0.45
+      },
+      "canal": "sms",
+      "ubicacion": {
+        "type": "Point",
+        "coordinates": [
+          -74.0819,
+          4.6098
+        ]
+      },
+      "categoria": "Geo",
+      "urgencia": "Immediate",
+      "severidad": "Severe",
+      "certeza": "Observed"
+    },
+    {
+      "texto": "Deslizamiento bloquea el paso hacia La Calera",
+      "fuente": {
+        "id": "vol-012",
+        "tipo": "voluntario",
+        "reputacion": 0.65
+      },
+      "canal": "app",
+      "ubicacion": {
+        "type": "Point",
+        "coordinates": [
+          -74.0808,
+          4.6103
+        ]
+      },
+      "categoria": "Geo",
+      "urgencia": "Immediate",
+      "severidad": "Severe",
+      "certeza": "Observed",
+      "necesidades": [
+        "rescate",
+        "maquinaria"
+      ]
+    },
+    {
+      "texto": "La tierra se llevo media carretera, hay gente aislada al otro lado",
+      "fuente": {
+        "id": "cel-3401",
+        "tipo": "afectado",
+        "reputacion": 0.5
+      },
+      "canal": "llamada",
+      "ubicacion": {
+        "type": "Point",
+        "coordinates": [
+          -74.0815,
+          4.6109
+        ]
+      },
+      "categoria": "Geo",
+      "urgencia": "Immediate",
+      "severidad": "Extreme",
+      "certeza": "Observed",
+      "personas_afectadas": 20,
+      "necesidades": [
+        "rescate",
+        "agua"
+      ]
+    },
+    {
+      "texto": "No hay paso, se desplomo todo el talud",
+      "fuente": {
+        "id": "cel-3512",
+        "tipo": "ciudadano",
+        "reputacion": 0.45
+      },
+      "canal": "ussd",
+      "ubicacion": {
+        "type": "Point",
+        "coordinates": [
+          -74.0806,
+          4.6095
+        ]
+      },
+      "categoria": "Geo",
+      "urgencia": "Immediate",
+      "severidad": "Severe",
+      "certeza": "Likely"
+    },
+    {
+      "texto": "Confirmado derrumbe km 4 via La Calera, dos vehiculos comprometidos",
+      "fuente": {
+        "id": "ungrd-bog",
+        "tipo": "autoridad",
+        "reputacion": 0.95
+      },
+      "canal": "api_oficial",
+      "ubicacion": {
+        "type": "Point",
+        "coordinates": [
+          -74.0812,
+          4.6104
+        ]
+      },
+      "categoria": "Geo",
+      "urgencia": "Immediate",
+      "severidad": "Extreme",
+      "certeza": "Observed",
+      "personas_afectadas": 15,
+      "necesidades": [
+        "rescate",
+        "maquinaria",
+        "ambulancia"
+      ]
+    },
+    {
+      "texto": "Cayo un pedazo de cerro sobre la via, urgente",
+      "fuente": {
+        "id": "cel-3688",
+        "tipo": "ciudadano",
+        "reputacion": 0.45
+      },
+      "canal": "whatsapp",
+      "ubicacion": {
+        "type": "Point",
+        "coordinates": [
+          -74.0821,
+          4.61
+        ]
+      },
+      "categoria": "Geo",
+      "urgencia": "Immediate",
+      "severidad": "Severe",
+      "certeza": "Observed"
+    },
+    {
+      "texto": "Estamos atrapados, el derrumbe nos dejo sin salida",
+      "fuente": {
+        "id": "cel-3701",
+        "tipo": "afectado",
+        "reputacion": 0.5
+      },
+      "canal": "sms",
+      "ubicacion": {
+        "type": "Point",
+        "coordinates": [
+          -74.0804,
+          4.6107
+        ]
+      },
+      "categoria": "Geo",
+      "urgencia": "Immediate",
+      "severidad": "Extreme",
+      "certeza": "Observed",
+      "personas_afectadas": 6,
+      "necesidades": [
+        "rescate",
+        "agua",
+        "abrigo"
+      ]
+    },
+    {
+      "texto": "Reporte de deslizamiento de tierra en la via principal",
+      "fuente": {
+        "id": "cruz-roja-04",
+        "tipo": "organizacion",
+        "reputacion": 0.8
+      },
+      "canal": "app",
+      "ubicacion": {
+        "type": "Point",
+        "coordinates": [
+          -74.081,
+          4.6101
+        ]
+      },
+      "categoria": "Geo",
+      "urgencia": "Immediate",
+      "severidad": "Severe",
+      "certeza": "Observed",
+      "necesidades": [
+        "primeros_auxilios"
+      ]
+    },
+    {
+      "texto": "Se vino la banca de la carretera con todo y arboles",
+      "fuente": {
+        "id": "cel-3822",
+        "tipo": "ciudadano",
+        "reputacion": 0.45
+      },
+      "canal": "radio",
+      "ubicacion": {
+        "type": "Point",
+        "coordinates": [
+          -74.0817,
+          4.6099
+        ]
+      },
+      "categoria": "Geo",
+      "urgencia": "Immediate",
+      "severidad": "Severe",
+      "certeza": "Likely"
+    },
+    {
+      "texto": "Se cayo el puente sobre la quebrada, no se puede pasar",
+      "fuente": {
+        "id": "cel-3114",
+        "tipo": "ciudadano",
+        "reputacion": 0.45
+      },
+      "canal": "sms",
+      "ubicacion": {
+        "type": "Point",
+        "coordinates": [
+          -74.0803,
+          4.6112
+        ]
+      },
+      "categoria": "Geo",
+      "urgencia": "Immediate",
+      "severidad": "Severe",
+      "certeza": "Observed",
+      "personas_afectadas": 8
+    },
+    {
+      "texto": "Incendio en la bodega del parque industrial, humo denso",
+      "fuente": {
+        "id": "bomberos-01",
+        "tipo": "autoridad",
+        "reputacion": 0.95
+      },
+      "canal": "radio",
+      "ubicacion": {
+        "type": "Point",
+        "coordinates": [
+          -74.079,
+          4.682
+        ]
+      },
+      "categoria": "Fire",
+      "urgencia": "Immediate",
+      "severidad": "Extreme",
+      "certeza": "Observed",
+      "personas_afectadas": 3,
+      "necesidades": [
+        "bomberos"
+      ]
+    }
+  ],
+  "formato": "Cada reporte usa la forma canonica que emite ReporteCrudo.a_dict(): fuente como objeto con id y tipo, ubicacion como geometria GeoJSON RFC 7946 con coordenadas [lon, lat]."
+}

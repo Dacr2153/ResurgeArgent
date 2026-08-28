@@ -1,0 +1,45 @@
+{
+  "contexto": {
+    "tipo_desastre": "inundacion",
+    "periodo": 1,
+    "municipio": "Mocoa",
+    "descripcion": "Creciente subita del rio. 6 zonas afectadas, 3 con acceso vial restringido."
+  },
+  "unidades_oficiales": ["Z-01", "Z-03"],
+  "recursos": {
+    "Z-01": { "ambulancias": 2, "kits_medicos": 30 },
+    "Z-02": { "ambulancias": 1, "kits_medicos": 12 },
+    "Z-03": { "ambulancias": 1, "kits_medicos": 20 },
+    "Z-04": { "ambulancias": 0, "kits_medicos": 8 },
+    "Z-05": { "ambulancias": 0, "kits_medicos": 0 },
+    "Z-06": { "ambulancias": 1, "kits_medicos": 6 }
+  },
+  "voluntarios": [
+    { "id": "VOL-001", "nombre": "Ana Restrepo",    "profesion": 2, "zona": "Z-01", "horas_disponibles": 8.0, "certificado": true },
+    { "id": "VOL-002", "nombre": "Carlos Muñoz",    "profesion": 2, "zona": "Z-01", "horas_disponibles": 6.0, "certificado": true },
+    { "id": "VOL-003", "nombre": "Diana Salazar",   "profesion": 5, "zona": "Z-01", "horas_disponibles": 8.0, "certificado": true },
+    { "id": "VOL-004", "nombre": "Efrain Botero",   "profesion": 8, "zona": "Z-01", "horas_disponibles": 5.0, "certificado": true },
+    { "id": "VOL-005", "nombre": "Fabiola Ortiz",   "profesion": 7, "zona": "Z-02", "horas_disponibles": 6.0, "certificado": true },
+    { "id": "VOL-006", "nombre": "Gustavo Rincon",  "profesion": 8, "zona": "Z-02", "horas_disponibles": 4.0, "certificado": true },
+    { "id": "VOL-007", "nombre": "Helena Vargas",   "profesion": 2, "zona": "Z-03", "horas_disponibles": 8.0, "certificado": true },
+    { "id": "VOL-008", "nombre": "Ivan Peña",       "profesion": 5, "zona": "Z-03", "horas_disponibles": 7.0, "certificado": true },
+    { "id": "VOL-009", "nombre": "Julia Camargo",   "profesion": 8, "zona": "Z-04", "horas_disponibles": 5.0, "certificado": true },
+    { "id": "VOL-010", "nombre": "Kevin Arroyave",  "profesion": 8, "zona": "Z-04", "horas_disponibles": 5.0, "certificado": true },
+    { "id": "VOL-011", "nombre": "Lucia Herrera",   "profesion": 2, "zona": "Z-05", "horas_disponibles": 6.0, "certificado": false },
+    { "id": "VOL-012", "nombre": "Mario Quintero",  "profesion": 7, "zona": "Z-06", "horas_disponibles": 6.0, "certificado": true }
+  ],
+  "demanda": [
+    { "zona": "Z-01", "tarea": "S2", "horas_hombre": 14.0, "severidad": "critica" },
+    { "zona": "Z-01", "tarea": "T2", "horas_hombre": 6.0,  "severidad": "critica" },
+    { "zona": "Z-01", "tarea": "S4", "horas_hombre": 4.0,  "severidad": "baja" },
+    { "zona": "Z-02", "tarea": "T3", "horas_hombre": 8.0,  "severidad": "alta" },
+    { "zona": "Z-02", "tarea": "S3", "horas_hombre": 4.0,  "severidad": "media" },
+    { "zona": "Z-03", "tarea": "S2", "horas_hombre": 10.0, "severidad": "critica" },
+    { "zona": "Z-03", "tarea": "T1", "horas_hombre": 7.0,  "severidad": "alta" },
+    { "zona": "Z-04", "tarea": "S2", "horas_hombre": 8.0,  "severidad": "critica" },
+    { "zona": "Z-04", "tarea": "S3", "horas_hombre": 6.0,  "severidad": "media" },
+    { "zona": "Z-05", "tarea": "S2", "horas_hombre": 6.0,  "severidad": "alta" },
+    { "zona": "Z-06", "tarea": "T3", "horas_hombre": 5.0,  "severidad": "alta" },
+    { "zona": "Z-06", "tarea": "S1", "horas_hombre": 4.0,  "severidad": "media" }
+  ]
+}

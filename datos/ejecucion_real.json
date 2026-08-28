@@ -1,0 +1,1495 @@
+{
+ "momento": "2026-08-28T20:06:10.592118+00:00",
+ "duracion_segundos": 147.69,
+ "escenario": "Derrumbe en la via a La Calera durante lluvias, mas un incendio no relacionado a 8 km. Los reportes del derrumbe llegan de doce personas distintas, cada una describiendolo a su manera y por canales distintos.",
+ "reportes_entrada": [
+  {
+   "texto": "Se cayo el puente sobre la quebrada, no se puede pasar",
+   "fuente": {
+    "id": "cel-3114",
+    "tipo": "ciudadano",
+    "reputacion": 0.45
+   },
+   "canal": "sms",
+   "ubicacion": {
+    "type": "Point",
+    "coordinates": [
+     -74.0803,
+     4.6112
+    ]
+   },
+   "categoria": "Geo",
+   "urgencia": "Immediate",
+   "severidad": "Severe",
+   "certeza": "Observed",
+   "personas_afectadas": 8
+  },
+  {
+   "texto": "Colapso la estructura sobre el rio, hay carros atrapados",
+   "fuente": {
+    "id": "cel-3220",
+    "tipo": "ciudadano",
+    "reputacion": 0.45
+   },
+   "canal": "whatsapp",
+   "ubicacion": {
+    "type": "Point",
+    "coordinates": [
+     -74.0811,
+     4.6106
+    ]
+   },
+   "categoria": "Geo",
+   "urgencia": "Immediate",
+   "severidad": "Severe",
+   "certeza": "Observed",
+   "personas_afectadas": 12
+  },
+  {
+   "texto": "Derrumbe tapo la via, la montana se vino encima",
+   "fuente": {
+    "id": "cel-3387",
+    "tipo": "ciudadano",
+    "reputacion": 0.45
+   },
+   "canal": "sms",
+   "ubicacion": {
+    "type": "Point",
+    "coordinates": [
+     -74.0819,
+     4.6098
+    ]
+   },
+   "categoria": "Geo",
+   "urgencia": "Immediate",
+   "severidad": "Severe",
+   "certeza": "Observed"
+  },
+  {
+   "texto": "Deslizamiento bloquea el paso hacia La Calera",
+   "fuente": {
+    "id": "vol-012",
+    "tipo": "voluntario",
+    "reputacion": 0.65
+   },
+   "canal": "app",
+   "ubicacion": {
+    "type": "Point",
+    "coordinates": [
+     -74.0808,
+     4.6103
+    ]
+   },
+   "categoria": "Geo",
+   "urgencia": "Immediate",
+   "severidad": "Severe",
+   "certeza": "Observed",
+   "necesidades": [
+    "rescate",
+    "maquinaria"
+   ]
+  },
+  {
+   "texto": "La tierra se llevo media carretera, hay gente aislada al otro lado",
+   "fuente": {
+    "id": "cel-3401",
+    "tipo": "afectado",
+    "reputacion": 0.5
+   },
+   "canal": "llamada",
+   "ubicacion": {
+    "type": "Point",
+    "coordinates": [
+     -74.0815,
+     4.6109
+    ]
+   },
+   "categoria": "Geo",
+   "urgencia": "Immediate",
+   "severidad": "Extreme",
+   "certeza": "Observed",
+   "personas_afectadas": 20,
+   "necesidades": [
+    "rescate",
+    "agua"
+   ]
+  },
+  {
+   "texto": "No hay paso, se desplomo todo el talud",
+   "fuente": {
+    "id": "cel-3512",
+    "tipo": "ciudadano",
+    "reputacion": 0.45
+   },
+   "canal": "ussd",
+   "ubicacion": {
+    "type": "Point",
+    "coordinates": [
+     -74.0806,
+     4.6095
+    ]
+   },
+   "categoria": "Geo",
+   "urgencia": "Immediate",
+   "severidad": "Severe",
+   "certeza": "Likely"
+  },
+  {
+   "texto": "Confirmado derrumbe km 4 via La Calera, dos vehiculos comprometidos",
+   "fuente": {
+    "id": "ungrd-bog",
+    "tipo": "autoridad",
+    "reputacion": 0.95
+   },
+   "canal": "api_oficial",
+   "ubicacion": {
+    "type": "Point",
+    "coordinates": [
+     -74.0812,
+     4.6104
+    ]
+   },
+   "categoria": "Geo",
+   "urgencia": "Immediate",
+   "severidad": "Extreme",
+   "certeza": "Observed",
+   "personas_afectadas": 15,
+   "necesidades": [
+    "rescate",
+    "maquinaria",
+    "ambulancia"
+   ]
+  },
+  {
+   "texto": "Cayo un pedazo de cerro sobre la via, urgente",
+   "fuente": {
+    "id": "cel-3688",
+    "tipo": "ciudadano",
+    "reputacion": 0.45
+   },
+   "canal": "whatsapp",
+   "ubicacion": {
+    "type": "Point",
+    "coordinates": [
+     -74.0821,
+     4.61
+    ]
+   },
+   "categoria": "Geo",
+   "urgencia": "Immediate",
+   "severidad": "Severe",
+   "certeza": "Observed"
+  },
+  {
+   "texto": "Estamos atrapados, el derrumbe nos dejo sin salida",
+   "fuente": {
+    "id": "cel-3701",
+    "tipo": "afectado",
+    "reputacion": 0.5
+   },
+   "canal": "sms",
+   "ubicacion": {
+    "type": "Point",
+    "coordinates": [
+     -74.0804,
+     4.6107
+    ]
+   },
+   "categoria": "Geo",
+   "urgencia": "Immediate",
+   "severidad": "Extreme",
+   "certeza": "Observed",
+   "personas_afectadas": 6,
+   "necesidades": [
+    "rescate",
+    "agua",
+    "abrigo"
+   ]
+  },
+  {
+   "texto": "Reporte de deslizamiento de tierra en la via principal",
+   "fuente": {
+    "id": "cruz-roja-04",
+    "tipo": "organizacion",
+    "reputacion": 0.8
+   },
+   "canal": "app",
+   "ubicacion": {
+    "type": "Point",
+    "coordinates": [
+     -74.081,
+     4.6101
+    ]
+   },
+   "categoria": "Geo",
+   "urgencia": "Immediate",
+   "severidad": "Severe",
+   "certeza": "Observed",
+   "necesidades": [
+    "primeros_auxilios"
+   ]
+  },
+  {
+   "texto": "Se vino la banca de la carretera con todo y arboles",
+   "fuente": {
+    "id": "cel-3822",
+    "tipo": "ciudadano",
+    "reputacion": 0.45
+   },
+   "canal": "radio",
+   "ubicacion": {
+    "type": "Point",
+    "coordinates": [
+     -74.0817,
+     4.6099
+    ]
+   },
+   "categoria": "Geo",
+   "urgencia": "Immediate",
+   "severidad": "Severe",
+   "certeza": "Likely"
+  },
+  {
+   "texto": "Se cayo el puente sobre la quebrada, no se puede pasar",
+   "fuente": {
+    "id": "cel-3114",
+    "tipo": "ciudadano",
+    "reputacion": 0.45
+   },
+   "canal": "sms",
+   "ubicacion": {
+    "type": "Point",
+    "coordinates": [
+     -74.0803,
+     4.6112
+    ]
+   },
+   "categoria": "Geo",
+   "urgencia": "Immediate",
+   "severidad": "Severe",
+   "certeza": "Observed",
+   "personas_afectadas": 8
+  },
+  {
+   "texto": "Incendio en la bodega del parque industrial, humo denso",
+   "fuente": {
+    "id": "bomberos-01",
+    "tipo": "autoridad",
+    "reputacion": 0.95
+   },
+   "canal": "radio",
+   "ubicacion": {
+    "type": "Point",
+    "coordinates": [
+     -74.079,
+     4.682
+    ]
+   },
+   "categoria": "Fire",
+   "urgencia": "Immediate",
+   "severidad": "Extreme",
+   "certeza": "Observed",
+   "personas_afectadas": 3,
+   "necesidades": [
+    "bomberos"
+   ]
+  }
+ ],
+ "resultado": {
+  "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+  "estado_operacion": "pendiente_aprobacion",
+  "degradada": false,
+  "saga": {
+   "exitosa": true,
+   "parcial": false,
+   "degradada": false,
+   "pasos": [
+    {
+     "nombre": "ingesta",
+     "agente": "agente-2-ingesta",
+     "estado": "completado",
+     "obligatorio": true,
+     "error": ""
+    },
+    {
+     "nombre": "verificacion",
+     "agente": "agente-3-verificacion",
+     "estado": "completado",
+     "obligatorio": true,
+     "error": ""
+    },
+    {
+     "nombre": "geoespacial",
+     "agente": "agente-5-geoespacial",
+     "estado": "completado",
+     "obligatorio": false,
+     "error": ""
+    }
+   ],
+   "fallidos": [],
+   "compensados": []
+  },
+  "reportes_ingeridos": 12,
+  "reportes_descartados": {
+   "total": 1,
+   "por_motivo": {
+    "reenvio_duplicado": 1
+   },
+   "detalle_disponible": true
+  },
+  "incidentes": [
+   {
+    "incidente_id": "7eed1112-5ee6-405a-a0ba-08137a7f6ea6",
+    "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+    "estado": "pendiente_aprobacion",
+    "visitas": {
+     "recibido": 1,
+     "verificado": 1,
+     "localizado": 1,
+     "priorizado": 1,
+     "pendiente_aprobacion": 1
+    },
+    "historial": [
+     {
+      "origen": "recibido",
+      "solicitado": "verificado",
+      "estado": "verificado",
+      "aplicada": true,
+      "motivo": "corroborado por 1 reporte(s), confianza 0.95",
+      "momento": "2026-08-28T20:05:47.736712+00:00",
+      "decision_id": null
+     },
+     {
+      "origen": "verificado",
+      "solicitado": "localizado",
+      "estado": "localizado",
+      "aplicada": true,
+      "motivo": "ubicación propia del incidente; ruta no solicitada en este lote",
+      "momento": "2026-08-28T20:05:47.736746+00:00",
+      "decision_id": null
+     },
+     {
+      "origen": "localizado",
+      "solicitado": "priorizado",
+      "estado": "priorizado",
+      "aplicada": true,
+      "motivo": "posición 1 del lote, puntuación 0.8190",
+      "momento": "2026-08-28T20:05:47.736848+00:00",
+      "decision_id": null
+     },
+     {
+      "origen": "priorizado",
+      "solicitado": "pendiente_aprobacion",
+      "estado": "pendiente_aprobacion",
+      "aplicada": true,
+      "motivo": "a la espera de la firma del coordinador humano",
+      "momento": "2026-08-28T20:05:47.736876+00:00",
+      "decision_id": null
+     }
+    ],
+    "decision": null,
+    "triage": {
+     "incidente_id": "7eed1112-5ee6-405a-a0ba-08137a7f6ea6",
+     "posicion": 1,
+     "puntuacion": 0.818984,
+     "componentes": {
+      "severidad": 0.45,
+      "urgencia": 0.35,
+      "personas": 0.040132,
+      "base": 0.840132,
+      "multiplicador_confianza": 0.974828
+     }
+    },
+    "datos": {
+     "ruta": null,
+     "geo_degradado": false
+    },
+    "requiere_firma": true
+   },
+   {
+    "incidente_id": "9636dfdb-94c3-4fa4-bc44-be2d16a4fdcd",
+    "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+    "estado": "pendiente_aprobacion",
+    "visitas": {
+     "recibido": 1,
+     "verificado": 1,
+     "localizado": 1,
+     "priorizado": 1,
+     "pendiente_aprobacion": 1
+    },
+    "historial": [
+     {
+      "origen": "recibido",
+      "solicitado": "verificado",
+      "estado": "verificado",
+      "aplicada": true,
+      "motivo": "corroborado por 11 reporte(s), confianza 1.00",
+      "momento": "2026-08-28T20:05:47.736615+00:00",
+      "decision_id": null
+     },
+     {
+      "origen": "verificado",
+      "solicitado": "localizado",
+      "estado": "localizado",
+      "aplicada": true,
+      "motivo": "ubicación propia del incidente; ruta no solicitada en este lote",
+      "momento": "2026-08-28T20:05:47.736671+00:00",
+      "decision_id": null
+     },
+     {
+      "origen": "localizado",
+      "solicitado": "priorizado",
+      "estado": "priorizado",
+      "aplicada": true,
+      "motivo": "posición 2 del lote, puntuación 0.7752",
+      "momento": "2026-08-28T20:05:47.736902+00:00",
+      "decision_id": null
+     },
+     {
+      "origen": "priorizado",
+      "solicitado": "pendiente_aprobacion",
+      "estado": "pendiente_aprobacion",
+      "aplicada": true,
+      "motivo": "a la espera de la firma del coordinador humano",
+      "momento": "2026-08-28T20:05:47.736930+00:00",
+      "decision_id": null
+     }
+    ],
+    "decision": null,
+    "triage": {
+     "incidente_id": "9636dfdb-94c3-4fa4-bc44-be2d16a4fdcd",
+     "posicion": 2,
+     "puntuacion": 0.775219,
+     "componentes": {
+      "severidad": 0.3375,
+      "urgencia": 0.35,
+      "personas": 0.088135,
+      "base": 0.775635,
+      "multiplicador_confianza": 0.999463
+     }
+    },
+    "datos": {
+     "ruta": null,
+     "geo_degradado": false
+    },
+    "requiere_firma": true
+   }
+  ],
+  "zonas_afectadas": {
+   "type": "FeatureCollection",
+   "features": [
+    {
+     "type": "Feature",
+     "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+       [
+        [
+         -74.09,
+         4.61
+        ],
+        [
+         -74.08,
+         4.61
+        ],
+        [
+         -74.08,
+         4.62
+        ],
+        [
+         -74.09,
+         4.62
+        ],
+        [
+         -74.09,
+         4.61
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "celda_id": "461:-7409",
+      "conteo_incidentes": 1,
+      "severidad_agregada": "Severe",
+      "incidentes_ids": [
+       "9636dfdb-94c3-4fa4-bc44-be2d16a4fdcd"
+      ]
+     }
+    },
+    {
+     "type": "Feature",
+     "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+       [
+        [
+         -74.08,
+         4.68
+        ],
+        [
+         -74.07,
+         4.68
+        ],
+        [
+         -74.07,
+         4.6899999999999995
+        ],
+        [
+         -74.08,
+         4.6899999999999995
+        ],
+        [
+         -74.08,
+         4.68
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "celda_id": "468:-7408",
+      "conteo_incidentes": 1,
+      "severidad_agregada": "Extreme",
+      "incidentes_ids": [
+       "7eed1112-5ee6-405a-a0ba-08137a7f6ea6"
+      ]
+     }
+    }
+   ]
+  },
+  "rutas": [],
+  "resumen_situacion": "{\n  \"reporte_situacion\": \"Parte de situación con 2 incidentes, de los cuales 2 esperan su firma para ser asignados. La información está completa.\\n\\n1. 7eed1112: Pendiente de aprobación. Prioridad 1 por su alta severidad"
+ },
+ "firma": {
+  "incidente_id": "7eed1112-5ee6-405a-a0ba-08137a7f6ea6",
+  "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+  "estado": "asignado",
+  "visitas": {
+   "recibido": 1,
+   "verificado": 1,
+   "localizado": 1,
+   "priorizado": 1,
+   "pendiente_aprobacion": 1,
+   "asignado": 1
+  },
+  "historial": [
+   {
+    "origen": "recibido",
+    "solicitado": "verificado",
+    "estado": "verificado",
+    "aplicada": true,
+    "motivo": "corroborado por 1 reporte(s), confianza 0.95",
+    "momento": "2026-08-28T20:05:47.736712+00:00",
+    "decision_id": null
+   },
+   {
+    "origen": "verificado",
+    "solicitado": "localizado",
+    "estado": "localizado",
+    "aplicada": true,
+    "motivo": "ubicación propia del incidente; ruta no solicitada en este lote",
+    "momento": "2026-08-28T20:05:47.736746+00:00",
+    "decision_id": null
+   },
+   {
+    "origen": "localizado",
+    "solicitado": "priorizado",
+    "estado": "priorizado",
+    "aplicada": true,
+    "motivo": "posición 1 del lote, puntuación 0.8190",
+    "momento": "2026-08-28T20:05:47.736848+00:00",
+    "decision_id": null
+   },
+   {
+    "origen": "priorizado",
+    "solicitado": "pendiente_aprobacion",
+    "estado": "pendiente_aprobacion",
+    "aplicada": true,
+    "motivo": "a la espera de la firma del coordinador humano",
+    "momento": "2026-08-28T20:05:47.736876+00:00",
+    "decision_id": null
+   },
+   {
+    "origen": "pendiente_aprobacion",
+    "solicitado": "asignado",
+    "estado": "asignado",
+    "aplicada": true,
+    "motivo": "Recursos disponibles, se autoriza el despliegue",
+    "momento": "2026-08-28T20:06:10.591764+00:00",
+    "decision_id": "ff139a8a-337f-454b-8eec-626f39235f96"
+   }
+  ],
+  "decision": {
+   "id": "ff139a8a-337f-454b-8eec-626f39235f96",
+   "incidente_id": "7eed1112-5ee6-405a-a0ba-08137a7f6ea6",
+   "aprobada": true,
+   "coordinador_id": "coord-ungrd-07",
+   "justificacion": "Recursos disponibles, se autoriza el despliegue",
+   "momento": "2026-08-28T20:06:10.591693+00:00",
+   "firmante": "coordinador-humano"
+  },
+  "triage": {
+   "incidente_id": "7eed1112-5ee6-405a-a0ba-08137a7f6ea6",
+   "posicion": 1,
+   "puntuacion": 0.818984,
+   "componentes": {
+    "severidad": 0.45,
+    "urgencia": 0.35,
+    "personas": 0.040132,
+    "base": 0.840132,
+    "multiplicador_confianza": 0.974828
+   }
+  },
+  "datos": {
+   "ruta": null,
+   "geo_degradado": false
+  }
+ },
+ "eventos_auditoria": [
+  {
+   "id": "d71cb90e-540f-41b0-8c7c-77db69d18ccb",
+   "tipo": "tarea_delegada",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:03:42.905456+00:00",
+   "detalle": {
+    "paso": "ingesta",
+    "agente": "agente-2-ingesta",
+    "timeout_s": 300.0
+   }
+  },
+  {
+   "id": "bcd44a59-3d3a-46bf-830c-cb82f70d3f2d",
+   "tipo": "tarea_delegada",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:03:42.905663+00:00",
+   "detalle": {
+    "id": "a9bf647c-265f-4be3-82c8-4b677bab0db5",
+    "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+    "responde_a": null,
+    "emisor": "agente-1-orquestador",
+    "receptor": "agente-2-ingesta",
+    "performativa": "request",
+    "momento": "2026-08-28T20:03:42.905600+00:00",
+    "version": "1.0",
+    "contenido": {}
+   }
+  },
+  {
+   "id": "1c89bb60-6276-415c-b4cb-80f379077718",
+   "tipo": "reporte_recibido",
+   "agente": "agente-2-ingesta",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210137+00:00",
+   "detalle": {
+    "reporte_id": "f6fd9674-3825-4e26-810d-5ff4011fd618",
+    "canal": "sms"
+   }
+  },
+  {
+   "id": "76d8022d-3a6a-4668-b1a9-264bd33be41d",
+   "tipo": "reporte_recibido",
+   "agente": "agente-2-ingesta",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210156+00:00",
+   "detalle": {
+    "reporte_id": "3d754ad7-18c9-47c5-8951-5547467c636c",
+    "canal": "whatsapp"
+   }
+  },
+  {
+   "id": "c287b0aa-fa5b-432d-9b73-bef1e67aa8d7",
+   "tipo": "reporte_recibido",
+   "agente": "agente-2-ingesta",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210172+00:00",
+   "detalle": {
+    "reporte_id": "ba96e0b1-dbb8-4ef0-b35b-577a881d0359",
+    "canal": "sms"
+   }
+  },
+  {
+   "id": "1e2c844c-1d95-4a98-a06a-9f61fcee2a03",
+   "tipo": "reporte_recibido",
+   "agente": "agente-2-ingesta",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210182+00:00",
+   "detalle": {
+    "reporte_id": "7d5722cf-8cdb-4c2a-9017-484c23e71702",
+    "canal": "app"
+   }
+  },
+  {
+   "id": "601029f4-efa5-4708-ae59-192cc314724e",
+   "tipo": "reporte_recibido",
+   "agente": "agente-2-ingesta",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210192+00:00",
+   "detalle": {
+    "reporte_id": "363a61f3-c89d-4ff9-8844-1b0448ea3259",
+    "canal": "llamada"
+   }
+  },
+  {
+   "id": "4a943493-1af9-4fe6-a976-0dc998d8dc63",
+   "tipo": "reporte_recibido",
+   "agente": "agente-2-ingesta",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210202+00:00",
+   "detalle": {
+    "reporte_id": "b7dc14d3-104b-4579-ae4b-46bff07d66a1",
+    "canal": "ussd"
+   }
+  },
+  {
+   "id": "06ea3090-a127-4b3f-8503-43d954ff3545",
+   "tipo": "reporte_recibido",
+   "agente": "agente-2-ingesta",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210210+00:00",
+   "detalle": {
+    "reporte_id": "aafdb82c-58b3-419d-8622-35587f123d63",
+    "canal": "api_oficial"
+   }
+  },
+  {
+   "id": "a0fe1b06-064d-4754-8f3c-00c985f7b5c2",
+   "tipo": "reporte_recibido",
+   "agente": "agente-2-ingesta",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210219+00:00",
+   "detalle": {
+    "reporte_id": "436399cf-339e-4aae-a7db-6c7f8be0f81f",
+    "canal": "whatsapp"
+   }
+  },
+  {
+   "id": "6a6b659a-f1df-4cd6-aa1b-f0c33a6e8995",
+   "tipo": "reporte_recibido",
+   "agente": "agente-2-ingesta",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210228+00:00",
+   "detalle": {
+    "reporte_id": "f4e62dfb-6f3d-485d-b3d2-617414d16ba8",
+    "canal": "sms"
+   }
+  },
+  {
+   "id": "e2008855-e2cf-496d-8368-608c13b09eaa",
+   "tipo": "reporte_recibido",
+   "agente": "agente-2-ingesta",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210238+00:00",
+   "detalle": {
+    "reporte_id": "a321b251-6ff0-4f66-b8b7-ea614ba49d7e",
+    "canal": "app"
+   }
+  },
+  {
+   "id": "eae28579-d0ef-4af8-ab06-1a8f2aacd196",
+   "tipo": "reporte_recibido",
+   "agente": "agente-2-ingesta",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210248+00:00",
+   "detalle": {
+    "reporte_id": "b64c705a-7466-4fa5-a121-8d4ae61ea5ba",
+    "canal": "radio"
+   }
+  },
+  {
+   "id": "951d5374-7c18-4520-bd0b-6125d66a7e35",
+   "tipo": "reporte_recibido",
+   "agente": "agente-2-ingesta",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210257+00:00",
+   "detalle": {
+    "reporte_id": "7b78fe7a-7293-4f8a-8a53-7e59f7c17350",
+    "canal": "radio"
+   }
+  },
+  {
+   "id": "32a7a429-9566-4986-83dc-1649d172cf5e",
+   "tipo": "reporte_descartado",
+   "agente": "agente-2-ingesta",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210270+00:00",
+   "detalle": {
+    "indice": 11,
+    "motivo": "reenvio_duplicado",
+    "detalle": "hash=c8f49ecb2bec0dc87c6b059074228b14"
+   }
+  },
+  {
+   "id": "3c9bc47d-1465-42db-9904-823bbd7d3127",
+   "tipo": "tarea_delegada",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210562+00:00",
+   "detalle": {
+    "paso": "verificacion",
+    "agente": "agente-3-verificacion",
+    "timeout_s": 300.0
+   }
+  },
+  {
+   "id": "7f9c43b1-13e7-41d8-8ef8-2f88239eaac7",
+   "tipo": "tarea_delegada",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210652+00:00",
+   "detalle": {
+    "id": "f8213b0d-53b1-41e7-8304-d35363e5d70b",
+    "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+    "responde_a": null,
+    "emisor": "agente-1-orquestador",
+    "receptor": "agente-3-verificacion",
+    "performativa": "request",
+    "momento": "2026-08-28T20:05:25.210629+00:00",
+    "version": "1.0",
+    "contenido": {}
+   }
+  },
+  {
+   "id": "edd04d80-d225-46da-a7ab-9c80e6cea2f9",
+   "tipo": "reporte_recibido",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210675+00:00",
+   "detalle": {
+    "reporte_id": "f6fd9674-3825-4e26-810d-5ff4011fd618",
+    "fuente_id": "cel-3114"
+   }
+  },
+  {
+   "id": "750e75f0-b374-42ed-91e2-c09c93386dd4",
+   "tipo": "reporte_recibido",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210687+00:00",
+   "detalle": {
+    "reporte_id": "3d754ad7-18c9-47c5-8951-5547467c636c",
+    "fuente_id": "cel-3220"
+   }
+  },
+  {
+   "id": "7954f791-4368-4f19-bcf2-c6208fa32a9f",
+   "tipo": "reporte_recibido",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210696+00:00",
+   "detalle": {
+    "reporte_id": "ba96e0b1-dbb8-4ef0-b35b-577a881d0359",
+    "fuente_id": "cel-3387"
+   }
+  },
+  {
+   "id": "8cc262ab-34a8-4c0f-ba76-41106bd71adf",
+   "tipo": "reporte_recibido",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210704+00:00",
+   "detalle": {
+    "reporte_id": "7d5722cf-8cdb-4c2a-9017-484c23e71702",
+    "fuente_id": "vol-012"
+   }
+  },
+  {
+   "id": "2017fcc8-6ac4-4cab-bbb0-48ee975a3096",
+   "tipo": "reporte_recibido",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210712+00:00",
+   "detalle": {
+    "reporte_id": "363a61f3-c89d-4ff9-8844-1b0448ea3259",
+    "fuente_id": "cel-3401"
+   }
+  },
+  {
+   "id": "57998902-1f4b-49b6-b72e-e6e994c25e66",
+   "tipo": "reporte_recibido",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210719+00:00",
+   "detalle": {
+    "reporte_id": "b7dc14d3-104b-4579-ae4b-46bff07d66a1",
+    "fuente_id": "cel-3512"
+   }
+  },
+  {
+   "id": "c253a6fa-595b-4fea-a680-67f446696d58",
+   "tipo": "reporte_recibido",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210727+00:00",
+   "detalle": {
+    "reporte_id": "aafdb82c-58b3-419d-8622-35587f123d63",
+    "fuente_id": "ungrd-bog"
+   }
+  },
+  {
+   "id": "19cc0670-1a3f-4157-a097-cf9ac9959c93",
+   "tipo": "reporte_recibido",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210735+00:00",
+   "detalle": {
+    "reporte_id": "436399cf-339e-4aae-a7db-6c7f8be0f81f",
+    "fuente_id": "cel-3688"
+   }
+  },
+  {
+   "id": "8f03a6e0-65d9-49d4-929f-a6fe82a4de67",
+   "tipo": "reporte_recibido",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210742+00:00",
+   "detalle": {
+    "reporte_id": "f4e62dfb-6f3d-485d-b3d2-617414d16ba8",
+    "fuente_id": "cel-3701"
+   }
+  },
+  {
+   "id": "c7be399b-e434-4bd2-954e-c3cf82e13040",
+   "tipo": "reporte_recibido",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210750+00:00",
+   "detalle": {
+    "reporte_id": "a321b251-6ff0-4f66-b8b7-ea614ba49d7e",
+    "fuente_id": "cruz-roja-04"
+   }
+  },
+  {
+   "id": "fdf8566d-b70c-4730-95f8-79e4c44cd278",
+   "tipo": "reporte_recibido",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210758+00:00",
+   "detalle": {
+    "reporte_id": "b64c705a-7466-4fa5-a121-8d4ae61ea5ba",
+    "fuente_id": "cel-3822"
+   }
+  },
+  {
+   "id": "7af8d74c-5f90-4171-a261-933c60b1914d",
+   "tipo": "reporte_recibido",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:25.210766+00:00",
+   "detalle": {
+    "reporte_id": "7b78fe7a-7293-4f8a-8a53-7e59f7c17350",
+    "fuente_id": "bomberos-01"
+   }
+  },
+  {
+   "id": "8527f7ec-7cb5-4c46-9355-721068c1c967",
+   "tipo": "confianza_calculada",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:47.735940+00:00",
+   "detalle": {
+    "incidente_id": "9636dfdb-94c3-4fa4-bc44-be2d16a4fdcd",
+    "confianza": 0.998926,
+    "corroboraciones": 11
+   }
+  },
+  {
+   "id": "945fbc4e-c8c4-40e1-9de9-5f774f25cb50",
+   "tipo": "incidente_fusionado",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:47.735961+00:00",
+   "detalle": {
+    "incidente_id": "9636dfdb-94c3-4fa4-bc44-be2d16a4fdcd",
+    "reportes_origen": [
+     "363a61f3-c89d-4ff9-8844-1b0448ea3259",
+     "3d754ad7-18c9-47c5-8951-5547467c636c",
+     "436399cf-339e-4aae-a7db-6c7f8be0f81f",
+     "7d5722cf-8cdb-4c2a-9017-484c23e71702",
+     "a321b251-6ff0-4f66-b8b7-ea614ba49d7e",
+     "aafdb82c-58b3-419d-8622-35587f123d63",
+     "b64c705a-7466-4fa5-a121-8d4ae61ea5ba",
+     "b7dc14d3-104b-4579-ae4b-46bff07d66a1",
+     "ba96e0b1-dbb8-4ef0-b35b-577a881d0359",
+     "f4e62dfb-6f3d-485d-b3d2-617414d16ba8",
+     "f6fd9674-3825-4e26-810d-5ff4011fd618"
+    ]
+   }
+  },
+  {
+   "id": "10e9bc23-2b8d-4282-8d38-339f94a72f1f",
+   "tipo": "incidente_verificado",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:47.735997+00:00",
+   "detalle": {
+    "verified_incident_id": "9636dfdb-94c3-4fa4-bc44-be2d16a4fdcd",
+    "category": "Geo",
+    "severity": "Severe",
+    "urgency": "Immediate",
+    "location": {
+     "type": "Point",
+     "coordinates": [
+      -74.08114545454545,
+      4.610309090909091
+     ]
+    },
+    "confidence_score": 0.9989,
+    "source_reports": [
+     "363a61f3-c89d-4ff9-8844-1b0448ea3259",
+     "3d754ad7-18c9-47c5-8951-5547467c636c",
+     "436399cf-339e-4aae-a7db-6c7f8be0f81f",
+     "7d5722cf-8cdb-4c2a-9017-484c23e71702",
+     "a321b251-6ff0-4f66-b8b7-ea614ba49d7e",
+     "aafdb82c-58b3-419d-8622-35587f123d63",
+     "b64c705a-7466-4fa5-a121-8d4ae61ea5ba",
+     "b7dc14d3-104b-4579-ae4b-46bff07d66a1",
+     "ba96e0b1-dbb8-4ef0-b35b-577a881d0359",
+     "f4e62dfb-6f3d-485d-b3d2-617414d16ba8",
+     "f6fd9674-3825-4e26-810d-5ff4011fd618"
+    ],
+    "resumen": "Confirmado derrumbe km 4 via La Calera, dos vehiculos comprometidos",
+    "personas_afectadas": 20,
+    "necesidades": [
+     "rescate",
+     "maquinaria",
+     "agua",
+     "ambulancia",
+     "abrigo",
+     "primeros_auxilios"
+    ],
+    "verificado_en": "2026-08-28T20:05:47.734138+00:00",
+    "vence_en": "2026-08-29T02:05:47.734138+00:00",
+    "metadatos": {
+     "num_fuentes_distintas": 11,
+     "certeza": "Observed",
+     "contradiccion_severidad": {
+      "valores": {
+       "Severe": 2.371643,
+       "Extreme": 1.54944
+      },
+      "ganadora": "Severe"
+     }
+    }
+   }
+  },
+  {
+   "id": "b387427d-0471-4df8-81c2-04a3de31bb92",
+   "tipo": "confianza_calculada",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:47.736010+00:00",
+   "detalle": {
+    "incidente_id": "7eed1112-5ee6-405a-a0ba-08137a7f6ea6",
+    "confianza": 0.949657,
+    "corroboraciones": 1
+   }
+  },
+  {
+   "id": "8606a240-88ac-4456-9db6-4b12149bc3bf",
+   "tipo": "incidente_verificado",
+   "agente": "agente-3-verificacion",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:47.736038+00:00",
+   "detalle": {
+    "verified_incident_id": "7eed1112-5ee6-405a-a0ba-08137a7f6ea6",
+    "category": "Fire",
+    "severity": "Extreme",
+    "urgency": "Immediate",
+    "location": {
+     "type": "Point",
+     "coordinates": [
+      -74.079,
+      4.682
+     ]
+    },
+    "confidence_score": 0.9497,
+    "source_reports": [
+     "7b78fe7a-7293-4f8a-8a53-7e59f7c17350"
+    ],
+    "resumen": "Incendio en la bodega del parque industrial, humo denso",
+    "personas_afectadas": 3,
+    "necesidades": [
+     "bomberos"
+    ],
+    "verificado_en": "2026-08-28T20:05:47.734138+00:00",
+    "vence_en": "2026-08-29T02:05:47.734138+00:00",
+    "metadatos": {
+     "num_fuentes_distintas": 1,
+     "certeza": "Observed"
+    }
+   }
+  },
+  {
+   "id": "0f859c0e-d945-49fc-a122-d9150344ef5e",
+   "tipo": "tarea_delegada",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:47.736286+00:00",
+   "detalle": {
+    "paso": "geoespacial",
+    "agente": "agente-5-geoespacial",
+    "timeout_s": 120.0
+   }
+  },
+  {
+   "id": "19a04a22-1152-41c8-a9c9-f572b1277a07",
+   "tipo": "tarea_delegada",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:47.736367+00:00",
+   "detalle": {
+    "id": "5f7e2b13-3b2d-4b27-acef-fd7fb26e9507",
+    "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+    "responde_a": null,
+    "emisor": "agente-1-orquestador",
+    "receptor": "agente-5-geoespacial",
+    "performativa": "cfp",
+    "momento": "2026-08-28T20:05:47.736345+00:00",
+    "version": "1.0",
+    "contenido": {}
+   }
+  },
+  {
+   "id": "51c4476d-e552-48af-8e2a-7c9ab981fa26",
+   "tipo": "transicion_estado",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:47.736653+00:00",
+   "detalle": {
+    "incidente_id": "9636dfdb-94c3-4fa4-bc44-be2d16a4fdcd",
+    "origen": "recibido",
+    "solicitado": "verificado",
+    "estado": "verificado",
+    "aplicada": true,
+    "motivo": "corroborado por 11 reporte(s), confianza 1.00",
+    "momento": "2026-08-28T20:05:47.736615+00:00",
+    "decision_id": null
+   }
+  },
+  {
+   "id": "991caaeb-fb92-4245-ba8c-ca42da2743cd",
+   "tipo": "transicion_estado",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:47.736698+00:00",
+   "detalle": {
+    "incidente_id": "9636dfdb-94c3-4fa4-bc44-be2d16a4fdcd",
+    "origen": "verificado",
+    "solicitado": "localizado",
+    "estado": "localizado",
+    "aplicada": true,
+    "motivo": "ubicación propia del incidente; ruta no solicitada en este lote",
+    "momento": "2026-08-28T20:05:47.736671+00:00",
+    "decision_id": null
+   }
+  },
+  {
+   "id": "49d94406-2331-4cba-8ba1-0100462e5544",
+   "tipo": "transicion_estado",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:47.736738+00:00",
+   "detalle": {
+    "incidente_id": "7eed1112-5ee6-405a-a0ba-08137a7f6ea6",
+    "origen": "recibido",
+    "solicitado": "verificado",
+    "estado": "verificado",
+    "aplicada": true,
+    "motivo": "corroborado por 1 reporte(s), confianza 0.95",
+    "momento": "2026-08-28T20:05:47.736712+00:00",
+    "decision_id": null
+   }
+  },
+  {
+   "id": "96c26edd-a8b5-41c3-9d57-1b432879d263",
+   "tipo": "transicion_estado",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:47.736766+00:00",
+   "detalle": {
+    "incidente_id": "7eed1112-5ee6-405a-a0ba-08137a7f6ea6",
+    "origen": "verificado",
+    "solicitado": "localizado",
+    "estado": "localizado",
+    "aplicada": true,
+    "motivo": "ubicación propia del incidente; ruta no solicitada en este lote",
+    "momento": "2026-08-28T20:05:47.736746+00:00",
+    "decision_id": null
+   }
+  },
+  {
+   "id": "8a5eb214-51e0-40c8-8b5d-640314431478",
+   "tipo": "transicion_estado",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:47.736869+00:00",
+   "detalle": {
+    "incidente_id": "7eed1112-5ee6-405a-a0ba-08137a7f6ea6",
+    "origen": "localizado",
+    "solicitado": "priorizado",
+    "estado": "priorizado",
+    "aplicada": true,
+    "motivo": "posición 1 del lote, puntuación 0.8190",
+    "momento": "2026-08-28T20:05:47.736848+00:00",
+    "decision_id": null
+   }
+  },
+  {
+   "id": "b6d2230a-e873-4823-9fe2-720da8fd56d8",
+   "tipo": "transicion_estado",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:47.736893+00:00",
+   "detalle": {
+    "incidente_id": "7eed1112-5ee6-405a-a0ba-08137a7f6ea6",
+    "origen": "priorizado",
+    "solicitado": "pendiente_aprobacion",
+    "estado": "pendiente_aprobacion",
+    "aplicada": true,
+    "motivo": "a la espera de la firma del coordinador humano",
+    "momento": "2026-08-28T20:05:47.736876+00:00",
+    "decision_id": null
+   }
+  },
+  {
+   "id": "3ddef6a4-6bc7-4e49-911b-0e39001fcc19",
+   "tipo": "transicion_estado",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:47.736925+00:00",
+   "detalle": {
+    "incidente_id": "9636dfdb-94c3-4fa4-bc44-be2d16a4fdcd",
+    "origen": "localizado",
+    "solicitado": "priorizado",
+    "estado": "priorizado",
+    "aplicada": true,
+    "motivo": "posición 2 del lote, puntuación 0.7752",
+    "momento": "2026-08-28T20:05:47.736902+00:00",
+    "decision_id": null
+   }
+  },
+  {
+   "id": "0b2e5268-642e-4439-bcde-e9f40b00755a",
+   "tipo": "transicion_estado",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:05:47.736946+00:00",
+   "detalle": {
+    "incidente_id": "9636dfdb-94c3-4fa4-bc44-be2d16a4fdcd",
+    "origen": "priorizado",
+    "solicitado": "pendiente_aprobacion",
+    "estado": "pendiente_aprobacion",
+    "aplicada": true,
+    "motivo": "a la espera de la firma del coordinador humano",
+    "momento": "2026-08-28T20:05:47.736930+00:00",
+    "decision_id": null
+   }
+  },
+  {
+   "id": "25fa094e-608f-462f-acfc-adc4561224ad",
+   "tipo": "decision_humana_registrada",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:06:10.591741+00:00",
+   "detalle": {
+    "id": "ff139a8a-337f-454b-8eec-626f39235f96",
+    "incidente_id": "7eed1112-5ee6-405a-a0ba-08137a7f6ea6",
+    "aprobada": true,
+    "coordinador_id": "coord-ungrd-07",
+    "justificacion": "Recursos disponibles, se autoriza el despliegue",
+    "momento": "2026-08-28T20:06:10.591693+00:00",
+    "firmante": "coordinador-humano"
+   }
+  },
+  {
+   "id": "7741b767-ac2b-4d71-b26e-f12fe9f09736",
+   "tipo": "transicion_estado",
+   "agente": "agente-1-orquestador",
+   "correlacion_id": "5de11004-20bc-46f3-876d-db08041cb64d",
+   "momento": "2026-08-28T20:06:10.591805+00:00",
+   "detalle": {
+    "incidente_id": "7eed1112-5ee6-405a-a0ba-08137a7f6ea6",
+    "origen": "pendiente_aprobacion",
+    "solicitado": "asignado",
+    "estado": "asignado",
+    "aplicada": true,
+    "motivo": "Recursos disponibles, se autoriza el despliegue",
+    "momento": "2026-08-28T20:06:10.591764+00:00",
+    "decision_id": "ff139a8a-337f-454b-8eec-626f39235f96"
+   }
+  }
+ ],
+ "llamadas_llm": [
+  {
+   "agente": "agente-2-ingesta",
+   "modelo": "vertex:gemini-2.5-pro",
+   "system": "# Rol del Agente 2 — Ingesta de Información\n\nEres el extractor del Agente de Ingesta. Tu trabajo es leer texto libre en\nespañol (SMS, WhatsApp, transcripción de llamada, reporte web) y extraer\ncampos estructurados. **No decides** si el reporte es cierto, si se acepta o\nsi se descarta: eso lo hace un motor determinista después de ti. Tu única\ntarea es estructurar.\n\n## Campos a extraer\n\n- `categoria`: uno de `Geo, Met, Safety, Security, Rescue, Fire, Health, Env,\n  Transport, Infra, CBRNE, Other` (taxonomía CAP 1.2). Usa `Other` si no es\n  claro.\n- `urgencia`: uno de `Immediate, Expected, Future, Past, Unknown`.\n- `severidad`: uno de `Extreme, Severe, Moderate, Minor, Unknown`.\n- `certeza`: uno de `Observed, Likely, Possible, Unlikely, Unknown`. Un\n  reportero que dice \"lo estoy viendo\" es `Observed`; un rumor de tercero es\n  `Possible` o `Unlikely`.\n- `ubicacion`: si el texto menciona un lugar con coordenadas o una referencia\n  clara, devuelve `{\"lat\": <float>, \"lon\": <float>}`. Si no hay ubicación\n  identificable, omite el campo — no inventes coordenadas.\n- `personas_afectadas`: número entero si el texto lo menciona, si no, omite\n  el campo.\n- `necesidades`: lista corta de necesidades mencionadas (agua, comida,\n  medicinas, refugio, rescate, atención médica, etc.).\n\n## Reglas\n\n1. No inventes datos que el texto no sustenta. Omitir un campo es preferible\n   a adivinar.\n2. No juzgues veracidad, duplicados ni relevancia: eso es del Agente 3.\n3. Responde **únicamente** con JSON válido, sin texto adicional, con solo los\n   campos que pudiste extraer con confianza.\n",
+   "user": "Extrae los campos estructurados de este reporte.\nContexto: {\"fuente\": {\"id\": \"cel-3114\", \"tipo\": \"ciudadano\", \"reputacion\": 0.45}, \"canal\": \"sms\"}\nTexto: Se cayo el puente sobre la quebrada, no se puede pasar",
+   "respuesta": "{\n  \"categoria\": \"Infra\",\n  \"urgencia\": \"Immediate\",\n  \"severidad\": \"Severe\",\n  \"certeza\": \"Observed\"\n}",
+   "error": null,
+   "segundos": 9.418,
+   "tokens": 1036,
+   "momento": "2026-08-28T20:03:52.324239+00:00"
+  },
+  {
+   "agente": "agente-2-ingesta",
+   "modelo": "vertex:gemini-2.5-pro",
+   "system": "# Rol del Agente 2 — Ingesta de Información\n\nEres el extractor del Agente de Ingesta. Tu trabajo es leer texto libre en\nespañol (SMS, WhatsApp, transcripción de llamada, reporte web) y extraer\ncampos estructurados. **No decides** si el reporte es cierto, si se acepta o\nsi se descarta: eso lo hace un motor determinista después de ti. Tu única\ntarea es estructurar.\n\n## Campos a extraer\n\n- `categoria`: uno de `Geo, Met, Safety, Security, Rescue, Fire, Health, Env,\n  Transport, Infra, CBRNE, Other` (taxonomía CAP 1.2). Usa `Other` si no es\n  claro.\n- `urgencia`: uno de `Immediate, Expected, Future, Past, Unknown`.\n- `severidad`: uno de `Extreme, Severe, Moderate, Minor, Unknown`.\n- `certeza`: uno de `Observed, Likely, Possible, Unlikely, Unknown`. Un\n  reportero que dice \"lo estoy viendo\" es `Observed`; un rumor de tercero es\n  `Possible` o `Unlikely`.\n- `ubicacion`: si el texto menciona un lugar con coordenadas o una referencia\n  clara, devuelve `{\"lat\": <float>, \"lon\": <float>}`. Si no hay ubicación\n  identificable, omite el campo — no inventes coordenadas.\n- `personas_afectadas`: número entero si el texto lo menciona, si no, omite\n  el campo.\n- `necesidades`: lista corta de necesidades mencionadas (agua, comida,\n  medicinas, refugio, rescate, atención médica, etc.).\n\n## Reglas\n\n1. No inventes datos que el texto no sustenta. Omitir un campo es preferible\n   a adivinar.\n2. No juzgues veracidad, duplicados ni relevancia: eso es del Agente 3.\n3. Responde **únicamente** con JSON válido, sin texto adicional, con solo los\n   campos que pudiste extraer con confianza.\n",
+   "user": "Extrae los campos estructurados de este reporte.\nContexto: {\"fuente\": {\"id\": \"cel-3220\", \"tipo\": \"ciudadano\", \"reputacion\": 0.45}, \"canal\": \"whatsapp\"}\nTexto: Colapso la estructura sobre el rio, hay carros atrapados",
+   "respuesta": "{\n  \"categoria\": \"Infra\",\n  \"urgencia\": \"Immediate\",\n  \"severidad\": \"Severe\",\n  \"certeza\": \"Likely\",\n  \"necesidades\": [\n    \"rescate\"\n  ]\n}",
+   "error": null,
+   "segundos": 7.274,
+   "tokens": 1145,
+   "momento": "2026-08-28T20:03:59.598855+00:00"
+  },
+  {
+   "agente": "agente-2-ingesta",
+   "modelo": "vertex:gemini-2.5-pro",
+   "system": "# Rol del Agente 2 — Ingesta de Información\n\nEres el extractor del Agente de Ingesta. Tu trabajo es leer texto libre en\nespañol (SMS, WhatsApp, transcripción de llamada, reporte web) y extraer\ncampos estructurados. **No decides** si el reporte es cierto, si se acepta o\nsi se descarta: eso lo hace un motor determinista después de ti. Tu única\ntarea es estructurar.\n\n## Campos a extraer\n\n- `categoria`: uno de `Geo, Met, Safety, Security, Rescue, Fire, Health, Env,\n  Transport, Infra, CBRNE, Other` (taxonomía CAP 1.2). Usa `Other` si no es\n  claro.\n- `urgencia`: uno de `Immediate, Expected, Future, Past, Unknown`.\n- `severidad`: uno de `Extreme, Severe, Moderate, Minor, Unknown`.\n- `certeza`: uno de `Observed, Likely, Possible, Unlikely, Unknown`. Un\n  reportero que dice \"lo estoy viendo\" es `Observed`; un rumor de tercero es\n  `Possible` o `Unlikely`.\n- `ubicacion`: si el texto menciona un lugar con coordenadas o una referencia\n  clara, devuelve `{\"lat\": <float>, \"lon\": <float>}`. Si no hay ubicación\n  identificable, omite el campo — no inventes coordenadas.\n- `personas_afectadas`: número entero si el texto lo menciona, si no, omite\n  el campo.\n- `necesidades`: lista corta de necesidades mencionadas (agua, comida,\n  medicinas, refugio, rescate, atención médica, etc.).\n\n## Reglas\n\n1. No inventes datos que el texto no sustenta. Omitir un campo es preferible\n   a adivinar.\n2. No juzgues veracidad, duplicados ni relevancia: eso es del Agente 3.\n3. Responde **únicamente** con JSON válido, sin texto adicional, con solo los\n   campos que pudiste extraer con confianza.\n",
+   "user": "Extrae los campos estructurados de este reporte.\nContexto: {\"fuente\": {\"id\": \"cel-3387\", \"tipo\": \"ciudadano\", \"reputacion\": 0.45}, \"canal\": \"sms\"}\nTexto: Derrumbe tapo la via, la montana se vino encima",
+   "respuesta": "{\n  \"categoria\": \"Geo\",\n  \"urgencia\": \"Immediate\",\n  \"severidad\": \"Severe\",\n  \"certeza\": \"Observed\"\n}",
+   "error": null,
+   "segundos": 13.624,
+   "tokens": 1850,
+   "momento": "2026-08-28T20:04:13.222902+00:00"
+  },
+  {
+   "agente": "agente-2-ingesta",
+   "modelo": "vertex:gemini-2.5-pro",
+   "system": "# Rol del Agente 2 — Ingesta de Información\n\nEres el extractor del Agente de Ingesta. Tu trabajo es leer texto libre en\nespañol (SMS, WhatsApp, transcripción de llamada, reporte web) y extraer\ncampos estructurados. **No decides** si el reporte es cierto, si se acepta o\nsi se descarta: eso lo hace un motor determinista después de ti. Tu única\ntarea es estructurar.\n\n## Campos a extraer\n\n- `categoria`: uno de `Geo, Met, Safety, Security, Rescue, Fire, Health, Env,\n  Transport, Infra, CBRNE, Other` (taxonomía CAP 1.2). Usa `Other` si no es\n  claro.\n- `urgencia`: uno de `Immediate, Expected, Future, Past, Unknown`.\n- `severidad`: uno de `Extreme, Severe, Moderate, Minor, Unknown`.\n- `certeza`: uno de `Observed, Likely, Possible, Unlikely, Unknown`. Un\n  reportero que dice \"lo estoy viendo\" es `Observed`; un rumor de tercero es\n  `Possible` o `Unlikely`.\n- `ubicacion`: si el texto menciona un lugar con coordenadas o una referencia\n  clara, devuelve `{\"lat\": <float>, \"lon\": <float>}`. Si no hay ubicación\n  identificable, omite el campo — no inventes coordenadas.\n- `personas_afectadas`: número entero si el texto lo menciona, si no, omite\n  el campo.\n- `necesidades`: lista corta de necesidades mencionadas (agua, comida,\n  medicinas, refugio, rescate, atención médica, etc.).\n\n## Reglas\n\n1. No inventes datos que el texto no sustenta. Omitir un campo es preferible\n   a adivinar.\n2. No juzgues veracidad, duplicados ni relevancia: eso es del Agente 3.\n3. Responde **únicamente** con JSON válido, sin texto adicional, con solo los\n   campos que pudiste extraer con confianza.\n",
+   "user": "Extrae los campos estructurados de este reporte.\nContexto: {\"fuente\": {\"id\": \"vol-012\", \"tipo\": \"voluntario\", \"reputacion\": 0.65}, \"canal\": \"app\"}\nTexto: Deslizamiento bloquea el paso hacia La Calera",
+   "respuesta": "{\n  \"categoria\": \"Geo\",\n  \"urgencia\": \"Immediate\",\n  \"severidad\": \"Moderate\",\n  \"certeza\": \"Likely\"\n}",
+   "error": null,
+   "segundos": 6.142,
+   "tokens": 945,
+   "momento": "2026-08-28T20:04:19.365162+00:00"
+  },
+  {
+   "agente": "agente-2-ingesta",
+   "modelo": "vertex:gemini-2.5-pro",
+   "system": "# Rol del Agente 2 — Ingesta de Información\n\nEres el extractor del Agente de Ingesta. Tu trabajo es leer texto libre en\nespañol (SMS, WhatsApp, transcripción de llamada, reporte web) y extraer\ncampos estructurados. **No decides** si el reporte es cierto, si se acepta o\nsi se descarta: eso lo hace un motor determinista después de ti. Tu única\ntarea es estructurar.\n\n## Campos a extraer\n\n- `categoria`: uno de `Geo, Met, Safety, Security, Rescue, Fire, Health, Env,\n  Transport, Infra, CBRNE, Other` (taxonomía CAP 1.2). Usa `Other` si no es\n  claro.\n- `urgencia`: uno de `Immediate, Expected, Future, Past, Unknown`.\n- `severidad`: uno de `Extreme, Severe, Moderate, Minor, Unknown`.\n- `certeza`: uno de `Observed, Likely, Possible, Unlikely, Unknown`. Un\n  reportero que dice \"lo estoy viendo\" es `Observed`; un rumor de tercero es\n  `Possible` o `Unlikely`.\n- `ubicacion`: si el texto menciona un lugar con coordenadas o una referencia\n  clara, devuelve `{\"lat\": <float>, \"lon\": <float>}`. Si no hay ubicación\n  identificable, omite el campo — no inventes coordenadas.\n- `personas_afectadas`: número entero si el texto lo menciona, si no, omite\n  el campo.\n- `necesidades`: lista corta de necesidades mencionadas (agua, comida,\n  medicinas, refugio, rescate, atención médica, etc.).\n\n## Reglas\n\n1. No inventes datos que el texto no sustenta. Omitir un campo es preferible\n   a adivinar.\n2. No juzgues veracidad, duplicados ni relevancia: eso es del Agente 3.\n3. Responde **únicamente** con JSON válido, sin texto adicional, con solo los\n   campos que pudiste extraer con confianza.\n",
+   "user": "Extrae los campos estructurados de este reporte.\nContexto: {\"fuente\": {\"id\": \"cel-3401\", \"tipo\": \"afectado\", \"reputacion\": 0.5}, \"canal\": \"llamada\"}\nTexto: La tierra se llevo media carretera, hay gente aislada al otro lado",
+   "respuesta": "{\n  \"categoria\": \"Geo\",\n  \"urgencia\": \"Immediate\",\n  \"severidad\": \"Severe\",\n  \"certeza\": \"Observed\",\n  \"necesidades\": [\n    \"rescate\"\n  ]\n}",
+   "error": null,
+   "segundos": 6.667,
+   "tokens": 1035,
+   "momento": "2026-08-28T20:04:26.032796+00:00"
+  },
+  {
+   "agente": "agente-2-ingesta",
+   "modelo": "vertex:gemini-2.5-pro",
+   "system": "# Rol del Agente 2 — Ingesta de Información\n\nEres el extractor del Agente de Ingesta. Tu trabajo es leer texto libre en\nespañol (SMS, WhatsApp, transcripción de llamada, reporte web) y extraer\ncampos estructurados. **No decides** si el reporte es cierto, si se acepta o\nsi se descarta: eso lo hace un motor determinista después de ti. Tu única\ntarea es estructurar.\n\n## Campos a extraer\n\n- `categoria`: uno de `Geo, Met, Safety, Security, Rescue, Fire, Health, Env,\n  Transport, Infra, CBRNE, Other` (taxonomía CAP 1.2). Usa `Other` si no es\n  claro.\n- `urgencia`: uno de `Immediate, Expected, Future, Past, Unknown`.\n- `severidad`: uno de `Extreme, Severe, Moderate, Minor, Unknown`.\n- `certeza`: uno de `Observed, Likely, Possible, Unlikely, Unknown`. Un\n  reportero que dice \"lo estoy viendo\" es `Observed`; un rumor de tercero es\n  `Possible` o `Unlikely`.\n- `ubicacion`: si el texto menciona un lugar con coordenadas o una referencia\n  clara, devuelve `{\"lat\": <float>, \"lon\": <float>}`. Si no hay ubicación\n  identificable, omite el campo — no inventes coordenadas.\n- `personas_afectadas`: número entero si el texto lo menciona, si no, omite\n  el campo.\n- `necesidades`: lista corta de necesidades mencionadas (agua, comida,\n  medicinas, refugio, rescate, atención médica, etc.).\n\n## Reglas\n\n1. No inventes datos que el texto no sustenta. Omitir un campo es preferible\n   a adivinar.\n2. No juzgues veracidad, duplicados ni relevancia: eso es del Agente 3.\n3. Responde **únicamente** con JSON válido, sin texto adicional, con solo los\n   campos que pudiste extraer con confianza.\n",
+   "user": "Extrae los campos estructurados de este reporte.\nContexto: {\"fuente\": {\"id\": \"cel-3512\", \"tipo\": \"ciudadano\", \"reputacion\": 0.45}, \"canal\": \"ussd\"}\nTexto: No hay paso, se desplomo todo el talud",
+   "respuesta": "{\n  \"categoria\": \"Geo\",\n  \"urgencia\": \"Immediate\",\n  \"severidad\": \"Severe\",\n  \"certeza\": \"Observed\"\n}",
+   "error": null,
+   "segundos": 6.138,
+   "tokens": 953,
+   "momento": "2026-08-28T20:04:32.171293+00:00"
+  },
+  {
+   "agente": "agente-2-ingesta",
+   "modelo": "vertex:gemini-2.5-pro",
+   "system": "# Rol del Agente 2 — Ingesta de Información\n\nEres el extractor del Agente de Ingesta. Tu trabajo es leer texto libre en\nespañol (SMS, WhatsApp, transcripción de llamada, reporte web) y extraer\ncampos estructurados. **No decides** si el reporte es cierto, si se acepta o\nsi se descarta: eso lo hace un motor determinista después de ti. Tu única\ntarea es estructurar.\n\n## Campos a extraer\n\n- `categoria`: uno de `Geo, Met, Safety, Security, Rescue, Fire, Health, Env,\n  Transport, Infra, CBRNE, Other` (taxonomía CAP 1.2). Usa `Other` si no es\n  claro.\n- `urgencia`: uno de `Immediate, Expected, Future, Past, Unknown`.\n- `severidad`: uno de `Extreme, Severe, Moderate, Minor, Unknown`.\n- `certeza`: uno de `Observed, Likely, Possible, Unlikely, Unknown`. Un\n  reportero que dice \"lo estoy viendo\" es `Observed`; un rumor de tercero es\n  `Possible` o `Unlikely`.\n- `ubicacion`: si el texto menciona un lugar con coordenadas o una referencia\n  clara, devuelve `{\"lat\": <float>, \"lon\": <float>}`. Si no hay ubicación\n  identificable, omite el campo — no inventes coordenadas.\n- `personas_afectadas`: número entero si el texto lo menciona, si no, omite\n  el campo.\n- `necesidades`: lista corta de necesidades mencionadas (agua, comida,\n  medicinas, refugio, rescate, atención médica, etc.).\n\n## Reglas\n\n1. No inventes datos que el texto no sustenta. Omitir un campo es preferible\n   a adivinar.\n2. No juzgues veracidad, duplicados ni relevancia: eso es del Agente 3.\n3. Responde **únicamente** con JSON válido, sin texto adicional, con solo los\n   campos que pudiste extraer con confianza.\n",
+   "user": "Extrae los campos estructurados de este reporte.\nContexto: {\"fuente\": {\"id\": \"ungrd-bog\", \"tipo\": \"autoridad\", \"reputacion\": 0.95}, \"canal\": \"api_oficial\"}\nTexto: Confirmado derrumbe km 4 via La Calera, dos vehiculos comprometidos",
+   "respuesta": "{\n  \"categoria\": \"Geo\",\n  \"urgencia\": \"Immediate\",\n  \"severidad\": \"Severe\",\n  \"certeza\": \"Observed\"\n}",
+   "error": null,
+   "segundos": 9.509,
+   "tokens": 1231,
+   "momento": "2026-08-28T20:04:41.680821+00:00"
+  },
+  {
+   "agente": "agente-2-ingesta",
+   "modelo": "vertex:gemini-2.5-pro",
+   "system": "# Rol del Agente 2 — Ingesta de Información\n\nEres el extractor del Agente de Ingesta. Tu trabajo es leer texto libre en\nespañol (SMS, WhatsApp, transcripción de llamada, reporte web) y extraer\ncampos estructurados. **No decides** si el reporte es cierto, si se acepta o\nsi se descarta: eso lo hace un motor determinista después de ti. Tu única\ntarea es estructurar.\n\n## Campos a extraer\n\n- `categoria`: uno de `Geo, Met, Safety, Security, Rescue, Fire, Health, Env,\n  Transport, Infra, CBRNE, Other` (taxonomía CAP 1.2). Usa `Other` si no es\n  claro.\n- `urgencia`: uno de `Immediate, Expected, Future, Past, Unknown`.\n- `severidad`: uno de `Extreme, Severe, Moderate, Minor, Unknown`.\n- `certeza`: uno de `Observed, Likely, Possible, Unlikely, Unknown`. Un\n  reportero que dice \"lo estoy viendo\" es `Observed`; un rumor de tercero es\n  `Possible` o `Unlikely`.\n- `ubicacion`: si el texto menciona un lugar con coordenadas o una referencia\n  clara, devuelve `{\"lat\": <float>, \"lon\": <float>}`. Si no hay ubicación\n  identificable, omite el campo — no inventes coordenadas.\n- `personas_afectadas`: número entero si el texto lo menciona, si no, omite\n  el campo.\n- `necesidades`: lista corta de necesidades mencionadas (agua, comida,\n  medicinas, refugio, rescate, atención médica, etc.).\n\n## Reglas\n\n1. No inventes datos que el texto no sustenta. Omitir un campo es preferible\n   a adivinar.\n2. No juzgues veracidad, duplicados ni relevancia: eso es del Agente 3.\n3. Responde **únicamente** con JSON válido, sin texto adicional, con solo los\n   campos que pudiste extraer con confianza.\n",
+   "user": "Extrae los campos estructurados de este reporte.\nContexto: {\"fuente\": {\"id\": \"cel-3688\", \"tipo\": \"ciudadano\", \"reputacion\": 0.45}, \"canal\": \"whatsapp\"}\nTexto: Cayo un pedazo de cerro sobre la via, urgente",
+   "respuesta": "{\n  \"categoria\": \"Geo\",\n  \"urgencia\": \"Immediate\",\n  \"severidad\": \"Unknown\",\n  \"certeza\": \"Observed\"\n}",
+   "error": null,
+   "segundos": 9.021,
+   "tokens": 1359,
+   "momento": "2026-08-28T20:04:50.702029+00:00"
+  },
+  {
+   "agente": "agente-2-ingesta",
+   "modelo": "vertex:gemini-2.5-pro",
+   "system": "# Rol del Agente 2 — Ingesta de Información\n\nEres el extractor del Agente de Ingesta. Tu trabajo es leer texto libre en\nespañol (SMS, WhatsApp, transcripción de llamada, reporte web) y extraer\ncampos estructurados. **No decides** si el reporte es cierto, si se acepta o\nsi se descarta: eso lo hace un motor determinista después de ti. Tu única\ntarea es estructurar.\n\n## Campos a extraer\n\n- `categoria`: uno de `Geo, Met, Safety, Security, Rescue, Fire, Health, Env,\n  Transport, Infra, CBRNE, Other` (taxonomía CAP 1.2). Usa `Other` si no es\n  claro.\n- `urgencia`: uno de `Immediate, Expected, Future, Past, Unknown`.\n- `severidad`: uno de `Extreme, Severe, Moderate, Minor, Unknown`.\n- `certeza`: uno de `Observed, Likely, Possible, Unlikely, Unknown`. Un\n  reportero que dice \"lo estoy viendo\" es `Observed`; un rumor de tercero es\n  `Possible` o `Unlikely`.\n- `ubicacion`: si el texto menciona un lugar con coordenadas o una referencia\n  clara, devuelve `{\"lat\": <float>, \"lon\": <float>}`. Si no hay ubicación\n  identificable, omite el campo — no inventes coordenadas.\n- `personas_afectadas`: número entero si el texto lo menciona, si no, omite\n  el campo.\n- `necesidades`: lista corta de necesidades mencionadas (agua, comida,\n  medicinas, refugio, rescate, atención médica, etc.).\n\n## Reglas\n\n1. No inventes datos que el texto no sustenta. Omitir un campo es preferible\n   a adivinar.\n2. No juzgues veracidad, duplicados ni relevancia: eso es del Agente 3.\n3. Responde **únicamente** con JSON válido, sin texto adicional, con solo los\n   campos que pudiste extraer con confianza.\n",
+   "user": "Extrae los campos estructurados de este reporte.\nContexto: {\"fuente\": {\"id\": \"cel-3701\", \"tipo\": \"afectado\", \"reputacion\": 0.5}, \"canal\": \"sms\"}\nTexto: Estamos atrapados, el derrumbe nos dejo sin salida",
+   "respuesta": "{\n  \"categoria\": \"Rescue\",\n  \"urgencia\": \"Immediate\",\n  \"severidad\": \"Severe\",\n  \"certeza\": \"Observed\",\n  \"necesidades\": [\n    \"rescate\"\n  ]\n}",
+   "error": null,
+   "segundos": 9.233,
+   "tokens": 1451,
+   "momento": "2026-08-28T20:04:59.934930+00:00"
+  },
+  {
+   "agente": "agente-2-ingesta",
+   "modelo": "vertex:gemini-2.5-pro",
+   "system": "# Rol del Agente 2 — Ingesta de Información\n\nEres el extractor del Agente de Ingesta. Tu trabajo es leer texto libre en\nespañol (SMS, WhatsApp, transcripción de llamada, reporte web) y extraer\ncampos estructurados. **No decides** si el reporte es cierto, si se acepta o\nsi se descarta: eso lo hace un motor determinista después de ti. Tu única\ntarea es estructurar.\n\n## Campos a extraer\n\n- `categoria`: uno de `Geo, Met, Safety, Security, Rescue, Fire, Health, Env,\n  Transport, Infra, CBRNE, Other` (taxonomía CAP 1.2). Usa `Other` si no es\n  claro.\n- `urgencia`: uno de `Immediate, Expected, Future, Past, Unknown`.\n- `severidad`: uno de `Extreme, Severe, Moderate, Minor, Unknown`.\n- `certeza`: uno de `Observed, Likely, Possible, Unlikely, Unknown`. Un\n  reportero que dice \"lo estoy viendo\" es `Observed`; un rumor de tercero es\n  `Possible` o `Unlikely`.\n- `ubicacion`: si el texto menciona un lugar con coordenadas o una referencia\n  clara, devuelve `{\"lat\": <float>, \"lon\": <float>}`. Si no hay ubicación\n  identificable, omite el campo — no inventes coordenadas.\n- `personas_afectadas`: número entero si el texto lo menciona, si no, omite\n  el campo.\n- `necesidades`: lista corta de necesidades mencionadas (agua, comida,\n  medicinas, refugio, rescate, atención médica, etc.).\n\n## Reglas\n\n1. No inventes datos que el texto no sustenta. Omitir un campo es preferible\n   a adivinar.\n2. No juzgues veracidad, duplicados ni relevancia: eso es del Agente 3.\n3. Responde **únicamente** con JSON válido, sin texto adicional, con solo los\n   campos que pudiste extraer con confianza.\n",
+   "user": "Extrae los campos estructurados de este reporte.\nContexto: {\"fuente\": {\"id\": \"cruz-roja-04\", \"tipo\": \"organizacion\", \"reputacion\": 0.8}, \"canal\": \"app\"}\nTexto: Reporte de deslizamiento de tierra en la via principal",
+   "respuesta": "{\n  \"categoria\": \"Geo\",\n  \"urgencia\": \"Unknown\",\n  \"severidad\": \"Unknown\",\n  \"certeza\": \"Likely\"\n}",
+   "error": null,
+   "segundos": 6.132,
+   "tokens": 992,
+   "momento": "2026-08-28T20:05:06.067020+00:00"
+  },
+  {
+   "agente": "agente-2-ingesta",
+   "modelo": "vertex:gemini-2.5-pro",
+   "system": "# Rol del Agente 2 — Ingesta de Información\n\nEres el extractor del Agente de Ingesta. Tu trabajo es leer texto libre en\nespañol (SMS, WhatsApp, transcripción de llamada, reporte web) y extraer\ncampos estructurados. **No decides** si el reporte es cierto, si se acepta o\nsi se descarta: eso lo hace un motor determinista después de ti. Tu única\ntarea es estructurar.\n\n## Campos a extraer\n\n- `categoria`: uno de `Geo, Met, Safety, Security, Rescue, Fire, Health, Env,\n  Transport, Infra, CBRNE, Other` (taxonomía CAP 1.2). Usa `Other` si no es\n  claro.\n- `urgencia`: uno de `Immediate, Expected, Future, Past, Unknown`.\n- `severidad`: uno de `Extreme, Severe, Moderate, Minor, Unknown`.\n- `certeza`: uno de `Observed, Likely, Possible, Unlikely, Unknown`. Un\n  reportero que dice \"lo estoy viendo\" es `Observed`; un rumor de tercero es\n  `Possible` o `Unlikely`.\n- `ubicacion`: si el texto menciona un lugar con coordenadas o una referencia\n  clara, devuelve `{\"lat\": <float>, \"lon\": <float>}`. Si no hay ubicación\n  identificable, omite el campo — no inventes coordenadas.\n- `personas_afectadas`: número entero si el texto lo menciona, si no, omite\n  el campo.\n- `necesidades`: lista corta de necesidades mencionadas (agua, comida,\n  medicinas, refugio, rescate, atención médica, etc.).\n\n## Reglas\n\n1. No inventes datos que el texto no sustenta. Omitir un campo es preferible\n   a adivinar.\n2. No juzgues veracidad, duplicados ni relevancia: eso es del Agente 3.\n3. Responde **únicamente** con JSON válido, sin texto adicional, con solo los\n   campos que pudiste extraer con confianza.\n",
+   "user": "Extrae los campos estructurados de este reporte.\nContexto: {\"fuente\": {\"id\": \"cel-3822\", \"tipo\": \"ciudadano\", \"reputacion\": 0.45}, \"canal\": \"radio\"}\nTexto: Se vino la banca de la carretera con todo y arboles",
+   "respuesta": "{\n  \"categoria\": \"Infra\",\n  \"urgencia\": \"Immediate\",\n  \"severidad\": \"Severe\",\n  \"certeza\": \"Observed\"\n}",
+   "error": null,
+   "segundos": 5.945,
+   "tokens": 995,
+   "momento": "2026-08-28T20:05:12.012024+00:00"
+  },
+  {
+   "agente": "agente-2-ingesta",
+   "modelo": "vertex:gemini-2.5-pro",
+   "system": "# Rol del Agente 2 — Ingesta de Información\n\nEres el extractor del Agente de Ingesta. Tu trabajo es leer texto libre en\nespañol (SMS, WhatsApp, transcripción de llamada, reporte web) y extraer\ncampos estructurados. **No decides** si el reporte es cierto, si se acepta o\nsi se descarta: eso lo hace un motor determinista después de ti. Tu única\ntarea es estructurar.\n\n## Campos a extraer\n\n- `categoria`: uno de `Geo, Met, Safety, Security, Rescue, Fire, Health, Env,\n  Transport, Infra, CBRNE, Other` (taxonomía CAP 1.2). Usa `Other` si no es\n  claro.\n- `urgencia`: uno de `Immediate, Expected, Future, Past, Unknown`.\n- `severidad`: uno de `Extreme, Severe, Moderate, Minor, Unknown`.\n- `certeza`: uno de `Observed, Likely, Possible, Unlikely, Unknown`. Un\n  reportero que dice \"lo estoy viendo\" es `Observed`; un rumor de tercero es\n  `Possible` o `Unlikely`.\n- `ubicacion`: si el texto menciona un lugar con coordenadas o una referencia\n  clara, devuelve `{\"lat\": <float>, \"lon\": <float>}`. Si no hay ubicación\n  identificable, omite el campo — no inventes coordenadas.\n- `personas_afectadas`: número entero si el texto lo menciona, si no, omite\n  el campo.\n- `necesidades`: lista corta de necesidades mencionadas (agua, comida,\n  medicinas, refugio, rescate, atención médica, etc.).\n\n## Reglas\n\n1. No inventes datos que el texto no sustenta. Omitir un campo es preferible\n   a adivinar.\n2. No juzgues veracidad, duplicados ni relevancia: eso es del Agente 3.\n3. Responde **únicamente** con JSON válido, sin texto adicional, con solo los\n   campos que pudiste extraer con confianza.\n",
+   "user": "Extrae los campos estructurados de este reporte.\nContexto: {\"fuente\": {\"id\": \"cel-3114\", \"tipo\": \"ciudadano\", \"reputacion\": 0.45}, \"canal\": \"sms\"}\nTexto: Se cayo el puente sobre la quebrada, no se puede pasar",
+   "respuesta": "{\n  \"categoria\": \"Infra\",\n  \"urgencia\": \"Immediate\",\n  \"severidad\": \"Severe\",\n  \"certeza\": \"Observed\"\n}",
+   "error": null,
+   "segundos": 7.775,
+   "tokens": 1255,
+   "momento": "2026-08-28T20:05:19.787181+00:00"
+  },
+  {
+   "agente": "agente-2-ingesta",
+   "modelo": "vertex:gemini-2.5-pro",
+   "system": "# Rol del Agente 2 — Ingesta de Información\n\nEres el extractor del Agente de Ingesta. Tu trabajo es leer texto libre en\nespañol (SMS, WhatsApp, transcripción de llamada, reporte web) y extraer\ncampos estructurados. **No decides** si el reporte es cierto, si se acepta o\nsi se descarta: eso lo hace un motor determinista después de ti. Tu única\ntarea es estructurar.\n\n## Campos a extraer\n\n- `categoria`: uno de `Geo, Met, Safety, Security, Rescue, Fire, Health, Env,\n  Transport, Infra, CBRNE, Other` (taxonomía CAP 1.2). Usa `Other` si no es\n  claro.\n- `urgencia`: uno de `Immediate, Expected, Future, Past, Unknown`.\n- `severidad`: uno de `Extreme, Severe, Moderate, Minor, Unknown`.\n- `certeza`: uno de `Observed, Likely, Possible, Unlikely, Unknown`. Un\n  reportero que dice \"lo estoy viendo\" es `Observed`; un rumor de tercero es\n  `Possible` o `Unlikely`.\n- `ubicacion`: si el texto menciona un lugar con coordenadas o una referencia\n  clara, devuelve `{\"lat\": <float>, \"lon\": <float>}`. Si no hay ubicación\n  identificable, omite el campo — no inventes coordenadas.\n- `personas_afectadas`: número entero si el texto lo menciona, si no, omite\n  el campo.\n- `necesidades`: lista corta de necesidades mencionadas (agua, comida,\n  medicinas, refugio, rescate, atención médica, etc.).\n\n## Reglas\n\n1. No inventes datos que el texto no sustenta. Omitir un campo es preferible\n   a adivinar.\n2. No juzgues veracidad, duplicados ni relevancia: eso es del Agente 3.\n3. Responde **únicamente** con JSON válido, sin texto adicional, con solo los\n   campos que pudiste extraer con confianza.\n",
+   "user": "Extrae los campos estructurados de este reporte.\nContexto: {\"fuente\": {\"id\": \"bomberos-01\", \"tipo\": \"autoridad\", \"reputacion\": 0.95}, \"canal\": \"radio\"}\nTexto: Incendio en la bodega del parque industrial, humo denso",
+   "respuesta": "{\n  \"categoria\": \"Fire\",\n  \"urgencia\": \"Immediate\",\n  \"severidad\": \"Moderate\",\n  \"certeza\": \"Observed\"\n}",
+   "error": null,
+   "segundos": 5.422,
+   "tokens": 910,
+   "momento": "2026-08-28T20:05:25.209148+00:00"
+  },
+  {
+   "agente": "agente-3-verificacion",
+   "modelo": "vertex:gemini-2.5-pro",
+   "system": "# Rol del Agente 3 — Verificación (comparación de similitud textual)\n\nEres el módulo de similitud textual del Agente de Verificación. Tu única tarea\nes opinar si dos descripciones en español, escritas por fuentes distintas,\nhablan del **mismo hecho físico** ocurrido en el mismo lugar aproximado y en\nel mismo momento — nunca decides si dos reportes se fusionan en un incidente.\nEsa decisión la toma un motor determinista aparte, combinando tu opinión con\nseñales de ubicación, categoría y tiempo que tú no ves.\n\n## Tarea: comparar pares\n\nRecibes una lista de pares `{\"id_a\", \"id_b\", \"texto_a\", \"texto_b\"}`. Para cada\npar, evalúa si ambos textos describen el mismo evento, aunque usen palabras\ndistintas — por ejemplo, \"se cayó el puente sobre el río\" y \"colapsó la\nestructura sobre el río\" describen el mismo hecho con vocabulario distinto, y\ndeben recibir una similitud alta.\n\nTen en cuenta:\n\n- Paráfrasis, sinónimos y abreviaturas coloquiales cuentan como el mismo\n  hecho si describen la misma acción sobre el mismo tipo de objeto/lugar.\n- Dos textos que mencionan la misma categoría general (p. ej. dos incendios)\n  pero describen objetos o consecuencias distintas NO son el mismo hecho.\n- No inventes contexto que no esté en el texto: si la comparación es\n  ambigua, da un score intermedio en vez de forzar 0 o 1.\n\nResponde **únicamente** con una lista JSON de objetos:\n`{\"id_a\": \"...\", \"id_b\": \"...\", \"similitud\": <número entre 0 y 1>}`,\nuno por cada par recibido, sin texto adicional.\n",
+   "user": "Evalúa si cada par de descripciones habla del mismo hecho. Responde únicamente con una lista JSON de objetos {\"id_a\", \"id_b\", \"similitud\"}, con similitud en [0,1].\nPares:\n[{\"id_a\": \"f6fd9674-3825-4e26-810d-5ff4011fd618\", \"id_b\": \"3d754ad7-18c9-47c5-8951-5547467c636c\", \"texto_a\": \"Se cayo el puente sobre la quebrada, no se puede pasar\", \"texto_b\": \"Colapso la estructura sobre el rio, hay carros atrapados\"}, {\"id_a\": \"f6fd9674-3825-4e26-810d-5ff4011fd618\", \"id_b\": \"ba96e0b1-dbb8-4ef0-b35b-577a881d0359\", \"texto_a\": \"Se cayo el puente sobre la quebrada, no se puede pasar\", \"texto_b\": \"Derrumbe tapo la via, la montana se vino encima\"}, {\"id_a\": \"f6fd9674-3825-4e26-810d-5ff4011fd618\", \"id_b\": \"7d5722cf-8cdb-4c2a-9017-484c23e71702\", \"texto_a\": \"Se cayo el puente sobre la quebrada, no se puede pasar\", \"texto_b\": \"Deslizamiento bloquea el paso hacia La Calera\"}, {\"id_a\": \"f6fd9674-3825-4e26-810d-5ff4011fd618\", \"id_b\": \"363a61f3-c89d-4ff9-8844-1b0448ea3259\", \"texto_a\": \"Se cayo el puente sobre la quebrada, no se puede pasar\", \"texto_b\": \"La tierra se llevo media carretera, hay gente aislada al otro lado\"}, {\"id_a\": \"f6fd9674-3825-4e26-810d-5ff4011fd618\", \"id_b\": \"b7dc14d3-104b-4579-ae4b-46bff07d66a1\", \"texto_a\": \"Se cayo el puente sobre la quebrada, no se puede pasar\", \"texto_b\": \"No hay paso, se desplomo todo el talud\"}, {\"id_a\": \"f6fd9674-3825-4e26-810d-5ff4011fd618\", \"id_b\": \"aafdb82c-58b3-419d-8622-35587f123d63\", \"texto_a\": \"Se cayo el puente sobre la quebrada, no se puede pasar\", \"texto_b\": \"Confirmado derrumbe km 4 via La Calera, dos vehiculos comprometidos\"}, {\"id_a\": \"f6fd9674-3825-4e26-810d-5ff4011fd618\", \"id_b\": \"436399cf-339e-4aae-a7db-6c7f8be0f81f\", \"texto_a\": \"Se cayo el puente sobre la quebrada, no se puede pasar\", \"texto_b\": \"Cayo un pedazo de cerro sobre la via, urgente\"}, {\"id_a\": \"f6fd9674-3825-4e26-810d-5ff4011fd618\", \"id_b\": \"f4e62dfb-6f3d-485d-b3d2-617414d16ba8\", \"texto_a\": \"Se cayo el puente sobre la quebrada, no se puede pasar\", \"texto_b\": \"Estamos atrapados, el derrumbe nos dejo sin salida\"}, {\"id_a\": \"f6fd9674-3825-4e26-810d-5ff4011fd618\", \"id_b\": \"a321b251-6ff0-4f66-b8b7-ea614ba49d7e\", \"texto_a\": \"Se cayo el puente sobre la quebrada, no se puede pasar\", \"texto_b\": \"Reporte de deslizamiento de tierra en la via principal\"}, {\"id_a\": \"f6fd9674-3825-4e26-810d-5ff4011fd618\", \"id_b\": \"b64c705a-7466-4fa5-a121-8d4ae61ea5ba\", \"texto_a\": \"Se cayo el puente sobre la quebrada, no se puede pasar\", \"texto_b\": \"Se vino la banca de la carretera con todo y arboles\"}, {\"id_a\": \"3d754ad7-18c9-47c5-8951-5547467c636c\", \"id_b\": \"ba96e0b1-dbb8-4ef0-b35b-577a881d0359\", \"texto_a\": \"Colapso la estructura sobre el rio, hay carros atrapados\", \"texto_b\": \"Derrumbe tapo la via, la montana se vino encima\"}, {\"id_a\": \"3d754ad7-18c9-47c5-8951-5547467c636c\", \"id_b\": \"7d5722cf-8cdb-4c2a-9017-484c23e71702\", \"texto_a\": \"Colapso la estructura sobre el rio, hay carros atrapados\", \"texto_b\": \"Deslizamiento bloquea el paso hacia La Calera\"}, {\"id_a\": \"3d754ad7-18c9-47c5-8951-5547467c636c\", \"id_b\": \"363a61f3-c89d-4ff9-8844-1b0448ea3259\", \"texto_a\": \"Colapso la estructura sobre el rio, hay carros atrapados\", \"texto_b\": \"La tierra se llevo media carretera, hay gente aislada al otro lado\"}, {\"id_a\": \"3d754ad7-18c9-47c5-8951-5547467c636c\", \"id_b\": \"b7dc14d3-104b-4579-ae4b-46bff07d66a1\", \"texto_a\": \"Colapso la estructura sobre el rio, hay carros atrapados\", \"texto_b\": \"No hay paso, se desplomo todo el talud\"}, {\"id_a\": \"3d754ad7-18c9-47c5-8951-5547467c636c\", \"id_b\": \"aafdb82c-58b3-419d-8622-35587f123d63\", \"texto_a\": \"Colapso la estructura sobre el rio, hay carros atrapados\", \"texto_b\": \"Confirmado derrumbe km 4 via La Calera, dos vehiculos comprometidos\"}, {\"id_a\": \"3d754ad7-18c9-47c5-8951-5547467c636c\", \"id_b\": \"436399cf-339e-4aae-a7db-6c7f8be0f81f\", \"texto_a\": \"Colapso la estructura sobre el rio, hay carros atrapados\", \"texto_b\": \"Cayo un pedazo de cerro sobre la via, urgente\"}, {\"id_a\": \"3d754ad7-18c9-47c5-8951-5547467c636c\", \"id_b\": \"f4e62dfb-6f3d-485d-b3d2-617414d16ba8\", \"texto_a\": \"Colapso la estructura sobre el rio, hay carros atrapados\", \"texto_b\": \"Estamos atrapados, el derrumbe nos dejo sin salida\"}, {\"id_a\": \"3d754ad7-18c9-47c5-8951-5547467c636c\", \"id_b\": \"a321b251-6ff0-4f66-b8b7-ea614ba49d7e\", \"texto_a\": \"Colapso la estructura sobre el rio, hay carros atrapados\", \"texto_b\": \"Reporte de deslizamiento de tierra en la via principal\"}, {\"id_a\": \"3d754ad7-18c9-47c5-8951-5547467c636c\", \"id_b\": \"b64c705a-7466-4fa5-a121-8d4ae61ea5ba\", \"texto_a\": \"Colapso la estructura sobre el rio, hay carros atrapados\", \"texto_b\": \"Se vino la banca de la carretera con todo y arboles\"}, {\"id_a\": \"ba96e0b1-dbb8-4ef0-b35b-577a881d0359\", \"id_b\": \"7d5722cf-8cdb-4c2a-9017-484c23e71702\", \"texto_a\": \"Derrumbe tapo la via, la montana se vino encima\", \"texto_b\": \"Deslizamiento bloquea el paso hacia La Calera\"}, {\"id_a\": \"ba96e0b1-dbb8-4ef0-b35b-577a881d0359\", \"id_b\": \"363a61f3-c89d-4ff9-8844-1b0448ea3259\", \"texto_a\": \"Derrumbe tapo la via, la montana se vino encima\", \"texto_b\": \"La tierra se llevo media carretera, hay gente aislada al otro lado\"}, {\"id_a\": \"ba96e0b1-dbb8-4ef0-b35b-577a881d0359\", \"id_b\": \"b7dc14d3-104b-4579-ae4b-46bff07d66a1\", \"texto_a\": \"Derrumbe tapo la via, la montana se vino encima\", \"texto_b\": \"No hay paso, se desplomo todo el talud\"}, {\"id_a\": \"ba96e0b1-dbb8-4ef0-b35b-577a881d0359\", \"id_b\": \"aafdb82c-58b3-419d-8622-35587f123d63\", \"texto_a\": \"Derrumbe tapo la via, la montana se vino encima\", \"texto_b\": \"Confirmado derrumbe km 4 via La Calera, dos vehiculos comprometidos\"}, {\"id_a\": \"ba96e0b1-dbb8-4ef0-b35b-577a881d0359\", \"id_b\": \"436399cf-339e-4aae-a7db-6c7f8be0f81f\", \"texto_a\": \"Derrumbe tapo la via, la montana se vino encima\", \"texto_b\": \"Cayo un pedazo de cerro sobre la via, urgente\"}, {\"id_a\": \"ba96e0b1-dbb8-4ef0-b35b-577a881d0359\", \"id_b\": \"f4e62dfb-6f3d-485d-b3d2-617414d16ba8\", \"texto_a\": \"Derrumbe tapo la via, la montana se vino encima\", \"texto_b\": \"Estamos atrapados, el derrumbe nos dejo sin salida\"}, {\"id_a\": \"ba96e0b1-dbb8-4ef0-b35b-577a881d0359\", \"id_b\": \"a321b251-6ff0-4f66-b8b7-ea614ba49d7e\", \"texto_a\": \"Derrumbe tapo la via, la montana se vino encima\", \"texto_b\": \"Reporte de deslizamiento de tierra en la via principal\"}, {\"id_a\": \"ba96e0b1-dbb8-4ef0-b35b-577a881d0359\", \"id_b\": \"b64c705a-7466-4fa5-a121-8d4ae61ea5ba\", \"texto_a\": \"Derrumbe tapo la via, la montana se vino encima\", \"texto_b\": \"Se vino la banca de la carretera con todo y arboles\"}, {\"id_a\": \"7d5722cf-8cdb-4c2a-9017-484c23e71702\", \"id_b\": \"363a61f3-c89d-4ff9-8844-1b0448ea3259\", \"texto_a\": \"Deslizamiento bloquea el paso hacia La Calera\", \"texto_b\": \"La tierra se llevo media carretera, hay gente aislada al otro lado\"}, {\"id_a\": \"7d5722cf-8cdb-4c2a-9017-484c23e71702\", \"id_b\": \"b7dc14d3-104b-4579-ae4b-46bff07d66a1\", \"texto_a\": \"Deslizamiento bloquea el paso hacia La Calera\", \"texto_b\": \"No hay paso, se desplomo todo el talud\"}, {\"id_a\": \"7d5722cf-8cdb-4c2a-9017-484c23e71702\", \"id_b\": \"aafdb82c-58b3-419d-8622-35587f123d63\", \"texto_a\": \"Deslizamiento bloquea el paso hacia La Calera\", \"texto_b\": \"Confirmado derrumbe km 4 via La Calera, dos vehiculos comprometidos\"}, {\"id_a\": \"7d5722cf-8cdb-4c2a-9017-484c23e71702\", \"id_b\": \"436399cf-339e-4aae-a7db-6c7f8be0f81f\", \"texto_a\": \"Deslizamiento bloquea el paso hacia La Calera\", \"texto_b\": \"Cayo un pedazo de cerro sobre la via, urgente\"}, {\"id_a\": \"7d5722cf-8cdb-4c2a-9017-484c23e71702\", \"id_b\": \"f4e62dfb-6f3d-485d-b3d2-617414d16ba8\", \"texto_a\": \"Deslizamiento bloquea el paso hacia La Calera\", \"texto_b\": \"Estamos atrapados, el derrumbe nos dejo sin salida\"}, {\"id_a\": \"7d5722cf-8cdb-4c2a-9017-484c23e71702\", \"id_b\": \"a321b251-6ff0-4f66-b8b7-ea614ba49d7e\", \"texto_a\": \"Deslizamiento bloquea el paso hacia La Calera\", \"texto_b\": \"Reporte de deslizamiento de tierra en la via principal\"}, {\"id_a\": \"7d5722cf-8cdb-4c2a-9017-484c23e71702\", \"id_b\": \"b64c705a-7466-4fa5-a121-8d4ae61ea5ba\", \"texto_a\": \"Deslizamiento bloquea el paso hacia La Calera\", \"texto_b\": \"Se vino la banca de la carretera con todo y arboles\"}, {\"id_a\": \"363a61f3-c89d-4ff9-8844-1b0448ea3259\", \"id_b\": \"b7dc14d3-104b-4579-ae4b-46bff07d66a1\", \"texto_a\": \"La tierra se llevo media carretera, hay gente aislada al otro lado\", \"texto_b\": \"No hay paso, se desplomo todo el talud\"}, {\"id_a\": \"363a61f3-c89d-4ff9-8844-1b0448ea3259\", \"id_b\": \"aafdb82c-58b3-419d-8622-35587f123d63\", \"texto_a\": \"La tierra se llevo media carretera, hay gente aislada al otro lado\", \"texto_b\": \"Confirmado derrumbe km 4 via La Calera, dos vehiculos comprometidos\"}, {\"id_a\": \"363a61f3-c89d-4ff9-8844-1b0448ea3259\", \"id_b\": \"436399cf-339e-4aae-a7db-6c7f8be0f81f\", \"texto_a\": \"La tierra se llevo media carretera, hay gente aislada al otro lado\", \"texto_b\": \"Cayo un pedazo de cerro sobre la via, urgente\"}, {\"id_a\": \"363a61f3-c89d-4ff9-8844-1b0448ea3259\", \"id_b\": \"f4e62dfb-6f3d-485d-b3d2-617414d16ba8\", \"texto_a\": \"La tierra se llevo media carretera, hay gente aislada al otro lado\", \"texto_b\": \"Estamos atrapados, el derrumbe nos dejo sin salida\"}, {\"id_a\": \"363a61f3-c89d-4ff9-8844-1b0448ea3259\", \"id_b\": \"a321b251-6ff0-4f66-b8b7-ea614ba49d7e\", \"texto_a\": \"La tierra se llevo media carretera, hay gente aislada al otro lado\", \"texto_b\": \"Reporte de deslizamiento de tierra en la via principal\"}, {\"id_a\": \"363a61f3-c89d-4ff9-8844-1b0448ea3259\", \"id_b\": \"b64c705a-7466-4fa5-a121-8d4ae61ea5ba\", \"texto_a\": \"La tierra se llevo media carretera, hay gente aislada al otro lado\", \"texto_b\": \"Se vino la banca de la carretera con todo y arboles\"}, {\"id_a\": \"b7dc14d3-104b-4579-ae4b-46bff07d66a1\", \"id_b\": \"aafdb82c-58b3-419d-8622-35587f123d63\", \"texto_a\": \"No hay paso, se desplomo todo el talud\", \"texto_b\": \"Confirmado derrumbe km 4 via La Calera, dos vehiculos comprometidos\"}, {\"id_a\": \"b7dc14d3-104b-4579-ae4b-46bff07d66a1\", \"id_b\": \"436399cf-339e-4aae-a7db-6c7f8be0f81f\", \"texto_a\": \"No hay paso, se desplomo todo el talud\", \"texto_b\": \"Cayo un pedazo de cerro sobre la via, urgente\"}, {\"id_a\": \"b7dc14d3-104b-4579-ae4b-46bff07d66a1\", \"id_b\": \"f4e62dfb-6f3d-485d-b3d2-617414d16ba8\", \"texto_a\": \"No hay paso, se desplomo todo el talud\", \"texto_b\": \"Estamos atrapados, el derrumbe nos dejo sin salida\"}, {\"id_a\": \"b7dc14d3-104b-4579-ae4b-46bff07d66a1\", \"id_b\": \"a321b251-6ff0-4f66-b8b7-ea614ba49d7e\", \"texto_a\": \"No hay paso, se desplomo todo el talud\", \"texto_b\": \"Reporte de deslizamiento de tierra en la via principal\"}, {\"id_a\": \"b7dc14d3-104b-4579-ae4b-46bff07d66a1\", \"id_b\": \"b64c705a-7466-4fa5-a121-8d4ae61ea5ba\", \"texto_a\": \"No hay paso, se desplomo todo el talud\", \"texto_b\": \"Se vino la banca de la carretera con todo y arboles\"}, {\"id_a\": \"aafdb82c-58b3-419d-8622-35587f123d63\", \"id_b\": \"436399cf-339e-4aae-a7db-6c7f8be0f81f\", \"texto_a\": \"Confirmado derrumbe km 4 via La Calera, dos vehiculos comprometidos\", \"texto_b\": \"Cayo un pedazo de cerro sobre la via, urgente\"}, {\"id_a\": \"aafdb82c-58b3-419d-8622-35587f123d63\", \"id_b\": \"f4e62dfb-6f3d-485d-b3d2-617414d16ba8\", \"texto_a\": \"Confirmado derrumbe km 4 via La Calera, dos vehiculos comprometidos\", \"texto_b\": \"Estamos atrapados, el derrumbe nos dejo sin salida\"}, {\"id_a\": \"aafdb82c-58b3-419d-8622-35587f123d63\", \"id_b\": \"a321b251-6ff0-4f66-b8b7-ea614ba49d7e\", \"texto_a\": \"Confirmado derrumbe km 4 via La Calera, dos vehiculos comprometidos\", \"texto_b\": \"Reporte de deslizamiento de tierra en la via principal\"}, {\"id_a\": \"aafdb82c-58b3-419d-8622-35587f123d63\", \"id_b\": \"b64c705a-7466-4fa5-a121-8d4ae61ea5ba\", \"texto_a\": \"Confirmado derrumbe km 4 via La Calera, dos vehiculos comprometidos\", \"texto_b\": \"Se vino la banca de la carretera con todo y arboles\"}, {\"id_a\": \"436399cf-339e-4aae-a7db-6c7f8be0f81f\", \"id_b\": \"f4e62dfb-6f3d-485d-b3d2-617414d16ba8\", \"texto_a\": \"Cayo un pedazo de cerro sobre la via, urgente\", \"texto_b\": \"Estamos atrapados, el derrumbe nos dejo sin salida\"}, {\"id_a\": \"436399cf-339e-4aae-a7db-6c7f8be0f81f\", \"id_b\": \"a321b251-6ff0-4f66-b8b7-ea614ba49d7e\", \"texto_a\": \"Cayo un pedazo de cerro sobre la via, urgente\", \"texto_b\": \"Reporte de deslizamiento de tierra en la via principal\"}, {\"id_a\": \"436399cf-339e-4aae-a7db-6c7f8be0f81f\", \"id_b\": \"b64c705a-7466-4fa5-a121-8d4ae61ea5ba\", \"texto_a\": \"Cayo un pedazo de cerro sobre la via, urgente\", \"texto_b\": \"Se vino la banca de la carretera con todo y arboles\"}, {\"id_a\": \"f4e62dfb-6f3d-485d-b3d2-617414d16ba8\", \"id_b\": \"a321b251-6ff0-4f66-b8b7-ea614ba49d7e\", \"texto_a\": \"Estamos atrapados, el derrumbe nos dejo sin salida\", \"texto_b\": \"Reporte de deslizamiento de tierra en la via principal\"}, {\"id_a\": \"f4e62dfb-6f3d-485d-b3d2-617414d16ba8\", \"id_b\": \"b64c705a-7466-4fa5-a121-8d4ae61ea5ba\", \"texto_a\": \"Estamos atrapados, el derrumbe nos dejo sin salida\", \"texto_b\": \"Se vino la banca de la carretera con todo y arboles\"}, {\"id_a\": \"a321b251-6ff0-4f66-b8b7-ea614ba49d7e\", \"id_b\": \"b64c705a-7466-4fa5-a121-8d4ae61ea5ba\", \"texto_a\": \"Reporte de deslizamiento de tierra en la via principal\", \"texto_b\": \"Se vino la banca de la carretera con todo y arboles\"}]",
+   "respuesta": "[\n  {\n    \"id_a\": \"f6fd9674-3825-4e26-810d-5ff4011fd618\",\n    \"id_b\": \"3d754ad7-18c",
+   "error": null,
+   "segundos": 22.523,
+   "tokens": 9070,
+   "momento": "2026-08-28T20:05:47.733851+00:00"
+  },
+  {
+   "agente": "agente-1-orquestador",
+   "modelo": "vertex:gemini-2.5-pro",
+   "system": "# Rol del Agente 1 — Orquestador (redactor del parte de situación)\n\nEres el redactor del parte de situación del Orquestador de ResurgeAgent, un\nsistema de coordinación de respuesta ante desastres.\n\n## Lo único que haces\n\nRecibes un estado **ya resuelto** por el motor determinista del agente y lo\nconviertes en prosa clara para un coordinador humano que está bajo presión y\ntiene segundos para leerlo.\n\n## Lo que no haces, bajo ninguna circunstancia\n\n- **No decides prioridades.** El orden de los incidentes ya viene calculado en\n  `triage.posicion`. Respétalo literalmente. No sugieras reordenarlo.\n- **No cambias estados.** El campo `estado` de cada incidente es un hecho.\n- **No autorizas ni recomiendas autorizar asignaciones.** La firma es del\n  coordinador humano; tu texto no la sustituye ni la anticipa.\n- **No inventas incidentes, cifras, ubicaciones ni recursos.** Si un dato no está\n  en la entrada, no existe. Si falta, dilo: \"sin dato\".\n- **No emites opiniones sobre la veracidad de un reporte.** Eso lo determinó el\n  Agente de Verificación y viene en la confianza.\n\nSi el estado que recibes parece incoherente, descríbelo tal cual y señala la\nincoherencia. No la corrijas por tu cuenta.\n\n## Formato de salida\n\nTexto plano, español, sin markdown y sin emojis. Máximo 200 palabras.\n\n1. Una frase de encabezado: cuántos incidentes, cuántos esperan firma, y si la\n   información está degradada (algún agente no respondió).\n2. La lista de incidentes en el orden que ya trae, uno por línea, con su\n   identificador, su estado y por qué está en esa posición (usa los componentes\n   del triage: severidad, urgencia, personas afectadas, confianza).\n3. Una última línea con lo que el coordinador tiene que decidir ahora.\n\nCuando la operación esté degradada, dilo explícitamente y nombra qué falta. Un\ncoordinador que no sabe que le falta información toma peores decisiones que uno\nque lo sabe.\n",
+   "user": "Redacta el parte de situación para el coordinador humano a partir de este estado ya resuelto:\n{\"correlacion_id\": \"5de11004-20bc-46f3-876d-db08041cb64d\", \"estado_operacion\": \"pendiente_aprobacion\", \"degradada\": false, \"reportes_ingeridos\": 12, \"incidentes\": [{\"incidente_id\": \"7eed1112-5ee6-405a-a0ba-08137a7f6ea6\", \"correlacion_id\": \"5de11004-20bc-46f3-876d-db08041cb64d\", \"estado\": \"pendiente_aprobacion\", \"visitas\": {\"recibido\": 1, \"verificado\": 1, \"localizado\": 1, \"priorizado\": 1, \"pendiente_aprobacion\": 1}, \"historial\": [{\"origen\": \"recibido\", \"solicitado\": \"verificado\", \"estado\": \"verificado\", \"aplicada\": true, \"motivo\": \"corroborado por 1 reporte(s), confianza 0.95\", \"momento\": \"2026-08-28T20:05:47.736712+00:00\", \"decision_id\": null}, {\"origen\": \"verificado\", \"solicitado\": \"localizado\", \"estado\": \"localizado\", \"aplicada\": true, \"motivo\": \"ubicación propia del incidente; ruta no solicitada en este lote\", \"momento\": \"2026-08-28T20:05:47.736746+00:00\", \"decision_id\": null}, {\"origen\": \"localizado\", \"solicitado\": \"priorizado\", \"estado\": \"priorizado\", \"aplicada\": true, \"motivo\": \"posición 1 del lote, puntuación 0.8190\", \"momento\": \"2026-08-28T20:05:47.736848+00:00\", \"decision_id\": null}, {\"origen\": \"priorizado\", \"solicitado\": \"pendiente_aprobacion\", \"estado\": \"pendiente_aprobacion\", \"aplicada\": true, \"motivo\": \"a la espera de la firma del coordinador humano\", \"momento\": \"2026-08-28T20:05:47.736876+00:00\", \"decision_id\": null}], \"decision\": null, \"triage\": {\"incidente_id\": \"7eed1112-5ee6-405a-a0ba-08137a7f6ea6\", \"posicion\": 1, \"puntuacion\": 0.818984, \"componentes\": {\"severidad\": 0.45, \"urgencia\": 0.35, \"personas\": 0.040132, \"base\": 0.840132, \"multiplicador_confianza\": 0.974828}}, \"datos\": {\"ruta\": null, \"geo_degradado\": false}, \"requiere_firma\": true}, {\"incidente_id\": \"9636dfdb-94c3-4fa4-bc44-be2d16a4fdcd\", \"correlacion_id\": \"5de11004-20bc-46f3-876d-db08041cb64d\", \"estado\": \"pendiente_aprobacion\", \"visitas\": {\"recibido\": 1, \"verificado\": 1, \"localizado\": 1, \"priorizado\": 1, \"pendiente_aprobacion\": 1}, \"historial\": [{\"origen\": \"recibido\", \"solicitado\": \"verificado\", \"estado\": \"verificado\", \"aplicada\": true, \"motivo\": \"corroborado por 11 reporte(s), confianza 1.00\", \"momento\": \"2026-08-28T20:05:47.736615+00:00\", \"decision_id\": null}, {\"origen\": \"verificado\", \"solicitado\": \"localizado\", \"estado\": \"localizado\", \"aplicada\": true, \"motivo\": \"ubicación propia del incidente; ruta no solicitada en este lote\", \"momento\": \"2026-08-28T20:05:47.736671+00:00\", \"decision_id\": null}, {\"origen\": \"localizado\", \"solicitado\": \"priorizado\", \"estado\": \"priorizado\", \"aplicada\": true, \"motivo\": \"posición 2 del lote, puntuación 0.7752\", \"momento\": \"2026-08-28T20:05:47.736902+00:00\", \"decision_id\": null}, {\"origen\": \"priorizado\", \"solicitado\": \"pendiente_aprobacion\", \"estado\": \"pendiente_aprobacion\", \"aplicada\": true, \"motivo\": \"a la espera de la firma del coordinador humano\", \"momento\": \"2026-08-28T20:05:47.736930+00:00\", \"decision_id\": null}], \"decision\": null, \"triage\": {\"incidente_id\": \"9636dfdb-94c3-4fa4-bc44-be2d16a4fdcd\", \"posicion\": 2, \"puntuacion\": 0.775219, \"componentes\": {\"severidad\": 0.3375, \"urgencia\": 0.35, \"personas\": 0.088135, \"base\": 0.775635, \"multiplicador_confianza\": 0.999463}}, \"datos\": {\"ruta\": null, \"geo_degradado\": false}, \"requiere_firma\": true}], \"zonas_afectadas\": {\"type\": \"FeatureCollection\", \"features\": [{\"type\": \"Feature\", \"geometry\": {\"type\": \"Polygon\", \"coordinates\": [[[-74.09, 4.61], [-74.08, 4.61], [-74.08, 4.62], [-74.09, 4.62], [-74.09, 4.61]]]}, \"properties\": {\"celda_id\": \"461:-7409\", \"conteo_incidentes\": 1, \"severidad_agregada\": \"Severe\", \"incidentes_ids\": [\"9636dfdb-94c3-4fa4-bc44-be2d16a4fdcd\"]}}, {\"type\": \"Feature\", \"geometry\": {\"type\": \"Polygon\", \"coordinates\": [[[-74.08, 4.68], [-74.07, 4.68], [-74.07, 4.6899999999999995], [-74.08, 4.6899999999999995], [-74.08, 4.68]]]}, \"properties\": {\"celda_id\": \"468:-7408\", \"conteo_incidentes\": 1, \"severidad_agregada\": \"Extreme\", \"incidentes_ids\": [\"7eed1112-5ee6-405a-a0ba-08137a7f6ea6\"]}}]}}",
+   "respuesta": "{\n  \"reporte_situacion\": \"Parte de situación con 2 incidentes, de los cuales 2 esperan su firma para ser asignados. La información está completa.\\n\\n1. 7eed1112: Pendiente de aprobación. Prioridad 1 por su alta severidad",
+   "error": null,
+   "segundos": 22.854,
+   "tokens": 4315,
+   "momento": "2026-08-28T20:06:10.591350+00:00"
+  }
+ ],
+ "consumo": {
+  "llamadas": 15,
+  "tokens_totales": 28542,
+  "modelo": "vertex:gemini-2.5-pro"
+ }
+}

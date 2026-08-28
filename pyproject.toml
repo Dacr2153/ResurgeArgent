@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "resurge-coordinacion"
+version = "0.3.0"
+description = "Sistema de Coordinacion de Respuesta: nucleo compartido, agentes 1/2/3/5, plataforma y red de emergencia"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.0",
+    "pydantic-settings>=2.0",
+    "networkx>=3.0",
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+    "httpx2>=0.27",
+    # Ed25519 para firmar en origen los sobres de la red de emergencia: un
+    # reporte atraviesa telefonos de desconocidos y no puede ser alterable.
+    "cryptography>=42.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "pytest-mock>=3.12",
+    "ruff>=0.4",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+pythonpath = ["src"]
+testpaths = ["tests"]
+# Cada agente de la raiz (agente_matching, agente_logistica) es un proyecto
+# aparte con su propio pyproject y su propia suite. Sin esta exclusion, pytest
+# los recogeria desde aqui y fallaria por dependencias que este proyecto no
+# declara.
+norecursedirs = ["agente_matching", "agente_logistica", "frontend", ".venv", "Jhojan"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+exclude = ["agente_matching", "agente_logistica", "frontend"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
