@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export interface AsyncState<T> {
   data: T | null;
   loading: boolean;
   error: Error | null;
+  /** Vuelve a lanzar la carga. Con backend real hace falta: un fallo de red no
+      se arregla recargando la pagina entera. */
+  reload: () => void;
 }
 
 /**
@@ -11,7 +14,11 @@ export interface AsyncState<T> {
  * componente se desmonta antes de que resuelva la promesa.
  */
 export function useAsync<T>(load: () => Promise<T>, deps: unknown[]): AsyncState<T> {
-  const [state, setState] = useState<AsyncState<T>>({ data: null, loading: true, error: null });
+  const [state, setState] = useState<{ data: T | null; loading: boolean; error: Error | null }>({
+    data: null, loading: true, error: null,
+  });
+  const [tick, setTick] = useState(0);
+  const reload = useCallback(() => setTick((n) => n + 1), []);
 
   useEffect(() => {
     let alive = true;
@@ -22,7 +29,7 @@ export function useAsync<T>(load: () => Promise<T>, deps: unknown[]): AsyncState
     );
     return () => { alive = false; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps);
+  }, [...deps, tick]);
 
-  return state;
+  return { ...state, reload };
 }

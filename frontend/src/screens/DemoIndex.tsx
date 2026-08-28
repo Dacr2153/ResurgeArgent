@@ -2,6 +2,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Screen } from '../components/Screen';
 import { useAppState } from '../state/AppState';
 import { SCREEN_ROUTES } from '../lib/routes';
+import { api } from '../api/client';
+import { useAsync } from '../api/useAsync';
 
 /**
  * Indice de las 11 pantallas. Existe para recorrer el flujo en la presentacion
@@ -11,6 +13,10 @@ export default function DemoIndex() {
   const navigate = useNavigate();
   const location = useLocation();
   const { offline, setOffline, gpsDenied, setGpsDenied, scope, setScope } = useAppState();
+  // Las pantallas de detalle necesitan un incidente que exista de verdad; el
+  // indice toma el primero de la cola real en vez de inventar un identificador.
+  const { data: incidents } = useAsync(() => api.listIncidents('general'), []);
+  const primerIncidente = incidents?.[0]?.id ?? null;
 
   const toggleStyle = (active: boolean) => ({
     minHeight: 40,
@@ -26,27 +32,41 @@ export default function DemoIndex() {
 
   return (
     <Screen>
-      <div className="kicker">Prototipo · Lima</div>
+      <div className="kicker">ResurgeAgent · backend en vivo</div>
       <h1 className="title" style={{ margin: '10px 0 8px' }}>Plataforma de Gestión de Emergencias</h1>
       <p className="lede" style={{ fontSize: 15, marginBottom: 26 }}>
-        Once pantallas de los cuatro flujos, con mapa real, prioridad accesible y modo sin red.
+        Once pantallas de los cuatro flujos. Todo lo que se ve sale del backend real: no hay datos de ejemplo.
       </p>
 
       <div className="kicker" style={{ marginBottom: 10 }}>Pantallas</div>
+      {primerIncidente === null && (
+        <div className="note note--quiet" style={{ marginBottom: 10 }}>
+          Las pantallas de detalle se activan cuando haya un incidente en la cola del backend.
+        </div>
+      )}
       <div className="stack" style={{ gap: 1, marginBottom: 30 }}>
         {SCREEN_ROUTES.map((r, i) => {
-          const active = location.pathname === r.path;
+          const necesitaIncidente = r.path.includes(':id');
+          const destino = necesitaIncidente && primerIncidente
+            ? r.path.replace(':id', primerIncidente)
+            : r.path;
+          const disponible = !necesitaIncidente || primerIncidente !== null;
+          const active = location.pathname === destino;
           return (
             <button
               key={r.path}
               type="button"
-              onClick={() => navigate(r.path)}
+              disabled={!disponible}
+              title={disponible ? undefined : 'Necesita un incidente en la cola: envía un reporte primero.'}
+              onClick={() => navigate(destino)}
               style={{
                 display: 'flex', alignItems: 'center', gap: 8, width: '100%', textAlign: 'left',
                 minHeight: 38, padding: '5px 8px', border: 'none', borderRadius: 'var(--radius-md)',
                 cursor: 'pointer', fontSize: 15,
                 background: active ? 'var(--color-accent-200)' : 'transparent',
-                color: active ? 'var(--color-accent-800)' : 'var(--color-text)',
+                color: !disponible
+                  ? 'var(--color-neutral-600)'
+                  : active ? 'var(--color-accent-800)' : 'var(--color-text)',
               }}
             >
               <span style={{ fontVariantNumeric: 'tabular-nums', color: 'var(--color-neutral-600)', fontSize: 12, width: 20, flex: '0 0 20px' }}>

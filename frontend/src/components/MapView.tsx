@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import L from 'leaflet';
 import { bandHex } from '../lib/band';
+import type { LatLng, ZonePolygon } from '../api/types';
 
 export type MapMode = 'pick' | 'route' | 'dashboard';
 
@@ -17,7 +18,14 @@ interface Props {
   center?: [number, number];
   zoom?: number;
   points?: MapPoint[];
-  route?: [number, number][];
+  /** Vertices de la ruta ya en [lat, lng]; la inversion desde el GeoJSON
+      [lon, lat] del backend la hace `api/mapeo.ts`, nunca esta capa. */
+  route?: LatLng[];
+  /** Poligonos de zonas afectadas del agente geoespacial. */
+  zones?: ZonePolygon[];
+  /** Marca el destino aunque no haya ruta: sin geometria el incidente igual
+      tiene coordenadas propias y hay que poder verlo. */
+  destination?: MapPoint;
   /** Agrupa marcadores por densidad cuando el zoom esta lejos. */
   cluster?: boolean;
   onClusterOpen?: () => void;
@@ -56,12 +64,15 @@ function clusterIcon(n: number, worstColor: string, worstGlyph: string) {
 }
 
 export function MapView({
-  mode, height, center = [-12.052, -77.038], zoom = 13,
-  points = [], route = [], cluster = true, onClusterOpen,
+  mode, height, center = [4.6486, -74.0866], zoom = 13,
+  points = [], route = [], zones = [], destination, cluster = true, onClusterOpen,
 }: Props) {
   const holder = useRef<HTMLDivElement>(null);
   const mapRef = useRef<L.Map | null>(null);
   const layerRef = useRef<L.LayerGroup | null>(null);
+  // Firma del ultimo encuadre aplicado. Sin ella, encuadrar dentro del efecto de
+  // dibujo dispararia `zoomend`, que redibuja, que vuelve a encuadrar: bucle.
+  const encuadradoRef = useRef<string>('');
 
   // El mapa se crea una sola vez; los datos se redibujan en el efecto siguiente.
   useEffect(() => {
@@ -106,16 +117,54 @@ export function MapView({
         return;
       }
 
-      if (mode === 'route' && route.length > 1) {
-        L.polyline(route, { color: CYAN, weight: 4, opacity: 0.9 }).addTo(layer);
-        L.circleMarker(route[0], { radius: 5, color: INK, fillColor: '#f3f2f2', fillOpacity: 1, weight: 2 }).addTo(layer);
-        const dest = bandHex(92);
-        L.marker(route[route.length - 1], { icon: pin(dest.color, dest.glyph) }).addTo(layer);
-        map.fitBounds(L.latLngBounds(route).pad(0.25));
+      // Las zonas van primero para que queden por debajo de los marcadores.
+      zones.forEach((zona) => {
+        const b = bandHex(zona.incidentCount > 1 ? 92 : 60);
+        L.polygon(zona.rings, {
+          color: b.color, weight: 1.5, fillOpacity: 0.12, fillColor: b.color,
+        })
+          .bindTooltip(`Zona ${zona.id} · ${zona.incidentCount} incidente(s) · ${zona.severity}`, { direction: 'top' })
+          .addTo(layer);
+      });
+
+      if (mode === 'route') {
+        const encuadre: LatLng[] = [...route];
+
+        if (route.length > 1) {
+          L.polyline(route, { color: CYAN, weight: 4, opacity: 0.9 }).addTo(layer);
+          L.circleMarker(route[0], { radius: 5, color: INK, fillColor: '#f3f2f2', fillOpacity: 1, weight: 2 })
+            .bindTooltip('Origen de despacho', { direction: 'top' })
+            .addTo(layer);
+        }
+
+        // El destino se pinta con la banda real del incidente, no con un valor
+        // fijo: el color del pin es informacion, no decoracion.
+        const destino = destination
+          ?? (route.length ? { lat: route[route.length - 1][0], lng: route[route.length - 1][1], score: 0, title: 'Destino' } : null);
+        if (destino) {
+          const b = bandHex(destino.score);
+          L.marker([destino.lat, destino.lng], { icon: pin(b.color, b.glyph) })
+            .bindTooltip(destino.title, { direction: 'top' })
+            .addTo(layer);
+          encuadre.push([destino.lat, destino.lng]);
+        }
+
+        zones.forEach((z) => z.rings.forEach((anillo) => encuadre.push(...anillo)));
+        if (encuadre.length > 1) map.fitBounds(L.latLngBounds(encuadre).pad(0.25));
+        else if (encuadre.length === 1) map.setView(encuadre[0], 15);
         return;
       }
 
       if (!points.length) return;
+
+      // El tablero se encuadra sobre los incidentes reales una sola vez por
+      // lote: fijar un centro en codigo dejaria el mapa mirando a otra ciudad.
+      const firma = points.map((p) => `${p.lat.toFixed(4)},${p.lng.toFixed(4)}`).join('|');
+      if (firma !== encuadradoRef.current) {
+        encuadradoRef.current = firma;
+        const limites = L.latLngBounds(points.map((p) => [p.lat, p.lng] as LatLng));
+        map.fitBounds(limites.pad(0.3), { maxZoom: 15 });
+      }
 
       const shouldCluster = cluster && map.getZoom() < 14;
       if (!shouldCluster) {
@@ -161,7 +210,7 @@ export function MapView({
     draw();
     map.on('zoomend', draw);
     return () => { map.off('zoomend', draw); };
-  }, [mode, points, route, cluster, onClusterOpen]);
+  }, [mode, points, route, zones, destination, cluster, onClusterOpen]);
 
   return <div ref={holder} className="map" style={{ height }} role="img" aria-label="Mapa de incidentes" />;
 }
