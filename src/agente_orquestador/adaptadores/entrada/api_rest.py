@@ -8,13 +8,14 @@ estaba mal formada, cuando lo que falta es una persona.
 
 from __future__ import annotations
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 
 from agente_orquestador.adaptadores.entrada.modelos import (
     DecisionHumanaRequest,
     EmergenciaRequest,
 )
 from agente_orquestador.config.contenedor import Contenedor
+from agente_orquestador.dominio.entidades import Operacion
 from agente_orquestador.dominio.excepciones import (
     DecisionHumanaRequeridaError,
     DecisionRechazadaError,
@@ -22,6 +23,26 @@ from agente_orquestador.dominio.excepciones import (
     IncidenteDesconocidoError,
     TransicionInvalidaError,
 )
+
+#: Radio operativo por defecto de un coordinador de zona, en kilómetros. Es el
+#: mismo que asume el frontend para el alcance "zona".
+RADIO_ZONA_KM = 3.0
+
+
+def _en_zona(operacion: Operacion, radio_km: float) -> bool:
+    """¿Cae la operación dentro del radio del coordinador de zona?
+
+    La distancia sale de la ruta que calculó el agente geoespacial, que es la
+    única medida real que tiene la operación. Sin ruta no hay distancia, y una
+    operación sin distancia se deja fuera del alcance de zona: incluirla sería
+    afirmar que está cerca sin saberlo, y el coordinador de zona la despacharía
+    sin poder llegar.
+    """
+    ruta = operacion.datos.get("ruta")
+    if not isinstance(ruta, dict):
+        return False
+    distancia = ruta.get("distancia_km")
+    return distancia is not None and float(distancia) <= radio_km
 
 
 def crear_app(contenedor: Contenedor) -> FastAPI:
@@ -50,6 +71,27 @@ def crear_app(contenedor: Contenedor) -> FastAPI:
             raise HTTPException(status_code=409, detail=str(exc)) from exc
         except (ErrorDominio, ValueError) as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.get("/operaciones")
+    async def listar_operaciones(
+        alcance: str = Query("general", pattern="^(zona|general)$"),
+        radio_km: float = Query(RADIO_ZONA_KM, gt=0.0),
+    ) -> dict:
+        """Cola completa del tablero del coordinador, en orden de triage.
+
+        `alcance` es el filtro RBAC: un coordinador de zona no ve el
+        departamento entero, ve lo que le toca despachar. Se resuelve con la
+        distancia real que dejó el agente geoespacial en la operación.
+        """
+        operaciones = await contenedor.repositorio.listar()
+        if alcance == "zona":
+            operaciones = [o for o in operaciones if _en_zona(o, radio_km)]
+        return {
+            "alcance": alcance,
+            "radio_km": radio_km,
+            "total": len(operaciones),
+            "operaciones": [o.a_dict() for o in operaciones],
+        }
 
     @app.get("/operaciones/{incidente_id}")
     async def obtener_operacion(incidente_id: str) -> dict:

@@ -30,6 +30,21 @@ class Settings(BaseSettings):
     deepseek_base_url: str = "https://api.deepseek.com"
     deepseek_max_tokens: int = 1000
 
+    # "grafo" por defecto: las 243 pruebas existentes no salen a red y siguen
+    # pasando sin cambios. "osrm" activa el ruteo sobre calles reales, con el
+    # grafo propio como respaldo automático si OSRM no responde (ver
+    # ResolverRuta._resolver).
+    ruteador: str = "grafo"  # grafo | osrm
+    osrm_url_base: str = "https://router.project-osrm.org/route/v1"
+    osrm_timeout_seg: float = 4.0
+
+    nominatim_url_base: str = "https://nominatim.openstreetmap.org/search"
+    nominatim_timeout_seg: float = 5.0
+    nominatim_user_agent: str = (
+        "ResurgeAgent-Agente5-Geoespacial/0.1 (hackaton INVIMA; sin contacto publico)"
+    )
+    nominatim_min_intervalo_seg: float = 1.0
+
     @property
     def perfil_velocidad(self) -> dict[ModoTransporte, float]:
         return {

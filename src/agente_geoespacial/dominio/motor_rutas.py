@@ -94,6 +94,25 @@ class MotorRutas:
             alternativas=alternativas,
         )
 
+    def segmentos_de_tramos(self, ids_tramo: Sequence[str]) -> list[tuple[Punto, Punto]]:
+        """Traduce ids de tramo del grafo interno a coordenadas (origen, destino).
+
+        Existe para que un ruteador externo (p. ej. OSRM, que no conoce los ids
+        internos del grafo propio) pueda saber *dónde* cae un bloqueo, no solo
+        su id. Un id que no corresponde a ningún tramo se ignora en silencio,
+        mismo criterio que ``ResolverRuta._combinar_bloqueos``.
+        """
+        por_id = {tramo.id: tramo for tramo in self._grafo.tramos}
+        segmentos: list[tuple[Punto, Punto]] = []
+        for id_tramo in ids_tramo:
+            tramo = por_id.get(id_tramo)
+            if tramo is None:
+                continue
+            origen = self._grafo.nodos[tramo.origen_id].ubicacion
+            destino = self._grafo.nodos[tramo.destino_id].ubicacion
+            segmentos.append((origen, destino))
+        return segmentos
+
     # ------------------------------------------------------------------ grafo
     def _grafo_dirigido(
         self, modo: ModoTransporte, vias_bloqueadas: Sequence[str]
