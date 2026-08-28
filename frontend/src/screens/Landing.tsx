@@ -13,7 +13,7 @@ export default function Landing() {
 
   return (
     <Screen>
-      <div className="kicker">Emergencias · Lima Centro</div>
+      <div className="kicker">Emergencias · Colombia</div>
       <h1 className="display" style={{ margin: '12px 0 14px' }}>¿Necesitas ayuda ahora?</h1>
       <p className="lede" style={{ marginBottom: 26 }}>
         Tres pasos y confirmamos. Funciona sin señal: guardamos tu reporte y lo enviamos al recuperar red.
