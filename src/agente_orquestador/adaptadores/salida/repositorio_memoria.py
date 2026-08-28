@@ -26,5 +26,21 @@ class RepositorioOperacionesMemoria:
             o for o in self._operaciones.values() if o.correlacion_id == correlacion_id
         ]
 
+    async def listar(self) -> list[Operacion]:
+        """Todas las operaciones, en orden de triage (posición 1 primero).
+
+        Existe para que el tablero del coordinador tenga de dónde leer la cola
+        completa: hasta ahora solo se podía pedir un incidente por id, y una cola
+        que hay que consultar de uno en uno no es una cola.
+
+        Las operaciones aún sin triage van al final: no tienen posición, y
+        colocarlas arriba desplazaría a incidentes ya priorizados.
+        """
+        sin_triage = len(self._operaciones) + 1
+        return sorted(
+            self._operaciones.values(),
+            key=lambda o: o.puntuacion.posicion if o.puntuacion else sin_triage,
+        )
+
     def todas(self) -> list[Operacion]:
         return list(self._operaciones.values())
