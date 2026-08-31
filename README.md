@@ -74,8 +74,6 @@ continúa?    resuelta?
 1. Agente Orquestador
 Coordina a todos los agentes, consolida información y determina qué acciones deben ejecutarse y en qué orden.
 
-## David:
-
 2. Agente de Ingesta de Información
 Recibe información de ciudadanos, afectados, voluntarios, organizaciones, autoridades, sensores, APIs y fuentes geográficas.
 
@@ -88,9 +86,6 @@ Identifica y clasifica zonas de riesgo, estructuras afectadas, amenazas y posibl
 5. Agente Geoespacial y Movilidad
 Gestiona mapas, ubicación de personas, puntos de ayuda, zonas afectadas y distribución geográfica de recursos. Detecta vías bloqueadas, congestión, accesos restringidos y propone rutas alternativas.
 
-
-## Jhojan: 
-
 7. Agente de Necesidades
 Identifica qué necesita cada zona: alimentos, agua, medicamentos, refugio, rescate, personal, transporte, etc.
 
@@ -99,10 +94,8 @@ Controla disponibilidad y distribución de alimentos, agua, medicamentos, herram
 
 9. Agente de Voluntarios
 Registra capacidades, ubicación y disponibilidad de voluntarios y determina dónde pueden ser más útiles. - 
-
 Sistemas de estados unidos relacionados con verificar efectivamente los daños.
 
-## Alejandro
 10. Agente de Matching/Asignación
 Relaciona necesidades ↔ recursos ↔ empresas ↔ vehículos, buscando la asignación más eficiente.
 
@@ -112,18 +105,14 @@ Planifica el movimiento de recursos, personas y suministros desde su origen hast
 12. Agente de Afectados
 Gestiona solicitudes de ayuda, registra empresas afectadas y hace seguimiento de sus necesidades. (Opcional)
 
-## Saregon
 13. Agente de Puntos de Ayuda
 Administra refugios, centros de distribución, centros de acopio y demás puntos de atención, incluyendo su capacidad y nivel de saturación.
 
-        14. Agente de Comunicación y Alertas
-        Envía instrucciones, alertas, recomendaciones y actualizaciones a ciudadanos, voluntarios, organizaciones y coordinadores.
+14. Agente de Comunicación y Alertas
+Envía instrucciones, alertas, recomendaciones y actualizaciones a ciudadanos, voluntarios, organizaciones y coordinadores.
 
-        15. Agente de Seguimiento
-        Verifica si una necesidad fue atendida y actualiza el estado de cada operación.
-
-Agentes para recuperación y reconstrucción - 2 etapa
-
+15. Agente de Seguimiento
+Verifica si una necesidad fue atendida y actualiza el estado de cada operación.
 
 16. Agente Jurídico/Orientación Legal
 Orienta sobre trámites, derechos, documentación, obligaciones, ayudas y rutas institucionales según la situación del afectado.
